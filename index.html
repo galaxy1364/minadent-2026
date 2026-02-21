@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -44,35 +45,35 @@
   --header-h: 64px;
 }
 
-[data-theme="dark"] {
-  --bg: #000000;
-  --bg2: #1C1C1E;
-  --bg3: #2C2C2E;
-  --card: #1C1C1E;
-  --card2: #2C2C2E;
-  --text: #FFFFFF;
-  --text2: #EBEBF5;
-  --text3: #8E8E93;
-  --border: rgba(255,255,255,0.1);
-  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+[data-theme=“dark”] {
+–bg: #000000;
+–bg2: #1C1C1E;
+–bg3: #2C2C2E;
+–card: #1C1C1E;
+–card2: #2C2C2E;
+–text: #FFFFFF;
+–text2: #EBEBF5;
+–text3: #8E8E93;
+–border: rgba(255,255,255,0.1);
+–shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
-html { font-size:15px; scroll-behavior:smooth; }
-body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
+- { margin:0; padding:0; box-sizing:border-box; }
+  html { font-size:15px; scroll-behavior:smooth; }
+  body {
+  font-family: var(–font);
+  background: var(–bg);
+  color: var(–text);
   min-height: 100vh;
   overflow-x: hidden;
   transition: background 0.3s, color 0.3s;
-}
+  }
 
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width:6px; height:6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius:3px; }
-[data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+[data-theme=“dark”] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
 
 /* ===== SPLASH SCREEN ===== */
 #splash {
@@ -116,12 +117,12 @@ animation: splashLoad 2s ease-in-out forwards;
 
 /* ===== SIDEBAR ===== */
 #sidebar {
-width: var(--sidebar-w);
+width: var(–sidebar-w);
 height: 100vh;
 position: fixed;
 top:0; right:0;
-background: var(--card);
-border-left: 1px solid var(--border);
+background: var(–card);
+border-left: 1px solid var(–border);
 display:flex; flex-direction:column;
 z-index:100;
 transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), background 0.3s;
@@ -129,7 +130,7 @@ box-shadow: -4px 0 24px rgba(0,0,0,0.06);
 }
 .sidebar-header {
 padding: 20px 20px 16px;
-border-bottom: 1px solid var(--border);
+border-bottom: 1px solid var(–border);
 display:flex; align-items:center; gap:12px;
 }
 .sidebar-logo {
@@ -140,13 +141,13 @@ display:flex; align-items:center; justify-content:center;
 font-size:22px; flex-shrink:0;
 }
 .sidebar-name { font-weight:800; font-size:15px; line-height:1.2; }
-.sidebar-name small { font-weight:400; color:var(--text3); font-size:11px; display:block; }
+.sidebar-name small { font-weight:400; color:var(–text3); font-size:11px; display:block; }
 
 .sidebar-user {
 margin:16px; padding:12px 14px;
 background: linear-gradient(135deg, #0A84FF15, #BF5AF215);
-border-radius: var(--radius2);
-border: 1px solid rgba(10,132,255,0.25);
+border-radius: var(–radius2);
+border: 1px solid var(–primary)25;
 display:flex; align-items:center; gap:10px;
 }
 .user-avatar {
@@ -157,103 +158,103 @@ justify-content:center; color:white; font-weight:700; font-size:15px;
 flex-shrink:0;
 }
 .user-info { flex:1; min-width:0; }
-.user-name { font-weight:700; font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.user-role { font-size:11px; color:var(--primary); font-weight:500; }
+.user-name { font-weight:700; font-size:13px; truncate:ellipsis; }
+.user-role { font-size:11px; color:var(–primary); font-weight:500; }
 
 nav { flex:1; overflow-y:auto; padding:8px 12px; }
 .nav-section { margin-bottom:4px; }
 .nav-label {
-font-size:10px; font-weight:700; color:var(--text3);
+font-size:10px; font-weight:700; color:var(–text3);
 text-transform:uppercase; letter-spacing:0.5px;
 padding:8px 8px 4px;
 }
 .nav-item {
 display:flex; align-items:center; gap:12px;
-padding:10px 12px; border-radius:var(--radius2);
-cursor:pointer; transition:var(--transition);
-color:var(--text2); font-size:14px; font-weight:500;
+padding:10px 12px; border-radius:var(–radius2);
+cursor:pointer; transition:var(–transition);
+color:var(–text2); font-size:14px; font-weight:500;
 margin-bottom:2px; position:relative;
 user-select:none;
 }
-.nav-item:hover { background:var(--bg); color:var(--text); }
+.nav-item:hover { background:var(–bg); color:var(–text); }
 .nav-item.active {
 background: linear-gradient(135deg, #0A84FF18, #BF5AF210);
-color: var(--primary);
+color: var(–primary);
 font-weight:700;
 }
 .nav-item.active::before {
-content:''; position:absolute;
+content:’’; position:absolute;
 right:-12px; top:50%; transform:translateY(-50%);
 width:3px; height:24px;
-background: var(--primary);
+background: var(–primary);
 border-radius:2px 0 0 2px;
 }
 .nav-icon { font-size:20px; width:24px; text-align:center; flex-shrink:0; }
 .nav-badge {
 margin-right:auto;
-background:var(--primary); color:white;
+background:var(–primary); color:white;
 font-size:10px; font-weight:700;
 padding:2px 6px; border-radius:10px; min-width:18px; text-align:center;
 }
-.nav-badge.green { background:var(--secondary); }
-.nav-badge.red { background:var(--pink); }
+.nav-badge.green { background:var(–secondary); }
+.nav-badge.red { background:var(–pink); }
 
 .sidebar-footer {
-padding:12px; border-top:1px solid var(--border);
+padding:12px; border-top:1px solid var(–border);
 display:flex; gap:8px;
 }
 .sidebar-footer-btn {
-flex:1; padding:10px; border-radius:var(--radius2);
-background:var(--bg); border:none; cursor:pointer;
-font-family:var(--font); font-size:13px; font-weight:600;
-color:var(--text2); display:flex; align-items:center;
-justify-content:center; gap:6px; transition:var(--transition);
+flex:1; padding:10px; border-radius:var(–radius2);
+background:var(–bg); border:none; cursor:pointer;
+font-family:var(–font); font-size:13px; font-weight:600;
+color:var(–text2); display:flex; align-items:center;
+justify-content:center; gap:6px; transition:var(–transition);
 }
-.sidebar-footer-btn:hover { background:var(--border); }
+.sidebar-footer-btn:hover { background:var(–border); }
 
 /* ===== MAIN CONTENT ===== */
 #main {
-margin-right: var(--sidebar-w);
+margin-right: var(–sidebar-w);
 flex:1; display:flex; flex-direction:column;
 min-height:100vh;
 }
 
 /* ===== HEADER ===== */
 #header {
-height: var(--header-h);
+height: var(–header-h);
 background: rgba(255,255,255,0.8);
-backdrop-filter: var(--blur);
--webkit-backdrop-filter: var(--blur);
-border-bottom: 1px solid var(--border);
+backdrop-filter: var(–blur);
+-webkit-backdrop-filter: var(–blur);
+border-bottom: 1px solid var(–border);
 display:flex; align-items:center;
 padding:0 24px; gap:16px;
 position:sticky; top:0; z-index:50;
 transition: background 0.3s;
 }
-[data-theme="dark"] #header {
+[data-theme=“dark”] #header {
 background: rgba(28,28,30,0.8);
 }
 .header-title { font-size:18px; font-weight:800; flex:1; }
 .header-date {
-background:var(--bg); padding:6px 14px;
+background:var(–bg); padding:6px 14px;
 border-radius:20px; font-size:12px;
-color:var(--text2); font-weight:600;
-border:1px solid var(--border);
+color:var(–text2); font-weight:600;
+border:1px solid var(–border);
 }
 .header-btn {
 width:38px; height:38px;
-background:var(--bg); border-radius:50%;
+background:var(–bg); border-radius:50%;
 display:flex; align-items:center; justify-content:center;
-cursor:pointer; border:1px solid var(--border);
-font-size:18px; transition:var(--transition);
+cursor:pointer; border:1px solid var(–border);
+font-size:18px; transition:var(–transition);
 position:relative;
 }
-.header-btn:hover { background:var(--border); transform:scale(1.05); }
+.header-btn:hover { background:var(–border); transform:scale(1.05); }
 .notif-dot {
 position:absolute; top:6px; right:6px;
 width:8px; height:8px;
-background:var(--pink); border-radius:50%;
-border:2px solid var(--bg2);
+background:var(–pink); border-radius:50%;
+border:2px solid var(–bg2);
 }
 
 /* ===== PAGES ===== */
@@ -261,107 +262,619 @@ border:2px solid var(--bg2);
 .page.active { display:block; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:none;} }
 
-/* ===== MOBILE HOME - دقیقاً مثل عکس جدید شما (بدون بریدگی) ===== */
-#page-home {
-  padding:0;
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-}
-.home-header {
-  padding:20px 20px 10px;
-  background:var(--bg);
-  display:flex;
-  align-items:center;
-  gap:12px;
-  border-bottom:1px solid var(--border);
-}
-.date-box {
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:8px 14px;
-  font-size:13px;
-  font-weight:600;
-  color:var(--text3);
-  white-space:nowrap;
-}
-.home-title {
-  font-size:22px;
-  font-weight:800;
-  flex:1;
-  text-align:center;
-}
-.mobile-menu {
-  flex:1;
-  overflow-y:auto;
-  padding:16px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.mobile-menu-item {
-  background:var(--card);
-  border-radius:16px;
-  padding:16px 20px;
-  display:flex;
-  align-items:center;
-  gap:16px;
-  box-shadow:var(--shadow2);
-  cursor:pointer;
-  transition:all 0.3s;
-  position:relative;
-}
-.mobile-menu-item:hover {
-  transform:translateY(-3px);
-  box-shadow:var(--shadow);
-}
-.mobile-menu-item span:first-child {
-  font-size:32px;
-  width:36px;
-}
-.mobile-menu-item .badge {
-  position:absolute;
-  top:14px;
-  right:20px;
-  font-size:11px;
-  padding:2px 8px;
-  border-radius:10px;
-  font-weight:700;
-}
-.mobile-menu-item.green .badge { background:#30D15820; color:#30D158; }
-.mobile-menu-item.blue .badge { background:#0A84FF20; color:#0A84FF; }
-.mobile-menu-item.red .badge { background:#FF375F20; color:#FF375F; }
-
-/* تمام استایل‌های اصلی شما (هیچ خطی حذف نشده) */
+/* ===== CARDS ===== */
 .card {
-background:var(--card); border-radius:var(--radius);
-box-shadow:var(--shadow2);
-border:1px solid var(--border);
+background:var(–card); border-radius:var(–radius);
+box-shadow:var(–shadow2);
+border:1px solid var(–border);
 transition: background 0.3s, box-shadow 0.3s;
 }
-/* ... تمام استایل‌های قبلی شما دقیقاً همان‌طور که فرستادی ... */
+.card-header {
+padding:18px 20px 0;
+display:flex; align-items:center; gap:12px;
+}
+.card-title { font-size:16px; font-weight:700; flex:1; }
+.card-body { padding:16px 20px 20px; }
+
+/* ===== DASHBOARD ===== */
+.stats-grid {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:16px; margin-bottom:24px;
+}
+.stat-card {
+background:var(–card); border-radius:var(–radius);
+padding:20px; border:1px solid var(–border);
+position:relative; overflow:hidden;
+transition:var(–transition);
+cursor:default;
+}
+.stat-card:hover { transform:translateY(-2px); box-shadow:var(–shadow); }
+.stat-icon {
+width:48px; height:48px; border-radius:14px;
+display:flex; align-items:center; justify-content:center;
+font-size:24px; margin-bottom:14px;
+}
+.stat-value { font-size:26px; font-weight:900; margin-bottom:4px; direction:ltr; text-align:right; }
+.stat-label { font-size:12px; color:var(–text3); font-weight:500; }
+.stat-change {
+font-size:11px; font-weight:700; margin-top:8px;
+display:inline-flex; align-items:center; gap:3px;
+padding:3px 8px; border-radius:20px;
+}
+.stat-change.up { background:#30D15820; color:#30D158; }
+.stat-change.down { background:#FF375F20; color:#FF375F; }
+
+.stat-card .stat-bg {
+position:absolute; bottom:-10px; left:-10px;
+font-size:80px; opacity:0.06; pointer-events:none;
+}
+
+/* ===== DASHBOARD GRID ===== */
+.dash-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:24px; }
+.dash-grid .card { min-height:200px; }
+
+/* ===== QUICK ACTIONS ===== */
+.quick-actions {
+display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px;
+}
+.qa-btn {
+background:var(–card); border-radius:var(–radius);
+padding:16px 12px; text-align:center;
+border:1px solid var(–border);
+cursor:pointer; transition:var(–transition);
+display:flex; flex-direction:column;
+align-items:center; gap:8px;
+}
+.qa-btn:hover { transform:translateY(-3px); box-shadow:var(–shadow); }
+.qa-icon {
+width:52px; height:52px; border-radius:16px;
+display:flex; align-items:center; justify-content:center;
+font-size:26px;
+}
+.qa-label { font-size:12px; font-weight:600; color:var(–text2); line-height:1.3; }
+
+/* ===== TABLE ===== */
+.table-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; }
+th {
+background:var(–bg); padding:12px 16px;
+font-size:12px; font-weight:700; color:var(–text3);
+text-align:right; white-space:nowrap;
+border-bottom:2px solid var(–border);
+}
+td {
+padding:12px 16px; font-size:13px;
+border-bottom:1px solid var(–border);
+color:var(–text2);
+}
+tr:hover td { background:var(–bg3); }
+tr:last-child td { border-bottom:none; }
+
+/* ===== BADGE ===== */
+.badge {
+display:inline-flex; align-items:center; gap:4px;
+padding:3px 10px; border-radius:20px;
+font-size:11px; font-weight:700;
+}
+.badge-blue { background:#0A84FF20; color:#0A84FF; }
+.badge-green { background:#30D15820; color:#30D158; }
+.badge-orange { background:#FF9F0A20; color:#FF9F0A; }
+.badge-red { background:#FF375F20; color:#FF375F; }
+.badge-purple { background:#BF5AF220; color:#BF5AF2; }
+.badge-gray { background:var(–bg); color:var(–text3); }
+
+/* ===== FORMS ===== */
+.form-group { margin-bottom:16px; }
+.form-label {
+display:block; font-size:13px; font-weight:600;
+color:var(–text2); margin-bottom:6px;
+}
+.form-label span { color:var(–pink); }
+.form-control {
+width:100%; padding:11px 14px;
+background:var(–bg); border:1.5px solid var(–border);
+border-radius:var(–radius2); font-family:var(–font);
+font-size:14px; color:var(–text);
+transition:var(–transition); outline:none;
+}
+.form-control:focus {
+border-color:var(–primary);
+background:var(–card);
+box-shadow:0 0 0 3px rgba(10,132,255,0.15);
+}
+.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.form-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+select.form-control { cursor:pointer; }
+textarea.form-control { resize:vertical; min-height:100px; }
+
+/* ===== BUTTONS ===== */
+.btn {
+display:inline-flex; align-items:center; gap:8px;
+padding:10px 20px; border-radius:var(–radius2);
+border:none; cursor:pointer;
+font-family:var(–font); font-size:14px; font-weight:700;
+transition:var(–transition); white-space:nowrap;
+user-select:none;
+}
+.btn:active { transform:scale(0.97); }
+.btn-primary { background:var(–primary); color:white; }
+.btn-primary:hover { background:var(–primary-dark); box-shadow:0 4px 15px rgba(10,132,255,0.35); }
+.btn-success { background:var(–secondary); color:white; }
+.btn-success:hover { background:var(–secondary-dark); }
+.btn-danger { background:var(–pink); color:white; }
+.btn-outline {
+background:transparent; color:var(–text);
+border:1.5px solid var(–border);
+}
+.btn-outline:hover { background:var(–bg); }
+.btn-sm { padding:7px 14px; font-size:12px; }
+.btn-lg { padding:14px 28px; font-size:16px; border-radius:var(–radius); }
+.btn-icon { padding:10px; }
+.btn-icon svg, .btn-icon span { font-size:18px; }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+position:fixed; inset:0; z-index:1000;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(4px);
+display:flex; align-items:center; justify-content:center;
+padding:20px;
+opacity:0; pointer-events:none;
+transition:opacity 0.3s;
+}
+.modal-overlay.open { opacity:1; pointer-events:all; }
+.modal {
+background:var(–card); border-radius:var(–radius);
+width:100%; max-width:600px; max-height:90vh;
+overflow-y:auto;
+transform:translateY(20px) scale(0.98);
+transition:transform 0.3s;
+border:1px solid var(–border);
+}
+.modal-overlay.open .modal { transform:none; }
+.modal-header {
+padding:20px 24px; border-bottom:1px solid var(–border);
+display:flex; align-items:center; gap:12px;
+position:sticky; top:0; background:var(–card); z-index:5;
+}
+.modal-title { font-size:17px; font-weight:800; flex:1; }
+.modal-close {
+width:32px; height:32px; border-radius:50%;
+background:var(–bg); border:none; cursor:pointer;
+display:flex; align-items:center; justify-content:center;
+font-size:18px; color:var(–text3);
+transition:var(–transition);
+}
+.modal-close:hover { background:var(–border); }
+.modal-body { padding:24px; }
+.modal-footer {
+padding:16px 24px; border-top:1px solid var(–border);
+display:flex; gap:10px; justify-content:flex-end;
+}
+
+/* ===== SEARCH BAR ===== */
+.search-bar {
+display:flex; align-items:center; gap:12px;
+padding:0 0 20px;
+}
+.search-wrap {
+flex:1; position:relative;
+}
+.search-icon {
+position:absolute; right:14px; top:50%;
+transform:translateY(-50%); font-size:16px; color:var(–text3);
+}
+.search-input {
+width:100%; padding:11px 42px 11px 14px;
+background:var(–card); border:1.5px solid var(–border);
+border-radius:var(–radius2); font-family:var(–font);
+font-size:14px; color:var(–text); outline:none;
+transition:var(–transition);
+}
+.search-input:focus {
+border-color:var(–primary);
+box-shadow:0 0 0 3px rgba(10,132,255,0.12);
+}
+
+/* ===== PATIENT CARD ===== */
+.patient-grid {
+display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+gap:16px;
+}
+.patient-card {
+background:var(–card); border-radius:var(–radius);
+padding:18px; border:1px solid var(–border);
+transition:var(–transition); cursor:pointer;
+}
+.patient-card:hover { transform:translateY(-3px); box-shadow:var(–shadow); border-color:var(–primary)50; }
+.patient-head { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.patient-avatar {
+width:50px; height:50px; border-radius:16px;
+display:flex; align-items:center; justify-content:center;
+font-size:22px; font-weight:800; color:white; flex-shrink:0;
+}
+.patient-info { flex:1; min-width:0; }
+.patient-name { font-weight:700; font-size:15px; margin-bottom:2px; }
+.patient-id { font-size:11px; color:var(–text3); font-weight:500; }
+.patient-stats {
+display:grid; grid-template-columns:1fr 1fr 1fr;
+gap:8px; text-align:center;
+padding-top:12px; border-top:1px solid var(–border);
+}
+.patient-stat-val { font-size:15px; font-weight:800; }
+.patient-stat-lbl { font-size:10px; color:var(–text3); font-weight:500; }
+
+/* ===== DENTAL CHART ===== */
+.dental-chart-wrap {
+background:var(–bg); border-radius:var(–radius);
+padding:20px; text-align:center;
+}
+.teeth-row { display:flex; justify-content:center; gap:4px; margin-bottom:8px; }
+.tooth {
+width:32px; height:40px; border-radius:8px;
+background:var(–card); border:2px solid var(–border);
+display:flex; align-items:center; justify-content:center;
+font-size:10px; font-weight:700; color:var(–text3);
+cursor:pointer; transition:var(–transition);
+position:relative;
+}
+.tooth:hover { border-color:var(–primary); background:#0A84FF10; }
+.tooth.healthy { border-color:var(–secondary); background:#30D15810; color:var(–secondary); }
+.tooth.treated { border-color:var(–accent2); background:#FF9F0A10; color:var(–accent2); }
+.tooth.problematic { border-color:var(–pink); background:#FF375F10; color:var(–pink); }
+.tooth.missing { background:var(–border); color:var(–text3); opacity:0.5; }
+.tooth.implant { border-color:var(–purple); background:#BF5AF210; color:var(–purple); }
+.chart-divider {
+height:2px; background:var(–border); margin:8px 0;
+border-radius:1px;
+}
+.chart-legend {
+display:flex; justify-content:center; gap:16px;
+margin-top:16px; flex-wrap:wrap;
+}
+.legend-item {
+display:flex; align-items:center; gap:6px;
+font-size:11px; color:var(–text3); font-weight:600;
+}
+.legend-dot {
+width:12px; height:12px; border-radius:3px;
+}
+
+/* ===== CALENDAR ===== */
+.calendar-wrap { }
+.cal-header {
+display:flex; align-items:center; justify-content:space-between;
+margin-bottom:16px;
+}
+.cal-nav { display:flex; gap:8px; }
+.cal-nav-btn {
+width:36px; height:36px; border-radius:50%;
+background:var(–bg); border:1px solid var(–border);
+cursor:pointer; display:flex; align-items:center;
+justify-content:center; font-size:16px;
+transition:var(–transition);
+}
+.cal-nav-btn:hover { background:var(–primary); color:white; border-color:var(–primary); }
+.cal-title { font-size:17px; font-weight:800; }
+.cal-grid {
+display:grid; grid-template-columns:repeat(7,1fr); gap:4px;
+}
+.cal-day-name {
+text-align:center; font-size:11px; font-weight:700;
+color:var(–text3); padding:8px 0;
+}
+.cal-day {
+aspect-ratio:1; border-radius:10px;
+display:flex; flex-direction:column;
+align-items:center; justify-content:center;
+cursor:pointer; transition:var(–transition);
+font-size:13px; font-weight:600;
+position:relative;
+}
+.cal-day:hover { background:var(–bg); }
+.cal-day.today {
+background: var(–primary); color:white;
+box-shadow:0 4px 12px rgba(10,132,255,0.35);
+}
+.cal-day.has-event::after {
+content:’’; position:absolute; bottom:4px;
+width:4px; height:4px; border-radius:50%;
+background:var(–secondary);
+}
+.cal-day.today::after { background:white; }
+.cal-day.other-month { opacity:0.35; }
+.cal-day.holiday { color:var(–pink); }
+.cal-day.weekend { color:var(–accent); }
+
+/* ===== APPOINTMENTS ===== */
+.appointment-list { display:flex; flex-direction:column; gap:10px; }
+.appt-card {
+background:var(–card); border-radius:var(–radius2);
+padding:14px 16px; border:1px solid var(–border);
+display:flex; align-items:center; gap:14px;
+transition:var(–transition); cursor:pointer;
+}
+.appt-card:hover { box-shadow:var(–shadow2); transform:translateX(-3px); }
+.appt-time {
+min-width:60px; text-align:center;
+}
+.appt-hour { font-size:17px; font-weight:900; }
+.appt-period { font-size:10px; color:var(–text3); font-weight:500; }
+.appt-divider {
+width:3px; height:44px; border-radius:2px; flex-shrink:0;
+}
+.appt-info { flex:1; }
+.appt-name { font-weight:700; font-size:14px; margin-bottom:3px; }
+.appt-type { font-size:12px; color:var(–text3); }
+.appt-actions { display:flex; gap:6px; }
+.appt-action-btn {
+width:32px; height:32px; border-radius:8px;
+background:var(–bg); border:1px solid var(–border);
+display:flex; align-items:center; justify-content:center;
+cursor:pointer; font-size:14px; transition:var(–transition);
+}
+.appt-action-btn:hover { background:var(–primary); color:white; border-color:var(–primary); }
+
+/* ===== FINANCE ===== */
+.finance-summary {
+background: linear-gradient(135deg, #0A84FF, #BF5AF2);
+border-radius:var(–radius); padding:24px; color:white; margin-bottom:20px;
+position:relative; overflow:hidden;
+}
+.finance-summary::before {
+content:’’; position:absolute;
+top:-50px; left:-50px;
+width:200px; height:200px;
+background:rgba(255,255,255,0.1);
+border-radius:50%;
+}
+.finance-label { font-size:13px; opacity:0.85; margin-bottom:6px; }
+.finance-amount { font-size:36px; font-weight:900; margin-bottom:16px; direction:ltr; }
+.finance-row { display:flex; gap:24px; }
+.finance-mini { }
+.finance-mini-label { font-size:11px; opacity:0.75; }
+.finance-mini-val { font-size:16px; font-weight:700; }
+
+.income-card {
+background: linear-gradient(135deg, #30D158, #25A244);
+border-radius:var(–radius); padding:20px; color:white;
+}
+.expense-card {
+background: linear-gradient(135deg, #FF375F, #C92E4A);
+border-radius:var(–radius); padding:20px; color:white;
+}
+
+/* ===== TOAST ===== */
+#toast-container {
+position:fixed; bottom:24px; left:50%;
+transform:translateX(-50%); z-index:9998;
+display:flex; flex-direction:column; gap:8px; align-items:center;
+}
+.toast {
+background:var(–text); color:var(–bg2);
+padding:12px 20px; border-radius:30px;
+font-size:13px; font-weight:600;
+box-shadow:0 8px 32px rgba(0,0,0,0.25);
+animation:toastIn 0.3s ease;
+display:flex; align-items:center; gap:8px;
+}
+@keyframes toastIn {
+from{opacity:0;transform:translateY(16px) scale(0.95);}
+to{opacity:1;transform:none;}
+}
+
+/* ===== TABS ===== */
+.tabs {
+display:flex; gap:4px; background:var(–bg);
+padding:4px; border-radius:var(–radius2);
+margin-bottom:20px; overflow-x:auto;
+}
+.tab {
+padding:8px 18px; border-radius:var(–radius3);
+cursor:pointer; font-size:13px; font-weight:600;
+color:var(–text3); transition:var(–transition);
+white-space:nowrap;
+}
+.tab.active {
+background:var(–card); color:var(–text);
+box-shadow:var(–shadow2);
+}
+
+/* ===== SECTION HEADER ===== */
+.section-header {
+display:flex; align-items:center; gap:12px; margin-bottom:20px;
+}
+.section-title { font-size:20px; font-weight:900; flex:1; }
+.section-actions { display:flex; gap:8px; }
+
+/* ===== TIMELINE ===== */
+.timeline { position:relative; padding-right:24px; }
+.timeline::before {
+content:’’; position:absolute; right:9px; top:0; bottom:0;
+width:2px; background:var(–border); border-radius:1px;
+}
+.timeline-item { position:relative; padding-bottom:20px; padding-right:24px; }
+.timeline-dot {
+position:absolute; right:-15px; top:4px;
+width:12px; height:12px; border-radius:50%;
+background:var(–primary); border:2px solid var(–card);
+z-index:1;
+}
+.timeline-content {
+background:var(–bg); border-radius:var(–radius2);
+padding:12px 14px; border:1px solid var(–border);
+}
+.timeline-title { font-weight:700; font-size:13px; margin-bottom:4px; }
+.timeline-sub { font-size:12px; color:var(–text3); }
+
+/* ===== PROGRESS ===== */
+.progress-bar {
+height:8px; background:var(–border); border-radius:4px; overflow:hidden;
+}
+.progress-fill {
+height:100%; border-radius:4px;
+transition:width 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ===== NOTIFICATION PANEL ===== */
+.notif-panel {
+position:fixed; top:var(–header-h); left:50%;
+transform:translateX(-50%) translateY(-20px);
+width:360px; max-height:500px; overflow-y:auto;
+background:var(–card); border-radius:var(–radius);
+border:1px solid var(–border);
+box-shadow:var(–shadow);
+z-index:200; opacity:0; pointer-events:none;
+transition:all 0.3s;
+}
+.notif-panel.open {
+opacity:1; pointer-events:all;
+transform:translateX(-50%) translateY(0);
+}
+.notif-header { padding:16px 18px; border-bottom:1px solid var(–border); font-weight:700; }
+.notif-item {
+padding:14px 18px; border-bottom:1px solid var(–border);
+display:flex; align-items:flex-start; gap:12px;
+cursor:pointer; transition:background 0.2s;
+}
+.notif-item:hover { background:var(–bg); }
+.notif-item:last-child { border:none; }
+.notif-icon { font-size:22px; flex-shrink:0; }
+.notif-text { flex:1; }
+.notif-text strong { display:block; font-size:13px; margin-bottom:2px; }
+.notif-text span { font-size:12px; color:var(–text3); }
+.notif-item.unread .notif-icon::after {
+content:’’; display:block; width:8px; height:8px;
+background:var(–primary); border-radius:50; margin-top:-8px; margin-right:-4px;
+}
+
+/* ===== SETTINGS ===== */
+.settings-section {
+background:var(–card); border-radius:var(–radius);
+border:1px solid var(–border); overflow:hidden; margin-bottom:16px;
+}
+.settings-row {
+display:flex; align-items:center; gap:14px;
+padding:16px 20px; border-bottom:1px solid var(–border);
+cursor:pointer; transition:background 0.2s;
+}
+.settings-row:last-child { border:none; }
+.settings-row:hover { background:var(–bg); }
+.settings-row-icon {
+width:36px; height:36px; border-radius:10px;
+display:flex; align-items:center; justify-content:center;
+font-size:18px; flex-shrink:0;
+}
+.settings-row-content { flex:1; }
+.settings-row-label { font-weight:600; font-size:14px; }
+.settings-row-desc { font-size:12px; color:var(–text3); margin-top:2px; }
+
+/* ===== TOGGLE ===== */
+.toggle {
+width:48px; height:28px; background:var(–border);
+border-radius:14px; position:relative;
+cursor:pointer; transition:background 0.3s;
+flex-shrink:0;
+}
+.toggle.on { background:var(–secondary); }
+.toggle::after {
+content:’’; position:absolute;
+top:3px; right:3px;
+width:22px; height:22px;
+background:white; border-radius:50%;
+transition:transform 0.3s;
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+.toggle.on::after { transform:translateX(-20px); }
+
+/* ===== DOCTOR CARD ===== */
+.doctor-card {
+background:var(–card); border-radius:var(–radius);
+padding:20px; border:1px solid var(–border);
+transition:var(–transition);
+}
+.doctor-card:hover { box-shadow:var(–shadow); }
+.doctor-head { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+.doctor-avatar {
+width:60px; height:60px; border-radius:20px;
+display:flex; align-items:center; justify-content:center;
+font-size:26px; font-weight:800; color:white;
+}
+.doctor-name { font-weight:800; font-size:16px; }
+.doctor-title { font-size:12px; color:var(–text3); }
+.doctor-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.doc-stat {
+background:var(–bg); border-radius:var(–radius3);
+padding:10px 12px;
+}
+.doc-stat-val { font-weight:800; font-size:16px; margin-bottom:2px; }
+.doc-stat-lbl { font-size:11px; color:var(–text3); }
+
+/* ===== CHART (SVG) ===== */
+.chart-svg-wrap { overflow:hidden; }
+svg text { font-family:var(–font); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
-  :root { --sidebar-w: 0px; }
-  #sidebar { transform:translateX(100%); }
-  #sidebar.mobile-open { transform:none; }
-  #main { margin-right:0; }
-  .sidebar-overlay {
-  position:fixed; inset:0; background:rgba(0,0,0,0.5);
-  z-index:99; display:none;
-  }
-  .sidebar-overlay.show { display:block; }
-  .page { padding:0; }
-  #page-home { height:100vh; }
+:root { –sidebar-w: 0px; }
+#sidebar { transform:translateX(100%); }
+#sidebar.mobile-open { transform:none; }
+#main { margin-right:0; }
+.sidebar-overlay {
+position:fixed; inset:0; background:rgba(0,0,0,0.5);
+z-index:99; display:none;
+}
+.sidebar-overlay.show { display:block; }
+.dash-grid { grid-template-columns:1fr; }
+.quick-actions { grid-template-columns:repeat(2,1fr); }
+.form-grid { grid-template-columns:1fr; }
+.stats-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width: 480px) {
+.stats-grid { grid-template-columns:1fr 1fr; }
+.page { padding:16px; }
+}
+
+/* ===== SKELETON ===== */
+.skeleton {
+background:linear-gradient(90deg, var(–border) 25%, var(–bg) 50%, var(–border) 75%);
+background-size:200% 100%;
+animation:skeleton 1.5s infinite;
+border-radius:6px;
+}
+@keyframes skeleton {
+0%{background-position:200% 0;} 100%{background-position:-200% 0;}
+}
+
+/* ===== BACKUP STATUS ===== */
+.backup-status {
+display:flex; align-items:center; gap:8px;
+padding:8px 14px; border-radius:20px;
+font-size:12px; font-weight:600;
+}
+.backup-status.success { background:#30D15820; color:#30D158; }
+.backup-status.syncing { background:#FF9F0A20; color:#FF9F0A; }
+.backup-dot {
+width:6px; height:6px; border-radius:50%;
+background:currentColor; flex-shrink:0;
+animation:pulse 1.5s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+/* ===== PRINT ===== */
+@media print {
+#sidebar, #header, .no-print { display:none !important; }
+#main { margin:0 !important; }
+.page { display:block !important; }
 }
 </style>
+
 </head>
 <body>
 
 <!-- Splash Screen -->
+
 <div id="splash">
   <div class="splash-logo">🦷</div>
   <div class="splash-title">دنتال پرو ۲۰۲۶</div>
@@ -371,20 +884,109 @@ transition: background 0.3s, box-shadow 0.3s;
 </div>
 
 <!-- Sidebar Overlay (Mobile) -->
+
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
 <!-- App Container -->
+
 <div id="app">
 
-<!-- Sidebar (دقیقاً همان کد اصلی شما) -->
+<!-- Sidebar -->
+
 <div id="sidebar">
-  <!-- ... تمام کد سایدبار شما بدون هیچ تغییری ... -->
+  <div class="sidebar-header">
+    <div class="sidebar-logo">🦷</div>
+    <div class="sidebar-name">
+      دنتال پرو
+      <small>نسخه ۲۰۲۶ | کلینیک دندانپزشکی</small>
+    </div>
+  </div>
+
+  <div class="sidebar-user">
+    <div class="user-avatar">م</div>
+    <div class="user-info">
+      <div class="user-name">دکتر مدیر سیستم</div>
+      <div class="user-role">مدیر کل</div>
+    </div>
+    <span style="cursor:pointer;font-size:18px" onclick="showToast('⚙️ تنظیمات حساب')">⚙️</span>
+  </div>
+
+  <nav>
+    <div class="nav-section">
+      <div class="nav-label">اصلی</div>
+      <div class="nav-item active" onclick="navigate('dashboard',this)">
+        <span class="nav-icon">🏠</span>داشبورد
+      </div>
+      <div class="nav-item" onclick="navigate('calendar',this)">
+        <span class="nav-icon">📅</span>تقویم و نوبت‌دهی
+        <span class="nav-badge green">۱۲</span>
+      </div>
+    </div>
+
+```
+<div class="nav-section">
+  <div class="nav-label">کلینیک</div>
+  <div class="nav-item" onclick="navigate('patients',this)">
+    <span class="nav-icon">👥</span>بیماران
+    <span class="nav-badge">۲۴۸</span>
+  </div>
+  <div class="nav-item" onclick="navigate('doctors',this)">
+    <span class="nav-icon">🩺</span>پزشکان و کارکرد
+  </div>
+  <div class="nav-item" onclick="navigate('treatments',this)">
+    <span class="nav-icon">🦷</span>درمان‌ها
+  </div>
+  <div class="nav-item" onclick="navigate('laboratory',this)">
+    <span class="nav-icon">🔬</span>لابراتوار
+    <span class="nav-badge red">۳</span>
+  </div>
+</div>
+
+<div class="nav-section">
+  <div class="nav-label">مالی</div>
+  <div class="nav-item" onclick="navigate('finance',this)">
+    <span class="nav-icon">💰</span>حسابداری مالی
+  </div>
+  <div class="nav-item" onclick="navigate('insurance',this)">
+    <span class="nav-icon">📋</span>بیمه و صورتحساب
+  </div>
+</div>
+
+<div class="nav-section">
+  <div class="nav-label">مدیریت</div>
+  <div class="nav-item" onclick="navigate('inventory',this)">
+    <span class="nav-icon">📦</span>انبار و تجهیزات
+  </div>
+  <div class="nav-item" onclick="navigate('reports',this)">
+    <span class="nav-icon">📊</span>گزارش‌ها و آمار
+  </div>
+  <div class="nav-item" onclick="navigate('settings',this)">
+    <span class="nav-icon">⚙️</span>تنظیمات
+  </div>
+</div>
+```
+
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="sidebar-footer-btn" onclick="toggleTheme()">
+      <span id="themeIcon">🌙</span> تم
+    </button>
+    <button class="sidebar-footer-btn" onclick="doBackup()">
+      <span>☁️</span> بکاپ
+    </button>
+    <button class="sidebar-footer-btn" onclick="showToast('🚪 خروج از سیستم')">
+      <span>🚪</span> خروج
+    </button>
+  </div>
 </div>
 
 <!-- Main Content -->
+
 <div id="main">
 
   <!-- Header -->
+
   <div id="header">
     <button class="header-btn" id="menuBtn" onclick="toggleSidebar()" style="display:none">☰</button>
     <div class="header-title" id="headerTitle">داشبورد</div>
@@ -399,52 +1001,1640 @@ transition: background 0.3s, box-shadow 0.3s;
   </div>
 
   <!-- Notification Panel -->
+
   <div class="notif-panel" id="notifPanel">
-    <!-- همان اعلان‌های اصلی شما -->
+    <div class="notif-header">اعلان‌ها</div>
+    <div class="notif-item unread">
+      <div class="notif-icon">📅</div>
+      <div class="notif-text"><strong>نوبت ۱۵ دقیقه دیگر</strong><span>دکتر رضایی - آقای احمدی</span></div>
+    </div>
+    <div class="notif-item unread">
+      <div class="notif-icon">⚠️</div>
+      <div class="notif-text"><strong>موجودی کم: آمالگام</strong><span>موجودی به ۵ واحد رسیده</span></div>
+    </div>
+    <div class="notif-item">
+      <div class="notif-icon">💰</div>
+      <div class="notif-text"><strong>پرداخت لابراتوار سررسید</strong><span>لابراتوار ستاره - ۳،۵۰۰،۰۰۰ تومان</span></div>
+    </div>
+    <div class="notif-item">
+      <div class="notif-icon">☁️</div>
+      <div class="notif-text"><strong>بکاپ خودکار انجام شد</strong><span>امروز ساعت ۰۶:۰۰</span></div>
+    </div>
+    <div class="notif-item">
+      <div class="notif-icon">👤</div>
+      <div class="notif-text"><strong>بیمار جدید ثبت شد</strong><span>خانم فاطمه موسوی - DT-1403-00248</span></div>
+    </div>
   </div>
 
-  <!-- صفحه داشبورد موبایل (دقیقاً مثل عکس جدید شما - بدون بریدگی) -->
-  <div class="page active" id="page-home">
-    <div class="home-header">
-      <div class="date-box">۱۴۰۴ ،۲ اسفند ،شنبه</div>
-      <div class="home-title">داشبورد</div>
+  <!-- ====== DASHBOARD PAGE ====== -->
+
+  <div class="page active" id="page-dashboard">
+
+```
+<!-- Stats -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-icon" style="background:#0A84FF20">👥</div>
+    <div class="stat-value" style="color:#0A84FF">۲۴۸</div>
+    <div class="stat-label">کل بیماران</div>
+    <div class="stat-change up">↑ ۱۲ نفر این ماه</div>
+    <div class="stat-bg">👥</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon" style="background:#30D15820">📅</div>
+    <div class="stat-value" style="color:#30D158">۱۲</div>
+    <div class="stat-label">نوبت امروز</div>
+    <div class="stat-change up">↑ ۳ نسبت به دیروز</div>
+    <div class="stat-bg">📅</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon" style="background:#FF9F0A20">💰</div>
+    <div class="stat-value" style="color:#FF9F0A;font-size:18px">۲۸،۵۰۰،۰۰۰</div>
+    <div class="stat-label">درآمد این ماه (تومان)</div>
+    <div class="stat-change up">↑ ۸٪</div>
+    <div class="stat-bg">💰</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon" style="background:#BF5AF220">🔬</div>
+    <div class="stat-value" style="color:#BF5AF2">۸</div>
+    <div class="stat-label">سفارش لابراتوار فعال</div>
+    <div class="stat-change down">↓ ۳ تحویل داده شد</div>
+    <div class="stat-bg">🔬</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon" style="background:#FF375F20">🩺</div>
+    <div class="stat-value" style="color:#FF375F">۴</div>
+    <div class="stat-label">پزشک فعال</div>
+    <div class="stat-change up">↑ ۱ جدید</div>
+    <div class="stat-bg">🩺</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon" style="background:#5AC8FA20">📊</div>
+    <div class="stat-value" style="color:#5AC8FA">۹۴٪</div>
+    <div class="stat-label">رضایت بیماران</div>
+    <div class="stat-change up">↑ ۲٪</div>
+    <div class="stat-bg">📊</div>
+  </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="quick-actions">
+  <div class="qa-btn" onclick="showModal('addPatientModal')">
+    <div class="qa-icon" style="background:#0A84FF20">👤</div>
+    <div class="qa-label">بیمار جدید</div>
+  </div>
+  <div class="qa-btn" onclick="showModal('addApptModal')">
+    <div class="qa-icon" style="background:#30D15820">📅</div>
+    <div class="qa-label">نوبت جدید</div>
+  </div>
+  <div class="qa-btn" onclick="showModal('addPaymentModal')">
+    <div class="qa-icon" style="background:#FF9F0A20">💳</div>
+    <div class="qa-label">ثبت پرداخت</div>
+  </div>
+  <div class="qa-btn" onclick="showModal('addLabModal')">
+    <div class="qa-icon" style="background:#BF5AF220">🔬</div>
+    <div class="qa-label">سفارش لابراتوار</div>
+  </div>
+  <div class="qa-btn" onclick="navigate('reports',document.querySelector('[onclick*=reports]'))">
+    <div class="qa-icon" style="background:#5AC8FA20">📊</div>
+    <div class="qa-label">گزارش مالی</div>
+  </div>
+  <div class="qa-btn" onclick="printPage()">
+    <div class="qa-icon" style="background:#FF375F20">🖨️</div>
+    <div class="qa-label">چاپ گزارش</div>
+  </div>
+  <div class="qa-btn" onclick="doBackup()">
+    <div class="qa-icon" style="background:#30D15820">☁️</div>
+    <div class="qa-label">بکاپ ابری</div>
+  </div>
+  <div class="qa-btn" onclick="showToast('📱 پیامک یادآوری ارسال شد')">
+    <div class="qa-icon" style="background:#FF9F0A20">📱</div>
+    <div class="qa-label">ارسال SMS</div>
+  </div>
+</div>
+
+<div class="dash-grid">
+  <!-- Today's Appointments -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">📅 نوبت‌های امروز</div>
+      <span class="badge badge-green">۱۲ نوبت</span>
     </div>
-    <div class="mobile-menu">
-      <div class="mobile-menu-item" onclick="navigate('dashboard',this)"><span>🏠</span> داشبورد</div>
-      <div class="mobile-menu-item" onclick="navigate('calendar',this)"><span>📅</span> تقویم و نوبت‌دهی <span class="badge">۱۷</span></div>
-      <div class="mobile-menu-item green" onclick="navigate('patients',this)"><span>👥</span> بیماران <span class="badge">۱۲</span></div>
-      <div class="mobile-menu-item blue" onclick="navigate('doctors',this)"><span>🩺</span> پزشکان <span class="badge">۲۴۸</span></div>
-      <div class="mobile-menu-item" onclick="navigate('treatments',this)"><span>🦷</span> درمان‌ها</div>
-      <div class="mobile-menu-item red" onclick="navigate('laboratory',this)"><span>🔬</span> لابراتوار <span class="badge">۳</span></div>
-      <div class="mobile-menu-item" onclick="navigate('finance',this)"><span>💰</span> حسابداری</div>
-      <div class="mobile-menu-item" onclick="navigate('insurance',this)"><span>📋</span> بیمه</div>
+    <div class="card-body">
+      <div class="appointment-list" id="dashAppts">
+        <!-- populated by JS -->
+      </div>
     </div>
   </div>
 
-  <!-- تمام صفحات قبلی شما (dashboard, patients, calendar, doctors, treatments, laboratory, finance, insurance, inventory, reports, settings) دقیقاً همان کد اصلی شما هستند و هیچ خطی حذف نشده -->
+  <!-- Income Chart -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">📈 درآمد هفتگی</div>
+      <span class="badge badge-blue">این هفته</span>
+    </div>
+    <div class="card-body">
+      <div class="chart-svg-wrap">
+        <svg width="100%" height="180" viewBox="0 0 400 180" id="incomeChart">
+          <!-- will be drawn by JS -->
+        </svg>
+      </div>
+    </div>
+  </div>
 
+  <!-- Recent Patients -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">👥 آخرین بیماران</div>
+      <button class="btn btn-outline btn-sm" onclick="navigate('patients',null)">همه</button>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>شماره پرونده</th>
+              <th>نام</th>
+              <th>آخرین ویزیت</th>
+              <th>وضعیت</th>
+            </tr>
+          </thead>
+          <tbody id="dashPatients">
+            <!-- JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Doctor Performance -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">🩺 کارکرد پزشکان</div>
+      <span class="badge badge-purple">این ماه</span>
+    </div>
+    <div class="card-body" id="dashDoctors">
+      <!-- JS -->
+    </div>
+  </div>
 </div>
+```
+
+  </div>
+
+  <!-- ====== PATIENTS PAGE ====== -->
+
+  <div class="page" id="page-patients">
+    <div class="section-header">
+      <div class="section-title">👥 مدیریت بیماران</div>
+      <div class="section-actions">
+        <button class="btn btn-outline btn-sm" onclick="exportData('patients')">📤 خروجی Excel</button>
+        <button class="btn btn-primary" onclick="showModal('addPatientModal')">+ بیمار جدید</button>
+      </div>
+    </div>
+
+```
+<div class="search-bar">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-input" placeholder="جستجو با نام، شماره پرونده یا کد ملی..." oninput="filterPatients(this.value)">
+  </div>
+  <select class="form-control" style="width:auto" onchange="filterPatients()">
+    <option>همه بیماران</option>
+    <option>بیماران VIP</option>
+    <option>بدهکاران</option>
+    <option>بیماران فعال</option>
+  </select>
 </div>
 
-<!-- تمام مودال‌ها و Toast شما (بدون هیچ تغییری) -->
+<div class="patient-grid" id="patientGrid">
+  <!-- populated by JS -->
+</div>
+```
+
+  </div>
+
+  <!-- ====== CALENDAR PAGE ====== -->
+
+  <div class="page" id="page-calendar">
+    <div class="section-header">
+      <div class="section-title">📅 تقویم و نوبت‌دهی</div>
+      <div class="section-actions">
+        <button class="btn btn-outline btn-sm" onclick="showModal('addApptModal')">+ نوبت جدید</button>
+      </div>
+    </div>
+
+```
+<div style="display:grid;grid-template-columns:1fr 350px;gap:20px">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">تقویم شمسی ۱۴۰۳</div>
+    </div>
+    <div class="card-body">
+      <div class="calendar-wrap">
+        <div class="cal-header">
+          <div class="cal-nav">
+            <div class="cal-nav-btn" onclick="calNav(-1)">›</div>
+            <div class="cal-nav-btn" onclick="calNav(1)">‹</div>
+          </div>
+          <div class="cal-title" id="calTitle">اسفند ۱۴۰۳</div>
+        </div>
+        <div class="cal-grid" id="calGrid">
+          <!-- JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header">
+        <div class="card-title">نوبت‌های امروز</div>
+        <span class="badge badge-green" id="todayCount">۱۲</span>
+      </div>
+      <div class="card-body">
+        <div class="appointment-list" id="calAppts">
+          <!-- JS -->
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-title">آمار هفته</div></div>
+      <div class="card-body">
+        <div style="display:flex;flex-direction:column;gap:10px" id="weekStats">
+          <!-- JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- ====== DOCTORS PAGE ====== -->
+
+  <div class="page" id="page-doctors">
+    <div class="section-header">
+      <div class="section-title">🩺 مدیریت پزشکان و کارکرد</div>
+      <button class="btn btn-primary" onclick="showModal('addDoctorModal')">+ پزشک جدید</button>
+    </div>
+
+```
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-bottom:24px" id="doctorCards">
+  <!-- JS -->
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">💰 محاسبه سهم پزشکان</div>
+    <span class="badge badge-blue">فرمول ایرانی</span>
+  </div>
+  <div class="card-body">
+    <div style="background:linear-gradient(135deg,#0A84FF10,#BF5AF210);border-radius:var(--radius2);padding:16px;border:1px solid var(--primary)25;margin-bottom:16px">
+      <div style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:8px">📐 فرمول محاسبه:</div>
+      <div style="font-size:14px;line-height:1.8">
+        <strong>سهم پزشک</strong> = (کل کارکرد - هزینه لابراتوار) ÷ ۲<br>
+        <strong>فیکسچر</strong> = ۱۰۰٪ با کلینیک<br>
+        <strong>سهم کلینیک</strong> = (کل کارکرد - هزینه لابراتوار) ÷ ۲ + فیکسچر
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table id="doctorFinanceTable">
+        <thead>
+          <tr>
+            <th>پزشک</th>
+            <th>کل کارکرد</th>
+            <th>هزینه لابراتوار</th>
+            <th>درآمد خالص</th>
+            <th>سهم پزشک</th>
+            <th>سهم کلینیک</th>
+            <th>فیکسچر</th>
+            <th>عملیات</th>
+          </tr>
+        </thead>
+        <tbody id="doctorFinanceBody">
+          <!-- JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- ====== TREATMENTS PAGE ====== -->
+
+  <div class="page" id="page-treatments">
+    <div class="section-header">
+      <div class="section-title">🦷 مدیریت درمان‌ها</div>
+      <button class="btn btn-primary" onclick="showModal('addTreatmentModal')">+ درمان جدید</button>
+    </div>
+
+```
+<div class="card" style="margin-bottom:20px">
+  <div class="card-header"><div class="card-title">نقشه دندانی (Dental Chart)</div></div>
+  <div class="card-body">
+    <div class="dental-chart-wrap">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:12px;font-weight:600">ردیف بالا (فک بالا)</div>
+      <div class="teeth-row" id="upperTeeth"></div>
+      <div class="chart-divider"></div>
+      <div class="teeth-row" id="lowerTeeth"></div>
+      <div style="font-size:11px;color:var(--text3);margin-top:12px;font-weight:600">ردیف پایین (فک پایین)</div>
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#30D158"></div>سالم</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#FF9F0A"></div>درمان‌شده</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#FF375F"></div>نیاز به درمان</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#BF5AF2"></div>ایمپلنت</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8E8E93"></div>کشیده‌شده</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><div class="card-title">تاریخچه درمان‌ها</div></div>
+  <div class="card-body">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>شماره پرونده</th>
+            <th>بیمار</th>
+            <th>پزشک</th>
+            <th>نوع درمان</th>
+            <th>تاریخ</th>
+            <th>هزینه</th>
+            <th>وضعیت</th>
+          </tr>
+        </thead>
+        <tbody id="treatmentBody">
+          <!-- JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- ====== LABORATORY PAGE ====== -->
+
+  <div class="page" id="page-laboratory">
+    <div class="section-header">
+      <div class="section-title">🔬 مدیریت لابراتوار</div>
+      <button class="btn btn-primary" onclick="showModal('addLabModal')">+ سفارش جدید</button>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>شماره سفارش</th>
+                <th>بیمار</th>
+                <th>پزشک</th>
+                <th>نوع کار</th>
+                <th>لابراتوار</th>
+                <th>تاریخ ارسال</th>
+                <th>تاریخ تحویل</th>
+                <th>هزینه</th>
+                <th>وضعیت</th>
+              </tr>
+            </thead>
+            <tbody id="labBody">
+              <!-- JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== FINANCE PAGE ====== -->
+
+  <div class="page" id="page-finance">
+    <div class="section-header">
+      <div class="section-title">💰 سیستم مالی پیشرفته</div>
+      <div class="section-actions">
+        <button class="btn btn-outline btn-sm" onclick="exportData('finance')">📤 Excel</button>
+        <button class="btn btn-primary" onclick="showModal('addPaymentModal')">+ ثبت پرداخت</button>
+      </div>
+    </div>
+
+```
+<div class="finance-summary">
+  <div class="finance-label">موجودی کل کلینیک (تومان)</div>
+  <div class="finance-amount">۱۲۸،۵۰۰،۰۰۰</div>
+  <div class="finance-row">
+    <div class="finance-mini">
+      <div class="finance-mini-label">درآمد این ماه</div>
+      <div class="finance-mini-val">۲۸،۵۰۰،۰۰۰</div>
+    </div>
+    <div class="finance-mini">
+      <div class="finance-mini-label">هزینه‌ها</div>
+      <div class="finance-mini-val">۸،۲۰۰،۰۰۰</div>
+    </div>
+    <div class="finance-mini">
+      <div class="finance-mini-label">سود خالص</div>
+      <div class="finance-mini-val">۲۰،۳۰۰،۰۰۰</div>
+    </div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+  <div class="income-card">
+    <div style="font-size:12px;opacity:0.8;margin-bottom:4px">کل دریافتی‌ها</div>
+    <div style="font-size:22px;font-weight:900;margin-bottom:8px">۳۲،۸۰۰،۰۰۰ ت</div>
+    <div style="font-size:11px;opacity:0.8">↑ ۱۲٪ نسبت به ماه قبل</div>
+  </div>
+  <div class="expense-card">
+    <div style="font-size:12px;opacity:0.8;margin-bottom:4px">کل پرداختی‌ها</div>
+    <div style="font-size:22px;font-weight:900;margin-bottom:8px">۱۲،۵۰۰،۰۰۰ ت</div>
+    <div style="font-size:11px;opacity:0.8">↑ ۵٪ نسبت به ماه قبل</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(this,'finTab','fin-all')">همه تراکنش‌ها</div>
+  <div class="tab" onclick="switchTab(this,'finTab','fin-income')">دریافتی‌ها</div>
+  <div class="tab" onclick="switchTab(this,'finTab','fin-expense')">پرداختی‌ها</div>
+  <div class="tab" onclick="switchTab(this,'finTab','fin-lab')">لابراتوار</div>
+  <div class="tab" onclick="switchTab(this,'finTab','fin-insurance')">بیمه</div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>تاریخ</th>
+            <th>شرح</th>
+            <th>بیمار/طرف</th>
+            <th>پزشک</th>
+            <th>نوع</th>
+            <th>مبلغ</th>
+            <th>روش پرداخت</th>
+            <th>وضعیت</th>
+          </tr>
+        </thead>
+        <tbody id="financeBody">
+          <!-- JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- ====== INSURANCE PAGE ====== -->
+
+  <div class="page" id="page-insurance">
+    <div class="section-header">
+      <div class="section-title">📋 بیمه و صورتحساب</div>
+      <button class="btn btn-primary">+ صورتحساب جدید</button>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="form-grid" style="margin-bottom:20px">
+          <div class="form-group">
+            <label class="form-label">نوع بیمه</label>
+            <select class="form-control">
+              <option>تأمین اجتماعی</option>
+              <option>خدمات درمانی</option>
+              <option>نیروهای مسلح</option>
+              <option>بیمه تکمیلی</option>
+              <option>آزاد</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">ماه صورتحساب</label>
+            <select class="form-control">
+              <option>اسفند ۱۴۰۳</option>
+              <option>بهمن ۱۴۰۳</option>
+              <option>دی ۱۴۰۳</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>شماره</th><th>بیمار</th><th>خدمت</th><th>تاریخ</th><th>سهم بیمه</th><th>سهم بیمار</th><th>وضعیت</th></tr></thead>
+            <tbody id="insuranceBody">
+              <tr><td>۱</td><td>احمد رضایی</td><td>جرمگیری</td><td>۲ اسفند ۱۴۰۳</td><td>۱،۲۰۰،۰۰۰ ت</td><td>۸۰۰،۰۰۰ ت</td><td><span class="badge badge-green">تسویه شده</span></td></tr>
+              <tr><td>۲</td><td>مریم احمدی</td><td>روکش PFM</td><td>۱ اسفند ۱۴۰۳</td><td>۲،۵۰۰،۰۰۰ ت</td><td>۱،۵۰۰،۰۰۰ ت</td><td><span class="badge badge-orange">در انتظار</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== INVENTORY PAGE ====== -->
+
+  <div class="page" id="page-inventory">
+    <div class="section-header">
+      <div class="section-title">📦 انبار و تجهیزات</div>
+      <button class="btn btn-primary" onclick="showModal('addItemModal')">+ افزودن کالا</button>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>کد</th><th>نام کالا</th><th>دسته‌بندی</th><th>موجودی</th><th>حداقل موجودی</th><th>انقضا</th><th>وضعیت</th><th>عملیات</th></tr></thead>
+            <tbody id="inventoryBody">
+              <!-- JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== REPORTS PAGE ====== -->
+
+  <div class="page" id="page-reports">
+    <div class="section-header">
+      <div class="section-title">📊 گزارش‌ها و آمار</div>
+      <div class="section-actions">
+        <button class="btn btn-outline btn-sm" onclick="printPage()">🖨️ چاپ</button>
+        <button class="btn btn-outline btn-sm" onclick="exportData('reports')">📤 Excel</button>
+        <button class="btn btn-primary btn-sm" onclick="exportData('pdf')">📄 PDF</button>
+      </div>
+    </div>
+
+```
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px">
+  <div class="card" style="padding:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">📈</div>
+    <div style="font-size:22px;font-weight:900;color:var(--secondary)">۳۴۲</div>
+    <div style="font-size:13px;color:var(--text3)">کل ویزیت‌های امسال</div>
+  </div>
+  <div class="card" style="padding:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">💰</div>
+    <div style="font-size:22px;font-weight:900;color:var(--primary)">۳۴۲ میلیون</div>
+    <div style="font-size:13px;color:var(--text3)">درآمد کل امسال</div>
+  </div>
+  <div class="card" style="padding:20px;text-align:center">
+    <div style="font-size:36px;margin-bottom:8px">⭐</div>
+    <div style="font-size:22px;font-weight:900;color:var(--accent2)">۴.۸</div>
+    <div style="font-size:13px;color:var(--text3)">امتیاز میانگین رضایت</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:20px">
+  <div class="card-header"><div class="card-title">نمودار درآمد ماهانه</div></div>
+  <div class="card-body">
+    <svg width="100%" height="200" viewBox="0 0 600 200" id="monthlyChart"></svg>
+  </div>
+</div>
+
+<div class="dash-grid">
+  <div class="card">
+    <div class="card-header"><div class="card-title">پرتکرارترین خدمات</div></div>
+    <div class="card-body" id="serviceStats"></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title">کارکرد پزشکان (امسال)</div></div>
+    <div class="card-body" id="doctorYearStats"></div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- ====== SETTINGS PAGE ====== -->
+
+  <div class="page" id="page-settings">
+    <div class="section-header">
+      <div class="section-title">⚙️ تنظیمات سیستم</div>
+    </div>
+
+```
+<div class="settings-section">
+  <div class="settings-row" onclick="toggleTheme()">
+    <div class="settings-row-icon" style="background:#FF9F0A20">🌙</div>
+    <div class="settings-row-content">
+      <div class="settings-row-label">حالت تاریک</div>
+      <div class="settings-row-desc">تغییر بین تم روشن و تاریک</div>
+    </div>
+    <div class="toggle" id="darkToggle" onclick="event.stopPropagation();toggleTheme()"></div>
+  </div>
+  <div class="settings-row" onclick="showModal('clinicModal')">
+    <div class="settings-row-icon" style="background:#0A84FF20">🏥</div>
+    <div class="settings-row-content">
+      <div class="settings-row-label">اطلاعات کلینیک</div>
+      <div class="settings-row-desc">نام، آدرس، تلفن و لوگو</div>
+    </div>
+    <span style="color:var(--text3)">›</span>
+  </div>
+  <div class="settings-row" onclick="showToast('📱 تنظیمات پیامک')">
+    <div class="settings-row-icon" style="background:#30D15820">📱</div>
+    <div class="settings-row-content">
+      <div class="settings-row-label">پیامک و اطلاع‌رسانی</div>
+      <div class="settings-row-desc">تنظیم یادآوری‌های خودکار</div>
+    </div>
+    <div class="toggle on"></div>
+  </div>
+  <div class="settings-row" onclick="showToast('💳 تعرفه‌های درمانی')">
+    <div class="settings-row-icon" style="background:#BF5AF220">💳</div>
+    <div class="settings-row-content">
+      <div class="settings-row-label">تعرفه‌های درمانی</div>
+      <div class="settings-row-desc">مدیریت قیمت خدمات</div>
+    </div>
+    <span style="color:var(--text3)">›</span>
+  </div>
+</div>
+
+<div class="settings-section">
+  <div class="settings-row" onclick="doBackup()">
+    <div class="settings-row-icon" style="background:#30D15820">☁️</div>
+    <div class="settings-row-content">
+      <div class="settings-row-label">بکاپ ابری</div>
+      <div class="settings-row-desc">آخرین بکاپ: امروز ۰۶:۰۰</div>
+    </div>
+    <button class="btn btn-success btn-sm" onclick="event.stopPropagation();doBackup()">بکاپ الان</button>
+  </div>
+  <div class="settings-row" onclick="doLocalBackup()">
+    <div class="settings-row-icon" style="background:#5AC8FA20">💾</div>
+    <div class="settings-row-content">
+      <div class="settings-row-label">بکاپ لوکال</div>
+      <div class="settings-row-desc">ذخیره روی دستگاه</div>
+    </div>
+    <button class="btn btn-outline btn-sm" onclick="event.stopPropagation();doLocalBackup()">دانلود</button>
+  </div>
+  <div class="settings-row">
+    <div class="settings-row-icon" style="background:#FF9F0A20">🔄</div>
+    <div class="settings-row-content">
+      <div class="settings-row-label">بکاپ خودکار</div>
+      <div class="settings-row-desc">هر ۶ ساعت یکبار</div>
+    </div>
+    <div class="toggle on"></div>
+  </div>
+</div>
+
+<div class="settings-section">
+  <div class="settings-row" onclick="showToast('👥 مدیریت کاربران')">
+    <div class="settings-row-icon" style="background:#FF375F20">👥</div>
+    <div class="settings-row-content">
+      <div class="settings-row-label">مدیریت کاربران</div>
+      <div class="settings-row-desc">دسترسی‌ها و سطوح</div>
+    </div>
+    <span style="color:var(--text3)">›</span>
+  </div>
+  <div class="settings-row" onclick="showToast('🔒 امنیت')">
+    <div class="settings-row-icon" style="background:#FF375F20">🔒</div>
+    <div class="settings-row-content">
+      <div class="settings-row-label">امنیت و رمزنگاری</div>
+      <div class="settings-row-desc">AES-256 | ورود دوعاملی</div>
+    </div>
+    <span style="color:var(--text3)">›</span>
+  </div>
+</div>
+```
+
+  </div>
+
+</div><!-- end main -->
+</div><!-- end app -->
+
+<!-- ===== MODALS ===== -->
+
+<!-- Add Patient Modal -->
+
+<div class="modal-overlay" id="addPatientModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">👤 ثبت بیمار جدید</div>
+      <button class="modal-close" onclick="closeModal('addPatientModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="background:linear-gradient(135deg,#0A84FF10,#30D15810);border-radius:var(--radius2);padding:12px 16px;margin-bottom:20px;border:1px solid #0A84FF20">
+        <strong>شماره پرونده:</strong> <span style="color:var(--primary);font-weight:800">DT-1403-00249</span> (خودکار)
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">نام <span>*</span></label>
+          <input type="text" class="form-control" placeholder="نام بیمار">
+        </div>
+        <div class="form-group">
+          <label class="form-label">نام خانوادگی <span>*</span></label>
+          <input type="text" class="form-control" placeholder="نام خانوادگی">
+        </div>
+        <div class="form-group">
+          <label class="form-label">کد ملی <span>*</span></label>
+          <input type="text" class="form-control" placeholder="۱۰ رقم">
+        </div>
+        <div class="form-group">
+          <label class="form-label">تاریخ تولد</label>
+          <input type="text" class="form-control" placeholder="مثلاً: ۱۳۶۰/۰۵/۱۲">
+        </div>
+        <div class="form-group">
+          <label class="form-label">تلفن همراه <span>*</span></label>
+          <input type="tel" class="form-control" placeholder="۰۹۱۲...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">جنسیت</label>
+          <select class="form-control">
+            <option>مرد</option>
+            <option>زن</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">گروه خونی</label>
+          <select class="form-control">
+            <option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option>
+            <option>AB+</option><option>AB-</option>
+            <option>O+</option><option>O-</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">نوع بیمه</label>
+          <select class="form-control">
+            <option>آزاد</option>
+            <option>تأمین اجتماعی</option>
+            <option>خدمات درمانی</option>
+            <option>نیروهای مسلح</option>
+            <option>تکمیلی</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">آدرس</label>
+        <input type="text" class="form-control" placeholder="آدرس کامل">
+      </div>
+      <div class="form-group">
+        <label class="form-label">حساسیت‌های دارویی</label>
+        <textarea class="form-control" placeholder="در صورت وجود وارد کنید..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">بیماری‌های زمینه‌ای</label>
+        <textarea class="form-control" placeholder="دیابت، فشارخون، ..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">برچسب بیمار</label>
+        <select class="form-control">
+          <option>معمولی</option>
+          <option>VIP</option>
+          <option>بیمار خاص</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('addPatientModal')">انصراف</button>
+      <button class="btn btn-primary" onclick="addPatient()">✓ ثبت بیمار</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Appointment Modal -->
+
+<div class="modal-overlay" id="addApptModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">📅 نوبت جدید</div>
+      <button class="modal-close" onclick="closeModal('addApptModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">بیمار <span>*</span></label>
+          <input type="text" class="form-control" placeholder="جستجو بیمار...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">پزشک <span>*</span></label>
+          <select class="form-control">
+            <option>دکتر رضایی</option>
+            <option>دکتر احمدی</option>
+            <option>دکتر موسوی</option>
+            <option>دکتر کریمی</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">تاریخ <span>*</span></label>
+          <input type="text" class="form-control" placeholder="۱۴۰۳/۱۲/۰۲">
+        </div>
+        <div class="form-group">
+          <label class="form-label">ساعت <span>*</span></label>
+          <select class="form-control">
+            <option>۰۸:۰۰</option><option>۰۸:۳۰</option>
+            <option>۰۹:۰۰</option><option>۰۹:۳۰</option>
+            <option>۱۰:۰۰</option><option>۱۰:۳۰</option>
+            <option>۱۱:۰۰</option><option>۱۱:۳۰</option>
+            <option>۱۲:۰۰</option>
+            <option>۱۴:۰۰</option><option>۱۴:۳۰</option>
+            <option>۱۵:۰۰</option><option>۱۵:۳۰</option>
+            <option>۱۶:۰۰</option><option>۱۶:۳۰</option>
+            <option>۱۷:۰۰</option><option>۱۷:۳۰</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">مدت زمان</label>
+          <select class="form-control">
+            <option>۳۰ دقیقه</option>
+            <option>۴۵ دقیقه</option>
+            <option>۶۰ دقیقه</option>
+            <option>۹۰ دقیقه</option>
+            <option>۱۲۰ دقیقه</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">نوع درمان</label>
+          <select class="form-control">
+            <option>معاینه اولیه</option>
+            <option>جرمگیری</option>
+            <option>پر کردن دندان</option>
+            <option>کشیدن دندان</option>
+            <option>روکش دندان</option>
+            <option>ایمپلنت</option>
+            <option>ارتودنسی</option>
+            <option>ریشه (RCT)</option>
+            <option>بلیچینگ</option>
+            <option>سایر</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">توضیحات</label>
+        <textarea class="form-control" placeholder="یادداشت برای این نوبت..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">یادآوری به بیمار</label>
+        <div style="display:flex;gap:10px">
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:14px">
+            <input type="checkbox" checked> پیامک
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:14px">
+            <input type="checkbox"> واتساپ
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:14px">
+            <input type="checkbox"> تماس
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('addApptModal')">انصراف</button>
+      <button class="btn btn-primary" onclick="addAppt()">✓ ثبت نوبت</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Payment Modal -->
+
+<div class="modal-overlay" id="addPaymentModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">💳 ثبت پرداخت</div>
+      <button class="modal-close" onclick="closeModal('addPaymentModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">بیمار <span>*</span></label>
+          <input type="text" class="form-control" placeholder="جستجو...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">پزشک</label>
+          <select class="form-control">
+            <option>دکتر رضایی</option>
+            <option>دکتر احمدی</option>
+            <option>دکتر موسوی</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">مبلغ (تومان) <span>*</span></label>
+          <input type="number" class="form-control" placeholder="۰">
+        </div>
+        <div class="form-group">
+          <label class="form-label">روش پرداخت</label>
+          <select class="form-control">
+            <option>نقدی</option>
+            <option>کارتخوان</option>
+            <option>کارت به کارت</option>
+            <option>آنلاین</option>
+            <option>چک</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">نوع تراکنش</label>
+          <select class="form-control">
+            <option>دریافت از بیمار</option>
+            <option>پرداخت به لابراتوار</option>
+            <option>پرداخت حقوق</option>
+            <option>هزینه جاری</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">تاریخ</label>
+          <input type="text" class="form-control" placeholder="۱۴۰۳/۱۲/۰۲">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">شرح</label>
+        <textarea class="form-control" placeholder="توضیح پرداخت..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('addPaymentModal')">انصراف</button>
+      <button class="btn btn-success" onclick="addPayment()">✓ ثبت پرداخت</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Lab Modal -->
+
+<div class="modal-overlay" id="addLabModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🔬 سفارش لابراتوار</div>
+      <button class="modal-close" onclick="closeModal('addLabModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">بیمار <span>*</span></label>
+          <input type="text" class="form-control" placeholder="جستجو...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">پزشک</label>
+          <select class="form-control">
+            <option>دکتر رضایی</option><option>دکتر احمدی</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">نوع کار لابراتوار</label>
+          <select class="form-control">
+            <option>روکش PFM</option>
+            <option>روکش زیرکونیا</option>
+            <option>پروتز کامل</option>
+            <option>پروتز متحرک</option>
+            <option>ونیر</option>
+            <option>اینله/آنله</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">لابراتوار</label>
+          <select class="form-control">
+            <option>لابراتوار ستاره</option>
+            <option>لابراتوار آریا</option>
+            <option>لابراتوار نوین</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">تاریخ ارسال</label>
+          <input type="text" class="form-control" placeholder="۱۴۰۳/۱۲/۰۲">
+        </div>
+        <div class="form-group">
+          <label class="form-label">تاریخ تحویل مورد انتظار</label>
+          <input type="text" class="form-control" placeholder="۱۴۰۳/۱۲/۱۰">
+        </div>
+        <div class="form-group">
+          <label class="form-label">هزینه لابراتوار (تومان)</label>
+          <input type="number" class="form-control" placeholder="۰">
+        </div>
+        <div class="form-group">
+          <label class="form-label">رنگ</label>
+          <select class="form-control">
+            <option>A1</option><option>A2</option><option>A3</option>
+            <option>B1</option><option>B2</option><option>C1</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">توضیحات فنی</label>
+        <textarea class="form-control" placeholder="دستورالعمل‌های لابراتوار..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('addLabModal')">انصراف</button>
+      <button class="btn btn-primary" onclick="addLab()">✓ ثبت سفارش</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+
 <div id="toast-container"></div>
 
 <script>
-// تمام اسکریپت اصلی شما (هیچ خطی حذف نشده)
-const DB = { /* تمام داده‌های شما */ };
+// ===== DATA =====
+const DB = {
+  patients: [
+    {id:'DT-1403-00001',name:'احمد رضایی',age:42,phone:'۰۹۱۲۱۲۳۴۵۶۷',insurance:'تأمین اجتماعی',visits:8,balance:-500000,lastVisit:'۲ اسفند ۱۴۰۳',status:'active',tag:'vip',avatar:'#0A84FF'},
+    {id:'DT-1403-00002',name:'مریم احمدی',age:35,phone:'۰۹۱۳۹۸۷۶۵۴۳',insurance:'آزاد',visits:3,balance:0,lastVisit:'۱ اسفند ۱۴۰۳',status:'active',tag:'normal',avatar:'#30D158'},
+    {id:'DT-1403-00003',name:'علی محمدی',age:28,phone:'۰۹۱۵۵۵۴۴۳۳۲',insurance:'خدمات درمانی',visits:12,balance:200000,lastVisit:'۲۸ بهمن ۱۴۰۳',status:'active',tag:'normal',avatar:'#FF6B35'},
+    {id:'DT-1403-00004',name:'فاطمه کریمی',age:55,phone:'۰۹۱۷۷۷۸۸۹۹۰',insurance:'نیروهای مسلح',visits:6,balance:-1200000,lastVisit:'۲۵ بهمن ۱۴۰۳',status:'debtor',tag:'normal',avatar:'#BF5AF2'},
+    {id:'DT-1403-00005',name:'حسن موسوی',age:61,phone:'۰۹۱۱۲۲۳۳۴۴۵',insurance:'تأمین اجتماعی',visits:20,balance:0,lastVisit:'۲۰ بهمن ۱۴۰۳',status:'active',tag:'vip',avatar:'#FF9F0A'},
+    {id:'DT-1403-00006',name:'زهرا صادقی',age:19,phone:'۰۹۳۵۶۶۷۷۸۸۹',insurance:'آزاد',visits:2,balance:0,lastVisit:'۱۵ بهمن ۱۴۰۳',status:'active',tag:'normal',avatar:'#5AC8FA'},
+  ],
+  doctors: [
+    {id:1,name:'دکتر علی رضایی',title:'متخصص پروتز',color:'#0A84FF',revenue:12500000,lab:2000000,fixture:1500000,patients:89,appointments:42},
+    {id:2,name:'دکتر سارا احمدی',title:'متخصص ارتودنسی',color:'#30D158',revenue:9800000,lab:800000,fixture:500000,patients:67,appointments:38},
+    {id:3,name:'دکتر محمد موسوی',title:'جراح دهان',color:'#FF9F0A',revenue:7200000,lab:1500000,fixture:2000000,patients:54,appointments:28},
+    {id:4,name:'دکتر لیلا کریمی',title:'دندانپزشک عمومی',color:'#BF5AF2',revenue:5100000,lab:600000,fixture:0,patients:38,appointments:22},
+  ],
+  appointments: [
+    {time:'۰۸:۳۰',patient:'احمد رضایی',type:'جرمگیری',doctor:'دکتر رضایی',color:'#0A84FF',status:'confirmed'},
+    {time:'۰۹:۰۰',patient:'مریم احمدی',type:'روکش PFM',doctor:'دکتر احمدی',color:'#30D158',status:'confirmed'},
+    {time:'۱۰:۳۰',patient:'علی محمدی',type:'پر کردن',doctor:'دکتر موسوی',color:'#FF9F0A',status:'confirmed'},
+    {time:'۱۱:۰۰',patient:'فاطمه کریمی',type:'ایمپلنت',doctor:'دکتر رضایی',color:'#BF5AF2',status:'pending'},
+    {time:'۱۴:۰۰',patient:'حسن موسوی',type:'معاینه',doctor:'دکتر کریمی',color:'#5AC8FA',status:'confirmed'},
+    {time:'۱۵:۳۰',patient:'زهرا صادقی',type:'بلیچینگ',doctor:'دکتر احمدی',color:'#FF375F',status:'confirmed'},
+  ],
+  finance: [
+    {date:'۲ اسفند ۱۴۰۳',desc:'جرمگیری و معاینه',party:'احمد رضایی',doctor:'دکتر رضایی',type:'income',amount:2000000,method:'کارتخوان',status:'paid'},
+    {date:'۱ اسفند ۱۴۰۳',desc:'روکش PFM',party:'مریم احمدی',doctor:'دکتر احمدی',type:'income',amount:4500000,method:'نقدی',status:'paid'},
+    {date:'۱ اسفند ۱۴۰۳',desc:'هزینه لابراتوار ستاره',party:'لابراتوار ستاره',doctor:'-',type:'expense',amount:3500000,method:'کارت به کارت',status:'paid'},
+    {date:'۲۸ بهمن ۱۴۰۳',desc:'ایمپلنت + فیکسچر',party:'علی محمدی',doctor:'دکتر موسوی',type:'income',amount:12000000,method:'آنلاین',status:'paid'},
+    {date:'۲۸ بهمن ۱۴۰۳',desc:'هزینه مواد مصرفی',party:'شرکت دنتالیران',doctor:'-',type:'expense',amount:1800000,method:'چک',status:'paid'},
+    {date:'۲۵ بهمن ۱۴۰۳',desc:'ارتودنسی ثابت',party:'زهرا صادقی',doctor:'دکتر احمدی',type:'income',amount:8000000,method:'نقدی',status:'partial'},
+  ],
+  lab: [
+    {id:'LAB-001',patient:'مریم احمدی',doctor:'دکتر احمدی',type:'روکش PFM',lab:'لابراتوار ستاره',sent:'۲۸ بهمن',delivery:'۵ اسفند',cost:1800000,status:'pending'},
+    {id:'LAB-002',patient:'حسن موسوی',doctor:'دکتر رضایی',type:'پروتز کامل',lab:'لابراتوار آریا',sent:'۲۵ بهمن',delivery:'۸ اسفند',cost:2500000,status:'inprogress'},
+    {id:'LAB-003',patient:'فاطمه کریمی',doctor:'دکتر موسوی',type:'زیرکونیا',lab:'لابراتوار نوین',sent:'۲۰ بهمن',delivery:'۲ اسفند',cost:3200000,status:'ready'},
+  ],
+  inventory: [
+    {code:'INV-001',name:'آمالگام',cat:'مواد ترمیمی',qty:5,min:10,expire:'۱۴۰۵/۰۱'},
+    {code:'INV-002',name:'کامپوزیت A2',cat:'مواد ترمیمی',qty:12,min:5,expire:'۱۴۰۴/۰۶'},
+    {code:'INV-003',name:'سرنگ بی‌حسی',cat:'تجهیزات',qty:50,min:20,expire:'۱۴۰۴/۱۲'},
+    {code:'INV-004',name:'دستکش لاتکس L',cat:'مصرفی',qty:3,min:10,expire:'۱۴۰۵/۰۳'},
+    {code:'INV-005',name:'باند ارتودنسی',cat:'ارتودنسی',qty:25,min:15,expire:'۱۴۰۵/۰۶'},
+  ],
+  treatments: [
+    {id:'TR-001',patient:'DT-1403-00001',pname:'احمد رضایی',doctor:'دکتر رضایی',type:'جرمگیری',date:'۲ اسفند ۱۴۰۳',cost:2000000,status:'done'},
+    {id:'TR-002',patient:'DT-1403-00002',pname:'مریم احمدی',doctor:'دکتر احمدی',type:'روکش PFM',date:'۱ اسفند ۱۴۰۳',cost:4500000,status:'inprogress'},
+    {id:'TR-003',patient:'DT-1403-00003',pname:'علی محمدی',doctor:'دکتر موسوی',type:'ایمپلنت',date:'۲۸ بهمن ۱۴۰۳',cost:12000000,status:'inprogress'},
+    {id:'TR-004',patient:'DT-1403-00005',pname:'حسن موسوی',doctor:'دکتر رضایی',type:'پروتز',date:'۲۰ بهمن ۱۴۰۳',cost:8000000,status:'done'},
+  ]
+};
 
-// تمام توابع شما (navigate, renderDashboard, renderCalendar و ...) دقیقاً همان
+// ===== PERSIAL NUMBERS =====
+function toPersian(n){ return String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]); }
+function formatMoney(n){ return toPersian(n.toLocaleString()); }
 
-// INIT
+// ===== NAVIGATION =====
+function navigate(page, el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  if(el) el.classList.add('active');
+  const titles = {
+    dashboard:'داشبورد',calendar:'تقویم و نوبت‌دهی',
+    patients:'بیماران',doctors:'پزشکان و کارکرد',
+    treatments:'درمان‌ها',laboratory:'لابراتوار',
+    finance:'حسابداری مالی',insurance:'بیمه و صورتحساب',
+    inventory:'انبار',reports:'گزارش‌ها',settings:'تنظیمات'
+  };
+  document.getElementById('headerTitle').textContent = titles[page]||page;
+  if(document.getElementById('notifPanel').classList.contains('open'))
+    document.getElementById('notifPanel').classList.remove('open');
+
+  // Render page-specific content
+  if(page==='patients') renderPatients();
+  if(page==='doctors') renderDoctors();
+  if(page==='laboratory') renderLab();
+  if(page==='finance') renderFinance();
+  if(page==='inventory') renderInventory();
+  if(page==='treatments') renderTreatments();
+  if(page==='reports') renderReports();
+}
+
+// ===== MODALS =====
+function showModal(id){
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.modal-overlay').forEach(o=>{
+  o.addEventListener('click',e=>{if(e.target===o)closeModal(o.id);});
+});
+
+// ===== TOAST =====
+function showToast(msg, duration=3000){
+  const t=document.createElement('div');
+  t.className='toast'; t.textContent=msg;
+  document.getElementById('toast-container').appendChild(t);
+  setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateY(16px)';
+    setTimeout(()=>t.remove(),300); },duration);
+}
+
+// ===== THEME =====
+let isDark = false;
+function toggleTheme(){
+  isDark=!isDark;
+  document.documentElement.setAttribute('data-theme',isDark?'dark':'');
+  document.getElementById('themeIcon').textContent=isDark?'☀️':'🌙';
+  const dt=document.getElementById('darkToggle');
+  if(dt) dt.classList.toggle('on',isDark);
+  showToast(isDark?'🌙 حالت تاریک فعال شد':'☀️ حالت روشن فعال شد');
+}
+
+// ===== SIDEBAR (mobile) =====
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('mobile-open');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('sidebarOverlay').classList.remove('show');
+}
+
+// ===== NOTIFICATIONS =====
+function toggleNotif(){
+  document.getElementById('notifPanel').classList.toggle('open');
+}
+document.addEventListener('click',e=>{
+  const p=document.getElementById('notifPanel');
+  if(p.classList.contains('open')&&!p.contains(e.target)&&!e.target.closest('[onclick*=toggleNotif]'))
+    p.classList.remove('open');
+});
+
+// ===== BACKUP =====
+let backupTimeout;
+function doBackup(){
+  const ind=document.getElementById('backupIndicator');
+  ind.className='backup-status syncing';
+  ind.innerHTML='<div class="backup-dot"></div>در حال همگام‌سازی...';
+  clearTimeout(backupTimeout);
+  backupTimeout=setTimeout(()=>{
+    ind.className='backup-status success';
+    ind.innerHTML='<div class="backup-dot"></div>همگام‌سازی شد';
+    showToast('☁️ بکاپ ابری با موفقیت انجام شد');
+    // Save to localStorage
+    localStorage.setItem('dentalBackup',JSON.stringify({...DB,backupTime:new Date().toISOString()}));
+  },2500);
+}
+function doLocalBackup(){
+  const data=JSON.stringify(DB,null,2);
+  const blob=new Blob([data],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download='dental-backup-'+new Date().toLocaleDateString('fa-IR').replace(/\//g,'-')+'.json';
+  a.click();
+  showToast('💾 بکاپ لوکال دانلود شد');
+}
+
+// ===== RENDER DASHBOARD =====
+function renderDashboard(){
+  // Appointments
+  const c=document.getElementById('dashAppts');
+  if(c){
+    c.innerHTML=DB.appointments.slice(0,4).map(a=>`
+      <div class="appt-card">
+        <div class="appt-time"><div class="appt-hour">${a.time}</div><div class="appt-period">ص/ع</div></div>
+        <div class="appt-divider" style="background:${a.color}"></div>
+        <div class="appt-info"><div class="appt-name">${a.patient}</div><div class="appt-type">${a.type} · ${a.doctor}</div></div>
+        <span class="badge ${a.status==='confirmed'?'badge-green':'badge-orange'}">${a.status==='confirmed'?'تأیید':'در انتظار'}</span>
+      </div>`).join('');
+  }
+
+  // Recent Patients
+  const pt=document.getElementById('dashPatients');
+  if(pt){
+    pt.innerHTML=DB.patients.slice(0,5).map(p=>`
+      <tr>
+        <td><span style="color:var(--primary);font-weight:700;font-size:12px">${p.id}</span></td>
+        <td><strong>${p.name}</strong></td>
+        <td>${p.lastVisit}</td>
+        <td><span class="badge ${p.tag==='vip'?'badge-purple':'badge-blue'}">${p.tag==='vip'?'VIP':'عادی'}</span></td>
+      </tr>`).join('');
+  }
+
+  // Doctor Performance
+  const dd=document.getElementById('dashDoctors');
+  if(dd){
+    dd.innerHTML=DB.doctors.map(d=>{
+      const pct=Math.round(d.revenue/DB.doctors[0].revenue*100);
+      return`<div style="margin-bottom:14px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-weight:600;font-size:13px">${d.name}</span>
+          <span style="font-size:12px;color:var(--text3)">${formatMoney(d.revenue)} ت</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:${d.color}"></div></div>
+      </div>`;
+    }).join('');
+  }
+
+  // Draw Income Chart
+  drawIncomeChart();
+}
+
+function drawIncomeChart(){
+  const svg=document.getElementById('incomeChart');
+  if(!svg) return;
+  const data=[3200000,4100000,2800000,5500000,4800000,6200000,4500000];
+  const days=['ش','ی','د','س','چ','پ','ج'];
+  const max=Math.max(...data);
+  const w=400,h=180,pad=30;
+  const barW=35, gap=(w-pad*2-barW*7)/6;
+  svg.innerHTML=data.map((v,i)=>{
+    const x=pad+i*(barW+gap);
+    const bh=Math.round((v/max)*(h-pad*2));
+    const y=h-pad-bh;
+    const colors=['#0A84FF','#30D158','#FF9F0A','#BF5AF2','#FF375F','#5AC8FA','#0A84FF'];
+    return`
+      <rect x="${x}" y="${y}" width="${barW}" height="${bh}" rx="6" fill="${colors[i]}" opacity="0.85"/>
+      <text x="${x+barW/2}" y="${h-8}" text-anchor="middle" fill="var(--text3)" font-size="10">${days[i]}</text>
+      <text x="${x+barW/2}" y="${y-5}" text-anchor="middle" fill="${colors[i]}" font-size="9" font-weight="700">${Math.round(v/1000000)}م</text>
+    `;
+  }).join('');
+}
+
+// ===== RENDER PATIENTS =====
+function renderPatients(filter=''){
+  const grid=document.getElementById('patientGrid');
+  if(!grid) return;
+  const pts=DB.patients.filter(p=>
+    !filter||p.name.includes(filter)||p.id.includes(filter)||p.phone.includes(filter)
+  );
+  grid.innerHTML=pts.map(p=>{
+    const initials=p.name.split(' ').map(w=>w[0]).join('');
+    return`
+      <div class="patient-card" onclick="showToast('👤 پرونده ${p.name} باز شد')">
+        <div class="patient-head">
+          <div class="patient-avatar" style="background:${p.avatar}">${initials}</div>
+          <div class="patient-info">
+            <div class="patient-name">${p.name}</div>
+            <div class="patient-id">${p.id}</div>
+          </div>
+          <span class="badge ${p.tag==='vip'?'badge-purple':'badge-gray'}">${p.tag==='vip'?'VIP':'عادی'}</span>
+        </div>
+        <div style="font-size:12px;color:var(--text3);margin-bottom:12px">
+          📱 ${p.phone} | 🏥 ${p.insurance}
+        </div>
+        <div class="patient-stats">
+          <div><div class="patient-stat-val" style="color:var(--primary)">${toPersian(p.visits)}</div><div class="patient-stat-lbl">ویزیت</div></div>
+          <div><div class="patient-stat-val" style="color:${p.balance<0?'var(--pink)':'var(--secondary)'}">${formatMoney(Math.abs(p.balance))}</div><div class="patient-stat-lbl">${p.balance<0?'بدهی':'اعتبار'}</div></div>
+          <div><div class="patient-stat-val" style="color:var(--text3);font-size:11px">${p.lastVisit}</div><div class="patient-stat-lbl">آخرین ویزیت</div></div>
+        </div>
+      </div>`;
+  }).join('');
+}
+function filterPatients(v=''){renderPatients(v);}
+
+// ===== RENDER DOCTORS =====
+function renderDoctors(){
+  const dc=document.getElementById('doctorCards');
+  if(dc){
+    dc.innerHTML=DB.doctors.map(d=>{
+      return`<div class="doctor-card">
+        <div class="doctor-head">
+          <div class="doctor-avatar" style="background:${d.color}">${d.name.split('دکتر ')[1]?.[0]||'د'}</div>
+          <div>
+            <div class="doctor-name">${d.name}</div>
+            <div class="doctor-title">${d.title}</div>
+          </div>
+        </div>
+        <div class="doctor-stats">
+          <div class="doc-stat"><div class="doc-stat-val" style="color:${d.color}">${toPersian(d.patients)}</div><div class="doc-stat-lbl">بیمار</div></div>
+          <div class="doc-stat"><div class="doc-stat-val" style="color:var(--secondary)">${toPersian(d.appointments)}</div><div class="doc-stat-lbl">نوبت</div></div>
+          <div class="doc-stat"><div class="doc-stat-val" style="color:var(--accent2);font-size:13px">${formatMoney(d.revenue)}</div><div class="doc-stat-lbl">کارکرد (ت)</div></div>
+          <div class="doc-stat"><div class="doc-stat-val" style="color:var(--primary);font-size:13px">${formatMoney(Math.round((d.revenue-d.lab)/2))}</div><div class="doc-stat-lbl">سهم پزشک</div></div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  const tbody=document.getElementById('doctorFinanceBody');
+  if(tbody){
+    tbody.innerHTML=DB.doctors.map(d=>{
+      const net=d.revenue-d.lab;
+      const docShare=Math.round(net/2);
+      const clinicShare=Math.round(net/2)+d.fixture;
+      return`<tr>
+        <td><strong>${d.name}</strong></td>
+        <td style="color:var(--secondary)">${formatMoney(d.revenue)} ت</td>
+        <td style="color:var(--pink)">${formatMoney(d.lab)} ت</td>
+        <td>${formatMoney(net)} ت</td>
+        <td style="color:var(--primary);font-weight:700">${formatMoney(docShare)} ت</td>
+        <td>${formatMoney(clinicShare)} ت</td>
+        <td style="color:var(--purple)">${formatMoney(d.fixture)} ت</td>
+        <td>
+          <button class="btn btn-outline btn-sm" onclick="showToast('💰 فیش حقوقی دکتر')">فیش</button>
+        </td>
+      </tr>`;
+    }).join('');
+  }
+}
+
+// ===== RENDER LAB =====
+function renderLab(){
+  const tbody=document.getElementById('labBody');
+  if(!tbody) return;
+  const statusMap={pending:{cls:'badge-orange',txt:'در انتظار'},inprogress:{cls:'badge-blue',txt:'در حال ساخت'},ready:{cls:'badge-green',txt:'آماده تحویل'}};
+  tbody.innerHTML=DB.lab.map(l=>{
+    const s=statusMap[l.status]||{cls:'badge-gray',txt:l.status};
+    return`<tr>
+      <td style="color:var(--primary);font-weight:700">${l.id}</td>
+      <td>${l.patient}</td>
+      <td>${l.doctor}</td>
+      <td>${l.type}</td>
+      <td>${l.lab}</td>
+      <td>${l.sent}</td>
+      <td>${l.delivery}</td>
+      <td style="color:var(--accent2)">${formatMoney(l.cost)} ت</td>
+      <td><span class="badge ${s.cls}">${s.txt}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+// ===== RENDER FINANCE =====
+function renderFinance(){
+  const tbody=document.getElementById('financeBody');
+  if(!tbody) return;
+  tbody.innerHTML=DB.finance.map(f=>{
+    const ic=f.type==='income'?'badge-green':'badge-red';
+    const it=f.type==='income'?'دریافتی':'پرداختی';
+    const sc=f.status==='paid'?'badge-green':f.status==='partial'?'badge-orange':'badge-red';
+    const st=f.status==='paid'?'پرداخت شده':f.status==='partial'?'نیمه پرداخت':'معوق';
+    return`<tr>
+      <td>${f.date}</td>
+      <td>${f.desc}</td>
+      <td>${f.party}</td>
+      <td>${f.doctor}</td>
+      <td><span class="badge ${ic}">${it}</span></td>
+      <td style="color:${f.type==='income'?'var(--secondary)':'var(--pink)'};font-weight:700">${f.type==='income'?'+':'-'}${formatMoney(f.amount)} ت</td>
+      <td>${f.method}</td>
+      <td><span class="badge ${sc}">${st}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+// ===== RENDER INVENTORY =====
+function renderInventory(){
+  const tbody=document.getElementById('inventoryBody');
+  if(!tbody) return;
+  tbody.innerHTML=DB.inventory.map(item=>{
+    const low=item.qty<item.min;
+    return`<tr>
+      <td style="color:var(--text3);font-size:12px">${item.code}</td>
+      <td><strong>${item.name}</strong></td>
+      <td><span class="badge badge-blue">${item.cat}</span></td>
+      <td style="color:${low?'var(--pink)':'var(--secondary)'};font-weight:700">${toPersian(item.qty)}</td>
+      <td>${toPersian(item.min)}</td>
+      <td>${item.expire}</td>
+      <td><span class="badge ${low?'badge-red':'badge-green'}">${low?'⚠️ کم':'✓ کافی'}</span></td>
+      <td>
+        <button class="btn btn-outline btn-sm" onclick="showToast('📦 سفارش خرید ثبت شد')">سفارش</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+// ===== RENDER TREATMENTS =====
+function renderTreatments(){
+  // Dental Chart
+  const upperNums=[18,17,16,15,14,13,12,11,21,22,23,24,25,26,27,28];
+  const lowerNums=[48,47,46,45,44,43,42,41,31,32,33,34,35,36,37,38];
+  const states=['healthy','treated','healthy','problematic','healthy','healthy','treated','healthy','healthy','healthy','treated','healthy','healthy','healthy','implant','missing'];
+
+  const upper=document.getElementById('upperTeeth');
+  const lower=document.getElementById('lowerTeeth');
+  if(upper){
+    upper.innerHTML=upperNums.map((n,i)=>`<div class="tooth ${states[i]}" onclick="showToast('🦷 دندان ${toPersian(n)} انتخاب شد')">${toPersian(n)}</div>`).join('');
+  }
+  if(lower){
+    lower.innerHTML=lowerNums.map((n,i)=>`<div class="tooth ${states[i]}" onclick="showToast('🦷 دندان ${toPersian(n)} انتخاب شد')">${toPersian(n)}</div>`).join('');
+  }
+
+  const tbody=document.getElementById('treatmentBody');
+  if(!tbody) return;
+  const smap={done:{cls:'badge-green',txt:'انجام شده'},inprogress:{cls:'badge-blue',txt:'در حال انجام'}};
+  tbody.innerHTML=DB.treatments.map(t=>{
+    const s=smap[t.status]||{cls:'badge-gray',txt:t.status};
+    return`<tr>
+      <td style="color:var(--text3);font-size:12px">${t.patient}</td>
+      <td><strong>${t.pname}</strong></td>
+      <td>${t.doctor}</td>
+      <td>${t.type}</td>
+      <td>${t.date}</td>
+      <td style="color:var(--accent2)">${formatMoney(t.cost)} ت</td>
+      <td><span class="badge ${s.cls}">${s.txt}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+// ===== RENDER REPORTS =====
+function renderReports(){
+  // Monthly Chart
+  const svg=document.getElementById('monthlyChart');
+  if(svg){
+    const months=['فر','ار','خر','تی','مر','شه','مه','آب','آذ','دی','به','اس'];
+    const vals=[18,22,19,28,32,35,30,25,28,24,29,34];
+    const max=Math.max(...vals);
+    const w=600,h=200,pad=35,barW=28;
+    const gap=(w-pad*2-barW*12)/11;
+    svg.innerHTML=vals.map((v,i)=>{
+      const x=pad+i*(barW+gap);
+      const bh=Math.round((v/max)*(h-pad*2));
+      const y=h-pad-bh;
+      const isLast=i===11;
+      return`
+        <rect x="${x}" y="${y}" width="${barW}" height="${bh}" rx="5"
+          fill="${isLast?'#0A84FF':'#0A84FF60'}"/>
+        <text x="${x+barW/2}" y="${h-8}" text-anchor="middle" fill="var(--text3)" font-size="9">${months[i]}</text>
+        ${isLast?`<text x="${x+barW/2}" y="${y-5}" text-anchor="middle" fill="#0A84FF" font-size="9" font-weight="700">${v}م</text>`:''}
+      `;
+    }).join('');
+  }
+
+  // Service Stats
+  const ss=document.getElementById('serviceStats');
+  if(ss){
+    const services=[
+      {name:'جرمگیری',pct:85,color:'#0A84FF'},
+      {name:'پر کردن دندان',pct:72,color:'#30D158'},
+      {name:'کشیدن دندان',pct:58,color:'#FF9F0A'},
+      {name:'ایمپلنت',pct:45,color:'#BF5AF2'},
+      {name:'روکش',pct:38,color:'#FF375F'},
+    ];
+    ss.innerHTML=services.map(s=>`
+      <div style="margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-size:13px;font-weight:600">${s.name}</span>
+          <span style="font-size:12px;color:var(--text3)">${toPersian(s.pct)}٪</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${s.pct}%;background:${s.color}"></div></div>
+      </div>`).join('');
+  }
+
+  const ds=document.getElementById('doctorYearStats');
+  if(ds){
+    ds.innerHTML=DB.doctors.map(d=>`
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:10px;background:var(--bg);border-radius:var(--radius3)">
+        <div style="width:36px;height:36px;border-radius:10px;background:${d.color};display:flex;align-items:center;justify-content:center;color:white;font-weight:700">${d.name.split(' ')[1]?.[0]||'د'}</div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:13px;margin-bottom:2px">${d.name}</div>
+          <div style="font-size:11px;color:var(--text3)">${toPersian(d.patients)} بیمار | ${toPersian(d.appointments)} نوبت</div>
+        </div>
+        <div style="text-align:left">
+          <div style="font-weight:800;color:${d.color}">${formatMoney(d.revenue)}</div>
+          <div style="font-size:10px;color:var(--text3)">تومان</div>
+        </div>
+      </div>`).join('');
+  }
+}
+
+// ===== RENDER CALENDAR =====
+let calMonth=11, calYear=1403; // Esfand 1403
+function renderCalendar(){
+  const monthNames=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+  document.getElementById('calTitle').textContent=`${monthNames[calMonth-1]} ${toPersian(calYear)}`;
+
+  // Days in month (simplified - first 6 months=31 days, months 7-11=30 days, month 12=29/30)
+  const daysInMonth=calMonth<=6?31:calMonth<=11?30:29;
+  const firstDay=5; // Saturday = 0, Friday = 6 (Persian calendar starts Saturday)
+
+  const dayNames=['ش','ی','د','س','چ','پ','ج'];
+  const grid=document.getElementById('calGrid');
+  if(!grid) return;
+
+  let html=dayNames.map(d=>`<div class="cal-day-name">${d}</div>`).join('');
+
+  // Empty cells
+  for(let i=0;i<firstDay;i++) html+=`<div class="cal-day other-month"></div>`;
+
+  const evtDays=[2,5,8,12,15,20,22,25];
+  const holidays=[13,14]; // example
+  const weekends=[6,13,20,27]; // Friday = 6th day
+
+  for(let d=1;d<=daysInMonth;d++){
+    const isToday=d===2&&calMonth===12;
+    const hasEvt=evtDays.includes(d);
+    const isHoliday=holidays.includes(d);
+    const isWeekend=weekends.includes(d);
+    html+=`<div class="cal-day ${isToday?'today':''} ${hasEvt?'has-event':''} ${isHoliday?'holiday':''} ${isWeekend?'weekend':''}" onclick="showToast('📅 ${toPersian(d)} ${monthNames[calMonth-1]} ۱۴۰۳')">${toPersian(d)}</div>`;
+  }
+  grid.innerHTML=html;
+
+  // Appointments
+  const ca=document.getElementById('calAppts');
+  if(ca){
+    ca.innerHTML=DB.appointments.map(a=>`
+      <div class="appt-card" style="padding:10px 12px">
+        <div class="appt-time" style="min-width:50px"><div class="appt-hour" style="font-size:15px">${a.time}</div></div>
+        <div class="appt-divider" style="background:${a.color};height:36px;width:2px"></div>
+        <div class="appt-info"><div class="appt-name" style="font-size:13px">${a.patient}</div><div class="appt-type" style="font-size:11px">${a.type}</div></div>
+        <span class="badge ${a.status==='confirmed'?'badge-green':'badge-orange'}" style="font-size:10px">${a.status==='confirmed'?'✓':'⏳'}</span>
+      </div>`).join('');
+  }
+
+  // Week stats
+  const ws=document.getElementById('weekStats');
+  if(ws){
+    ws.innerHTML=`
+      <div style="display:flex;justify-content:space-between;padding:10px;background:var(--bg);border-radius:var(--radius3)">
+        <span>نوبت‌های این هفته</span><strong style="color:var(--primary)">۳۸</strong>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:10px;background:var(--bg);border-radius:var(--radius3)">
+        <span>نوبت‌های کنسل‌شده</span><strong style="color:var(--pink)">۳</strong>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:10px;background:var(--bg);border-radius:var(--radius3)">
+        <span>درآمد این هفته</span><strong style="color:var(--secondary)">۶،۸ میلیون</strong>
+      </div>`;
+  }
+}
+function calNav(dir){
+  calMonth+=dir;
+  if(calMonth>12){calMonth=1;calYear++;}
+  if(calMonth<1){calMonth=12;calYear--;}
+  renderCalendar();
+}
+
+// ===== TAB SWITCHING =====
+function switchTab(el, group, target){
+  el.closest('.tabs').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ===== ACTIONS =====
+function addPatient(){
+  closeModal('addPatientModal');
+  DB.patients.unshift({id:'DT-1403-00249',name:'بیمار جدید',age:30,phone:'۰۹۱۲۰۰۰۰۰۰۰',insurance:'آزاد',visits:0,balance:0,lastVisit:'همین الان',status:'active',tag:'normal',avatar:'#0A84FF'});
+  showToast('✅ بیمار جدید با موفقیت ثبت شد');
+  doBackup();
+}
+function addAppt(){
+  closeModal('addApptModal');
+  showToast('✅ نوبت با موفقیت ثبت شد و پیامک ارسال شد');
+  doBackup();
+}
+function addPayment(){
+  closeModal('addPaymentModal');
+  showToast('✅ پرداخت ثبت شد');
+  doBackup();
+}
+function addLab(){
+  closeModal('addLabModal');
+  showToast('✅ سفارش لابراتوار ثبت شد');
+  doBackup();
+}
+function exportData(type){
+  showToast(`📤 فایل ${type==='pdf'?'PDF':'Excel'} در حال آماده‌سازی...`);
+}
+function printPage(){ window.print(); }
+
+// ===== RESPONSIVE =====
+function checkResponsive(){
+  const btn=document.getElementById('menuBtn');
+  if(window.innerWidth<900){
+    btn.style.display='flex';
+  } else {
+    btn.style.display='none';
+    document.getElementById('sidebar').classList.remove('mobile-open');
+    document.getElementById('sidebarOverlay').classList.remove('show');
+  }
+}
+window.addEventListener('resize',checkResponsive);
+
+// ===== PERSIAN DATE =====
+function updatePersianDate(){
+  const now=new Date();
+  const options={weekday:'long',year:'numeric',month:'long',day:'numeric',calendar:'persian'};
+  try {
+    const dateStr=now.toLocaleDateString('fa-IR-u-ca-persian',options);
+    document.getElementById('persianDate').textContent=dateStr;
+  } catch(e){
+    document.getElementById('persianDate').textContent='جمعه ۲ اسفند ۱۴۰۳';
+  }
+}
+
+// ===== AUTO BACKUP (every 30 min) =====
+setInterval(doBackup, 30*60*1000);
+
+// ===== INIT =====
 window.addEventListener('load',()=>{
+  // Hide splash after 2.5s
   setTimeout(()=>{
     document.getElementById('splash').classList.add('hide');
+    setTimeout(()=>document.getElementById('splash').remove(),700);
   },2800);
 
+  // Init
   updatePersianDate();
   checkResponsive();
   renderDashboard();
   renderCalendar();
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'));
+      document.body.style.overflow='';
+      document.getElementById('notifPanel').classList.remove('open');
+    }
+  });
 });
 </script>
 
