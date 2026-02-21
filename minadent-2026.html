@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>MinaDent 2026 — مدیریت دندانپزشکی</title>
+<style>
+/* RESET & BASE */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
+  background:#05050F;
+  color:#FFFFFF;
+  min-height:100vh;
+  overflow-x:hidden;
+  direction:rtl;
+}
+button,input,select,textarea{
+  font-family:inherit;
+  font-size:inherit;
+}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:4px}
+
+/* CSS VARIABLES */
+:root{
+  --blue:#0A84FF;
+  --blue-dim:rgba(10,132,255,0.18);
+  --blue-border:rgba(10,132,255,0.35);
+  --green:#30D158;
+  --green-dim:rgba(48,209,88,0.12);
+  --orange:#FF9F0A;
+  --orange-dim:rgba(255,159,10,0.12);
+  --red:#FF453A;
+  --red-dim:rgba(255,69,58,0.12);
+  --purple:#BF5AF2;
+  --purple-dim:rgba(191,90,242,0.12);
+  --yellow:#FFD60A;
+  --bg0:#05050F;
+  --bg1:#0D0D1A;
+  --bg2:#141420;
+  --bg3:#1C1C2A;
+  --bg4:#242432;
+  --glass:rgba(255,255,255,0.04);
+  --glass2:rgba(255,255,255,0.07);
+  --glass3:rgba(255,255,255,0.11);
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --t1:#FFFFFF;
+  --t2:rgba(255,255,255,0.70);
+  --t3:rgba(255,255,255,0.42);
+  --t4:rgba(255,255,255,0.22);
+  --r18:18px;
+  --r12:12px;
+  --r8:8px;
+}
+
+/* BACKGROUND GLOW */
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.glow{position:absolute;border-radius:50%;filter:blur(100px);opacity:.10}
+.glow-a{width:700px;height:700px;background:#0A84FF;top:-250px;right:-200px}
+.glow-b{width:500px;height:500px;background:#BF5AF2;bottom:-150px;left:-150px}
+.glow-c{width:300px;height:300px;background:#30D158;top:45%;left:40%}
+
+/* LAYOUT */
+.app{display:flex;position:relative;z-index:1;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{
+  width:252px;
+  background:rgba(8,8,20,0.92);
+  -webkit-backdrop-filter:blur(24px);
+  backdrop-filter:blur(24px);
+  border-left:1px solid var(--border);
+  position:fixed;right:0;top:0;bottom:0;
+  display:flex;flex-direction:column;
+  z-index:200;
+  overflow-y:auto;
+}
+
+/* LOGO */
+.logo-wrap{padding:20px 16px 14px;border-bottom:1px solid var(--border)}
+.logo-row{display:flex;align-items:center;gap:11px}
+.logo-icon{
+  width:42px;height:42px;border-radius:13px;
+  background:linear-gradient(135deg,#0A84FF,#BF5AF2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+  box-shadow:0 4px 18px rgba(10,132,255,0.35);
+}
+.logo-name{font-size:17px;font-weight:800;letter-spacing:-0.3px}
+.logo-name span{color:#0A84FF}
+.logo-sub{font-size:9px;color:var(--t3);margin-top:1px;letter-spacing:.5px}
+.logo-badge{
+  display:inline-block;margin-top:5px;
+  background:linear-gradient(135deg,#0A84FF,#BF5AF2);
+  color:#fff;font-size:9px;font-weight:700;
+  padding:2px 8px;border-radius:20px;letter-spacing:.5px;
+}
+
+/* NAV */
+.nav-body{flex:1;padding:10px 8px;overflow-y:auto}
+.nav-section{margin-bottom:18px}
+.nav-section-label{
+  font-size:9px;font-weight:600;color:var(--t4);
+  letter-spacing:1.5px;padding:0 10px;margin-bottom:5px;
+}
+.nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;border-radius:var(--r12);
+  cursor:pointer;color:var(--t2);font-size:13px;font-weight:500;
+  margin-bottom:1px;border:1px solid transparent;
+  transition:background .15s,color .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.nav-item:hover{background:var(--glass);color:var(--t1)}
+.nav-item.active{
+  background:var(--blue-dim);color:#fff;
+  border-color:var(--blue-border);
+}
+.nav-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.nav-item.active .nav-icon{background:rgba(10,132,255,0.2)}
+.nav-badge{margin-right:auto;font-size:10px;font-weight:700;padding:1px 7px;border-radius:20px;background:var(--blue);color:#fff}
+.nav-badge.g{background:var(--green)}
+.nav-badge.r{background:var(--red)}
+
+/* SIDEBAR FOOTER */
+.sidebar-foot{padding:14px 16px;border-top:1px solid var(--border)}
+.user-row{display:flex;align-items:center;gap:9px}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#0A84FF,#BF5AF2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.user-name{font-size:13px;font-weight:600}
+.online-dot{width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:auto;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* TOPBAR */
+.topbar{
+  position:fixed;top:0;right:252px;left:0;height:58px;
+  background:rgba(8,8,20,0.92);
+  -webkit-backdrop-filter:blur(24px);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;
+  padding:0 20px;z-index:190;
+}
+.topbar-title{font-size:15px;font-weight:700;flex:1}
+.date-chip{
+  display:flex;align-items:center;gap:7px;
+  background:var(--glass);border:1px solid var(--border);
+  padding:5px 12px;border-radius:var(--r8);font-size:11px;color:var(--t2);
+}
+.date-chip .jdate{color:var(--blue);font-weight:700}
+.clock-chip{
+  background:var(--glass);border:1px solid var(--border);
+  padding:5px 12px;border-radius:var(--r8);
+  font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;
+  min-width:82px;text-align:center;
+}
+.icon-btn{
+  width:36px;height:36px;border-radius:var(--r8);
+  background:var(--glass);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:17px;position:relative;
+  transition:background .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.icon-btn:hover{background:var(--glass2)}
+.notif-dot{position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:var(--red);border:2px solid var(--bg1)}
+
+/* MAIN */
+.main{margin-right:252px;margin-top:58px;padding:20px;min-height:calc(100vh - 58px)}
+
+/* PANEL */
+.panel{display:none}
+.panel.active{display:block}
+
+/* STAT GRID */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.stat-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:var(--r18);padding:18px;
+  position:relative;overflow:hidden;
+  transition:transform .2s,border-color .2s;
+}
+.stat-card:hover{transform:translateY(-2px);border-color:var(--border2)}
+.stat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--bar-color,linear-gradient(90deg,#0A84FF,#BF5AF2))}
+.stat-icon{font-size:26px;margin-bottom:10px}
+.stat-label{font-size:11px;color:var(--t3);font-weight:500;margin-bottom:3px}
+.stat-val{font-size:24px;font-weight:800;letter-spacing:-1px}
+.stat-change{font-size:11px;margin-top:3px;color:var(--green)}
+.stat-change.dn{color:var(--red)}
+
+/* CARD */
+.card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:var(--r18);padding:18px;margin-bottom:14px;
+}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-title{font-size:14px;font-weight:700}
+
+/* BUTTONS */
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:var(--r12);
+  font-size:13px;font-weight:600;cursor:pointer;
+  border:none;transition:opacity .15s,transform .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:active{transform:scale(.97)}
+.btn-p{background:var(--blue);color:#fff}
+.btn-p:hover{opacity:.88}
+.btn-s{background:var(--glass2);border:1px solid var(--border);color:var(--t2)}
+.btn-s:hover{background:var(--glass3);color:var(--t1)}
+.btn-sm{padding:6px 11px;font-size:12px;border-radius:var(--r8)}
+.btn-danger{background:var(--red-dim);border:1px solid rgba(255,69,58,.3);color:var(--red)}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse}
+thead th{
+  padding:9px 13px;text-align:right;
+  font-size:11px;font-weight:600;color:var(--t3);
+  border-bottom:1px solid var(--border);white-space:nowrap;
+}
+tbody tr{border-bottom:1px solid var(--border);transition:background .12s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:var(--glass)}
+tbody td{padding:10px 13px;font-size:13px;color:var(--t2)}
+tbody td:first-child{color:var(--t1);font-weight:500}
+
+/* BADGE */
+.badge{
+  display:inline-flex;align-items:center;
+  padding:2px 9px;border-radius:20px;
+  font-size:11px;font-weight:600;
+}
+.b-blue{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border)}
+.b-green{background:var(--green-dim);color:var(--green);border:1px solid rgba(48,209,88,.3)}
+.b-orange{background:var(--orange-dim);color:var(--orange);border:1px solid rgba(255,159,10,.3)}
+.b-red{background:var(--red-dim);color:var(--red);border:1px solid rgba(255,69,58,.3)}
+.b-purple{background:var(--purple-dim);color:var(--purple);border:1px solid rgba(191,90,242,.3)}
+.b-gray{background:var(--glass);color:var(--t3);border:1px solid var(--border)}
+
+/* FORM */
+.form-group{margin-bottom:14px}
+.form-label{display:block;font-size:12px;font-weight:600;color:var(--t3);margin-bottom:5px}
+.form-input{
+  width:100%;padding:9px 12px;
+  background:var(--bg4);border:1px solid var(--border);
+  border-radius:var(--r8);color:var(--t1);
+  font-size:13px;outline:none;
+  -webkit-appearance:none;appearance:none;
+  transition:border .15s;
+}
+.form-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,132,255,.15)}
+.form-input::placeholder{color:var(--t4)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+
+/* SWITCH */
+.sw{position:relative;display:inline-block;width:40px;height:22px;flex-shrink:0}
+.sw input{opacity:0;width:0;height:0}
+.sw-track{
+  position:absolute;cursor:pointer;inset:0;
+  background:var(--bg4);border-radius:22px;
+  border:1px solid var(--border);transition:.25s;
+}
+.sw-track::before{
+  content:'';position:absolute;
+  height:16px;width:16px;left:2px;bottom:2px;
+  background:#fff;border-radius:50%;transition:.25s;
+}
+input:checked~.sw-track{background:var(--blue);border-color:var(--blue)}
+input:checked~.sw-track::before{transform:translateX(18px)}
+
+/* STATUS ROW */
+.st-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border)}
+.st-row:last-child{border-bottom:none}
+
+/* PROGRESS */
+.prog{height:4px;background:var(--bg4);border-radius:4px;overflow:hidden;margin-top:7px}
+.prog-bar{height:100%;border-radius:4px}
+
+/* TWO COLUMN */
+.col2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.col3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+
+/* CALENDAR */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-dname{font-size:10px;color:var(--t3);text-align:center;padding:4px;font-weight:600}
+.cal-day{
+  aspect-ratio:1;border-radius:7px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-size:12px;cursor:pointer;position:relative;
+  transition:background .12s;
+  -webkit-tap-highlight-color:transparent;
+}
+.cal-day:hover{background:var(--glass2)}
+.cal-day.today{background:var(--blue);color:#fff;font-weight:700}
+.cal-day.has-ev::after{content:'';position:absolute;bottom:3px;width:4px;height:4px;border-radius:50%;background:var(--green)}
+.cal-day.today.has-ev::after{background:rgba(255,255,255,.8)}
+.cal-day.dim{color:var(--t4)}
+.cal-day.fri{color:var(--red)}
+
+/* TIME SLOTS */
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}
+.slot{
+  padding:7px;border-radius:9px;text-align:center;
+  font-size:11px;font-weight:600;cursor:pointer;
+  border:1px solid var(--border);transition:all .15s;
+}
+.slot.free{border-color:rgba(48,209,88,.35);color:var(--green);background:rgba(48,209,88,.05)}
+.slot.free:hover{background:rgba(48,209,88,.14)}
+.slot.busy{border-color:rgba(255,69,58,.3);color:var(--red);background:rgba(255,69,58,.05);cursor:default}
+.slot.mine{border-color:rgba(10,132,255,.4);color:var(--blue);background:rgba(10,132,255,.1)}
+
+/* MODAL */
+.modal-bg{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.72);
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+  z-index:1000;display:none;
+  align-items:center;justify-content:center;
+  padding:16px;
+}
+.modal-bg.open{display:flex}
+.modal{
+  background:var(--bg2);border:1px solid var(--border2);
+  border-radius:22px;padding:24px;max-width:540px;width:100%;
+  max-height:88vh;overflow-y:auto;
+  box-shadow:0 24px 80px rgba(0,0,0,.85);
+  animation:mod-in .25s cubic-bezier(.4,0,.2,1);
+}
+@keyframes mod-in{from{opacity:0;transform:scale(.94) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.modal-title{font-size:16px;font-weight:800}
+.modal-close{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--glass);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:16px;color:var(--t3);
+  transition:background .12s;
+}
+.modal-close:hover{background:var(--glass2);color:var(--t1)}
+
+/* NOTIF PANEL */
+.notif-panel{
+  position:fixed;top:66px;left:16px;
+  width:340px;background:var(--bg2);
+  border:1px solid var(--border2);border-radius:var(--r18);
+  box-shadow:0 12px 50px rgba(0,0,0,.7);z-index:300;
+  display:none;
+  animation:slide-dn .18s ease;
+  max-height:480px;overflow-y:auto;
+}
+.notif-panel.open{display:block}
+@keyframes slide-dn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.notif-head{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.notif-item{padding:11px 14px;border-bottom:1px solid var(--border);display:flex;gap:9px;cursor:pointer;transition:background .12s}
+.notif-item:last-child{border-bottom:none}
+.notif-item:hover{background:var(--glass)}
+.n-dot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.n-text{font-size:12px;color:var(--t2);line-height:1.5}
+.n-time{font-size:10px;color:var(--t4);margin-top:2px}
+
+/* TOAST */
+.toast-wrap{position:fixed;bottom:20px;left:20px;z-index:9999;display:flex;flex-direction:column;gap:7px;pointer-events:none}
+.toast{
+  background:var(--bg2);border:1px solid var(--border2);
+  border-radius:12px;padding:11px 14px;
+  display:flex;align-items:center;gap:9px;
+  min-width:260px;max-width:320px;
+  box-shadow:0 8px 30px rgba(0,0,0,.6);
+  animation:toast-in .25s ease;
+  pointer-events:auto;
+}
+@keyframes toast-in{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
+.toast-icon{font-size:17px;flex-shrink:0}
+.toast-text{font-size:12px;flex:1;color:var(--t2)}
+
+/* TIMELINE */
+.timeline{position:relative;padding-right:18px}
+.timeline::before{content:'';position:absolute;right:5px;top:0;bottom:0;width:2px;background:var(--border)}
+.tl-item{position:relative;padding:0 18px 14px 0}
+.tl-item::before{content:'';position:absolute;right:-13px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--blue);border:2px solid var(--bg3);z-index:1}
+.tl-time{font-size:10px;color:var(--t4);margin-bottom:2px}
+.tl-box{background:var(--bg4);border:1px solid var(--border);border-radius:10px;padding:9px 11px;font-size:12px}
+
+/* BAR CHART */
+.bar-chart{margin-top:10px}
+.bar-row{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.bar-lbl{font-size:11px;color:var(--t3);width:75px;text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:5px;background:var(--bg4);border-radius:5px;overflow:hidden}
+.bar-fill{height:100%;border-radius:5px}
+.bar-val{font-size:11px;color:var(--t3);width:45px;text-align:left}
+
+/* SPARK */
+.spark{display:flex;align-items:flex-end;gap:2px;height:36px;margin-top:10px}
+.sp-bar{flex:1;border-radius:2px 2px 0 0;min-height:3px;transition:opacity .2s}
+.sp-bar:hover{opacity:.8}
+
+/* FORMULA BOX */
+.formula-box{
+  background:linear-gradient(135deg,rgba(10,132,255,.08),rgba(191,90,242,.05));
+  border:1px solid rgba(10,132,255,.22);
+  border-radius:var(--r12);padding:14px 18px;margin-bottom:14px;
+}
+.formula-title{font-size:13px;font-weight:700;margin-bottom:5px}
+.formula-eq{font-size:12px;color:var(--t3);margin-top:4px}
+.formula-note{font-size:11px;color:var(--yellow);margin-top:6px}
+
+/* DOCTOR CARD */
+.dr-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:var(--r18);padding:16px;
+  transition:border-color .15s,transform .15s;
+}
+.dr-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.dr-avatar{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff}
+.dr-name{font-size:15px;font-weight:700}
+.dr-spec{font-size:11px;color:var(--t3)}
+
+/* ROLE PILLS */
+.r-admin{background:rgba(191,90,242,.15);color:var(--purple);border:1px solid rgba(191,90,242,.3);font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;display:inline-block}
+.r-doctor{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border);font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;display:inline-block}
+.r-sec{background:var(--green-dim);color:var(--green);border:1px solid rgba(48,209,88,.3);font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;display:inline-block}
+
+/* PATIENT ID */
+.pid{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border);font-size:10px;padding:2px 8px;border-radius:20px;font-weight:700}
+
+/* FINANCE SUMMARY */
+.fin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
+.fin-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r18);padding:16px;text-align:center}
+.fin-amt{font-size:20px;font-weight:800;margin:6px 0;letter-spacing:-.5px}
+.fin-lbl{font-size:11px;color:var(--t3)}
+
+/* BACKUP STATUS */
+.bk-ok{background:rgba(48,209,88,.08);border:1px solid rgba(48,209,88,.2);border-radius:var(--r12);padding:14px;text-align:center;margin-bottom:14px}
+
+/* SEARCH BAR */
+.search-wrap{
+  display:flex;align-items:center;gap:9px;
+  background:var(--bg4);border:1px solid var(--border);
+  border-radius:var(--r8);padding:8px 12px;
+  transition:border .15s;
+}
+.search-wrap:focus-within{border-color:var(--blue)}
+.search-wrap input{flex:1;background:none;border:none;outline:none;color:var(--t1);font-size:13px}
+.search-wrap input::placeholder{color:var(--t4)}
+
+/* TABS */
+.tabs{display:flex;gap:3px;background:var(--bg4);padding:3px;border-radius:12px;margin-bottom:16px}
+.tab{flex:1;padding:7px;border-radius:9px;text-align:center;font-size:12px;font-weight:600;cursor:pointer;color:var(--t3);transition:all .15s;-webkit-tap-highlight-color:transparent}
+.tab.active{background:var(--bg2);color:var(--t1);box-shadow:0 2px 8px rgba(0,0,0,.4)}
+
+/* SECTION TITLE */
+.sec-title{font-size:20px;font-weight:800;margin-bottom:18px;letter-spacing:-.5px}
+.sec-sub{font-size:12px;color:var(--t3);margin-top:3px;margin-bottom:18px}
+
+/* PAGE NAV */
+.page-nav{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){.stat-grid{grid-template-columns:repeat(2,1fr)}.fin-grid{grid-template-columns:1fr 1fr}.col3{grid-template-columns:1fr 1fr}}
+@media(max-width:800px){
+  .sidebar{transform:translateX(252px);transition:transform .3s}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-right:0}
+  .topbar{right:0}
+  .col2,.col3{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .fin-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-glow" aria-hidden="true">
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+  <div class="glow glow-c"></div>
+</div>
+
+<!-- TOAST AREA -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- NOTIF PANEL -->
+<div class="notif-panel" id="notifPanel">
+  <div class="notif-head">
+    <span style="font-size:14px;font-weight:700">اعلان‌ها</span>
+    <span style="font-size:11px;color:var(--blue);cursor:pointer">خواندن همه</span>
+  </div>
+  <div class="notif-item">
+    <div class="n-dot" style="background:var(--red)"></div>
+    <div><div class="n-text">💰 پرداخت ۲,۵۰۰,۰۰۰ تومان توسط منشی ثبت شد — پرونده #۱۰۲۳</div><div class="n-time">۲ دقیقه پیش · احمدی</div></div>
+  </div>
+  <div class="notif-item">
+    <div class="n-dot" style="background:var(--blue)"></div>
+    <div><div class="n-text">📅 نوبت جدید برای دکتر رضایی — فردا ۱۱:۳۰</div><div class="n-time">۱۵ دقیقه پیش · منشی</div></div>
+  </div>
+  <div class="notif-item">
+    <div class="n-dot" style="background:var(--orange)"></div>
+    <div><div class="n-text">⚠️ هزینه لابراتوار پرونده #۱۰۳۳ تغییر کرد</div><div class="n-time">۱ ساعت پیش</div></div>
+  </div>
+  <div class="notif-item">
+    <div class="n-dot" style="background:var(--green)"></div>
+    <div><div class="n-text">☁️ بک‌آپ ابری انجام شد — ۱۴۰۴/۱۲/۰۳</div><div class="n-time">۳ ساعت پیش</div></div>
+  </div>
+  <div class="notif-item">
+    <div class="n-dot" style="background:var(--purple)"></div>
+    <div><div class="n-text">🔐 ورود مشکوک از IP جدید — مسدود شد</div><div class="n-time">دیروز ۲۳:۴۵</div></div>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="logo-wrap">
+    <div class="logo-row">
+      <div class="logo-icon">🦷</div>
+      <div>
+        <div class="logo-name">Mina<span>Dent</span></div>
+        <div class="logo-sub">DENTAL MANAGEMENT</div>
+        <div class="logo-badge">2026 PRO</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav-body">
+    <div class="nav-section">
+      <div class="nav-section-label">اصلی</div>
+      <div class="nav-item active" id="nav-dashboard" onclick="gotoPanel('dashboard')">
+        <div class="nav-icon">📊</div>داشبورد
+      </div>
+      <div class="nav-item" id="nav-patients" onclick="gotoPanel('patients')">
+        <div class="nav-icon">👥</div>بیماران<span class="nav-badge g">۱۲۴</span>
+      </div>
+      <div class="nav-item" id="nav-appointments" onclick="gotoPanel('appointments')">
+        <div class="nav-icon">📅</div>نوبت‌دهی<span class="nav-badge">۸</span>
+      </div>
+      <div class="nav-item" id="nav-treatments" onclick="gotoPanel('treatments')">
+        <div class="nav-icon">🦷</div>خدمات درمانی
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">مالی</div>
+      <div class="nav-item" id="nav-financial" onclick="gotoPanel('financial')">
+        <div class="nav-icon">💰</div>مدیریت مالی
+      </div>
+      <div class="nav-item" id="nav-lab" onclick="gotoPanel('lab')">
+        <div class="nav-icon">🧪</div>لابراتوار<span class="nav-badge r">۳</span>
+      </div>
+      <div class="nav-item" id="nav-doctors" onclick="gotoPanel('doctors')">
+        <div class="nav-icon">👨‍⚕️</div>پزشکان و سهم‌بری
+      </div>
+      <div class="nav-item" id="nav-insurance" onclick="gotoPanel('insurance')">
+        <div class="nav-icon">🛡️</div>بیمه
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">مدیریت</div>
+      <div class="nav-item" id="nav-access" onclick="gotoPanel('access')">
+        <div class="nav-icon">🔐</div>دسترسی‌ها
+      </div>
+      <div class="nav-item" id="nav-backup" onclick="gotoPanel('backup')">
+        <div class="nav-icon">☁️</div>بک‌آپ<span class="nav-badge g">✓</span>
+      </div>
+      <div class="nav-item" id="nav-reports" onclick="gotoPanel('reports')">
+        <div class="nav-icon">📈</div>گزارش‌ها
+      </div>
+      <div class="nav-item" id="nav-settings" onclick="gotoPanel('settings')">
+        <div class="nav-icon">⚙️</div>تنظیمات
+      </div>
+    </div>
+  </nav>
+
+  <div class="sidebar-foot">
+    <div class="user-row">
+      <div class="avatar">م</div>
+      <div>
+        <div class="user-name">دکتر محمدی</div>
+        <span class="r-admin">مدیر سیستم</span>
+      </div>
+      <div class="online-dot"></div>
+    </div>
+  </div>
+</aside>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="topbar-title" id="pageTitle">داشبورد</div>
+  <div class="search-wrap" style="width:200px">
+    <span style="font-size:14px">🔍</span>
+    <input type="search" placeholder="جستجو...">
+  </div>
+  <div class="date-chip">
+    <span>📅</span>
+    <span class="jdate" id="jdate">۱۴۰۴/۱۲/۰۳</span>
+    <span style="color:var(--border2)">|</span>
+    <span id="jday">شنبه</span>
+  </div>
+  <div class="clock-chip" id="clock">۱۴:۳۰:۰۰</div>
+  <div class="icon-btn" onclick="toggleNotif()">
+    🔔<div class="notif-dot"></div>
+  </div>
+  <div class="avatar" style="cursor:pointer">م</div>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- ===== DASHBOARD ===== -->
+<div class="panel active" id="panel-dashboard">
+  <div class="sec-title">داشبورد <span style="color:var(--t3);font-weight:400;font-size:14px">۱۴۰۴/۱۲/۰۳</span></div>
+
+  <div class="stat-grid">
+    <div class="stat-card" style="--bar-color:linear-gradient(90deg,#0A84FF,#5AC8FA)">
+      <div class="stat-icon">👥</div>
+      <div class="stat-label">بیماران فعال</div>
+      <div class="stat-val">۱,۲۴۷</div>
+      <div class="stat-change">↑ ۱۲ نفر این هفته</div>
+      <div class="spark">
+        <div class="sp-bar" style="height:30%;background:rgba(10,132,255,.35)"></div>
+        <div class="sp-bar" style="height:50%;background:rgba(10,132,255,.35)"></div>
+        <div class="sp-bar" style="height:42%;background:rgba(10,132,255,.35)"></div>
+        <div class="sp-bar" style="height:68%;background:rgba(10,132,255,.35)"></div>
+        <div class="sp-bar" style="height:58%;background:rgba(10,132,255,.35)"></div>
+        <div class="sp-bar" style="height:80%;background:rgba(10,132,255,.35)"></div>
+        <div class="sp-bar" style="height:100%;background:#0A84FF"></div>
+      </div>
+    </div>
+    <div class="stat-card" style="--bar-color:linear-gradient(90deg,#30D158,#34C759)">
+      <div class="stat-icon">💰</div>
+      <div class="stat-label">درآمد این ماه (تومان)</div>
+      <div class="stat-val" style="font-size:17px">۴۸,۵۰۰,۰۰۰</div>
+      <div class="stat-change">↑ ۱۸٪ نسبت به ماه قبل</div>
+      <div class="spark">
+        <div class="sp-bar" style="height:55%;background:rgba(48,209,88,.3)"></div>
+        <div class="sp-bar" style="height:72%;background:rgba(48,209,88,.3)"></div>
+        <div class="sp-bar" style="height:63%;background:rgba(48,209,88,.3)"></div>
+        <div class="sp-bar" style="height:84%;background:rgba(48,209,88,.3)"></div>
+        <div class="sp-bar" style="height:69%;background:rgba(48,209,88,.3)"></div>
+        <div class="sp-bar" style="height:91%;background:rgba(48,209,88,.3)"></div>
+        <div class="sp-bar" style="height:100%;background:#30D158"></div>
+      </div>
+    </div>
+    <div class="stat-card" style="--bar-color:linear-gradient(90deg,#FF9F0A,#FFD60A)">
+      <div class="stat-icon">📅</div>
+      <div class="stat-label">نوبت‌های امروز</div>
+      <div class="stat-val">۲۴</div>
+      <div class="stat-change">۸ نوبت باقیمانده</div>
+      <div class="prog" style="margin-top:14px"><div class="prog-bar" style="width:66%;background:linear-gradient(90deg,#FF9F0A,#FFD60A)"></div></div>
+    </div>
+    <div class="stat-card" style="--bar-color:linear-gradient(90deg,#BF5AF2,#9B59B6)">
+      <div class="stat-icon">🧪</div>
+      <div class="stat-label">سفارش لابراتوار</div>
+      <div class="stat-val">۱۷</div>
+      <div class="stat-change dn">۳ سفارش معوق</div>
+      <div class="prog" style="margin-top:14px"><div class="prog-bar" style="width:82%;background:linear-gradient(90deg,#BF5AF2,#9B59B6)"></div></div>
+    </div>
+  </div>
+
+  <div class="col2">
+    <div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">📅 نوبت‌های امروز</div><button class="btn btn-p btn-sm" onclick="gotoPanel('appointments')">مشاهده همه</button></div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">۰۸:۰۰</div><div class="tl-box"><div style="display:flex;align-items:center;justify-content:space-between"><span style="font-weight:600">علی محمودی — <span class="pid">#۱۰۱۲</span></span><span class="badge b-green">✓ حاضر</span></div><div style="font-size:11px;color:var(--t3);margin-top:3px">دکتر رضایی · ایمپلنت · منشی: احمدی</div></div></div>
+          <div class="tl-item"><div class="tl-time">۰۹:۳۰</div><div class="tl-box"><div style="display:flex;align-items:center;justify-content:space-between"><span style="font-weight:600">مریم کاظمی — <span class="pid">#۱۰۲۳</span></span><span class="badge b-blue">▶ در درمان</span></div><div style="font-size:11px;color:var(--t3);margin-top:3px">دکتر حسینی · کامپوزیت · منشی: احمدی</div></div></div>
+          <div class="tl-item"><div class="tl-time">۱۱:۰۰</div><div class="tl-box"><div style="display:flex;align-items:center;justify-content:space-between"><span style="font-weight:600">حسن نوروزی — <span class="pid">#۱۰۴۵</span></span><span class="badge b-orange">⏳ انتظار</span></div><div style="font-size:11px;color:var(--t3);margin-top:3px">دکتر رضایی · ارتودنسی · منشی: رضایی</div></div></div>
+          <div class="tl-item"><div class="tl-time">۱۴:۳۰</div><div class="tl-box"><div style="display:flex;align-items:center;justify-content:space-between"><span style="font-weight:600">زهرا احمدی — <span class="pid">#۱۰۵۸</span></span><span class="badge b-gray">📅 آینده</span></div><div style="font-size:11px;color:var(--t3);margin-top:3px">دکتر محمدی · روکش · منشی: احمدی</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">📊 درآمد بر اساس خدمت</div><span class="badge b-blue">این ماه</span></div>
+        <div class="bar-chart">
+          <div class="bar-row"><div class="bar-lbl">ایمپلنت</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:linear-gradient(90deg,#0A84FF,#5AC8FA)"></div></div><div class="bar-val">۱۸.۵ م</div></div>
+          <div class="bar-row"><div class="bar-lbl">ارتودنسی</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:linear-gradient(90deg,#BF5AF2,#9B59B6)"></div></div><div class="bar-val">۱۴.۲ م</div></div>
+          <div class="bar-row"><div class="bar-lbl">روکش</div><div class="bar-track"><div class="bar-fill" style="width:48%;background:linear-gradient(90deg,#30D158,#34C759)"></div></div><div class="bar-val">۱۰.۸ م</div></div>
+          <div class="bar-row"><div class="bar-lbl">کامپوزیت</div><div class="bar-track"><div class="bar-fill" style="width:34%;background:linear-gradient(90deg,#FF9F0A,#FFD60A)"></div></div><div class="bar-val">۷.۵ م</div></div>
+          <div class="bar-row"><div class="bar-lbl">سایر</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:linear-gradient(90deg,#FF453A,#FF6B6B)"></div></div><div class="bar-val">۴.۳ م</div></div>
+        </div>
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border)">
+          <div class="st-row"><span style="font-size:12px;color:var(--t3)">جمع دریافتی</span><span style="font-size:13px;font-weight:700;color:var(--green)">۵۵,۳۰۰,۰۰۰ ت</span></div>
+          <div class="st-row"><span style="font-size:12px;color:var(--t3)">هزینه لابراتوار</span><span style="font-size:13px;font-weight:700;color:var(--red)">۶,۸۰۰,۰۰۰ ت</span></div>
+          <div class="st-row"><span style="font-size:12px;color:var(--t3)">خالص قابل تقسیم</span><span style="font-size:13px;font-weight:700;color:var(--blue)">۴۸,۵۰۰,۰۰۰ ت</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PATIENTS ===== -->
+<div class="panel" id="panel-patients">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+    <div class="sec-title" style="margin-bottom:0">بیماران</div>
+    <button class="btn btn-p" onclick="openModal('addPatient')">➕ بیمار جدید</button>
+  </div>
+  <div class="sec-sub">پرونده بیماران با شماره منحصربه‌فرد — جستجوی پیشرفته</div>
+  <div class="card">
+    <div style="display:flex;gap:9px;margin-bottom:14px;flex-wrap:wrap">
+      <div class="search-wrap" style="flex:1;min-width:180px">
+        <span>🔍</span><input type="search" placeholder="نام، شماره پرونده، موبایل...">
+      </div>
+      <select class="form-input" style="width:140px">
+        <option>همه پزشکان</option><option>دکتر رضایی</option><option>دکتر حسینی</option>
+      </select>
+      <select class="form-input" style="width:120px">
+        <option>همه وضعیت‌ها</option><option>فعال</option><option>معلق</option>
+      </select>
+      <button class="btn btn-s btn-sm">⬇️ Excel</button>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>پرونده</th><th>نام</th><th>موبایل</th><th>تولد (شمسی)</th><th>پزشک</th><th>آخرین مراجعه</th><th>بدهی</th><th>وضعیت</th><th></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="pid">#۱۰۲۳</span></td>
+            <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:32px;height:32px;font-size:12px">م</div>مریم کاظمی</div></td>
+            <td dir="ltr">09121234567</td>
+            <td>۱۳۶۵/۰۵/۱۸</td>
+            <td>دکتر حسینی</td>
+            <td>۱۴۰۴/۱۲/۰۳</td>
+            <td style="color:var(--red);font-weight:600">۲,۵۰۰,۰۰۰</td>
+            <td><span class="badge b-blue">فعال</span></td>
+            <td><div style="display:flex;gap:4px"><button class="btn btn-s btn-sm">👁</button><button class="btn btn-s btn-sm">✏️</button></div></td>
+          </tr>
+          <tr>
+            <td><span class="pid">#۱۰۴۵</span></td>
+            <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:32px;height:32px;font-size:12px;background:linear-gradient(135deg,#FF9F0A,#BF5AF2)">ح</div>حسن نوروزی</div></td>
+            <td dir="ltr">09358765432</td>
+            <td>۱۳۷۸/۱۱/۰۵</td>
+            <td>دکتر رضایی</td>
+            <td>۱۴۰۴/۱۱/۲۸</td>
+            <td style="color:var(--green)">—</td>
+            <td><span class="badge b-green">تسویه</span></td>
+            <td><div style="display:flex;gap:4px"><button class="btn btn-s btn-sm">👁</button><button class="btn btn-s btn-sm">✏️</button></div></td>
+          </tr>
+          <tr>
+            <td><span class="pid">#۱۰۵۸</span></td>
+            <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:32px;height:32px;font-size:12px;background:linear-gradient(135deg,#30D158,#0A84FF)">ز</div>زهرا احمدی</div></td>
+            <td dir="ltr">09163456789</td>
+            <td>۱۳۷۲/۰۳/۲۲</td>
+            <td>دکتر محمدی</td>
+            <td>۱۴۰۴/۱۲/۰۳</td>
+            <td style="color:var(--red);font-weight:600">۸۵۰,۰۰۰</td>
+            <td><span class="badge b-orange">معوق</span></td>
+            <td><div style="display:flex;gap:4px"><button class="btn btn-s btn-sm">👁</button><button class="btn btn-s btn-sm">✏️</button></div></td>
+          </tr>
+          <tr>
+            <td><span class="pid">#۱۰۱۲</span></td>
+            <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:32px;height:32px;font-size:12px;background:linear-gradient(135deg,#BF5AF2,#0A84FF)">ع</div>علی محمودی</div></td>
+            <td dir="ltr">09156789012</td>
+            <td>۱۳۶۰/۰۸/۱۴</td>
+            <td>دکتر رضایی</td>
+            <td>۱۴۰۴/۱۲/۰۳</td>
+            <td style="color:var(--green)">—</td>
+            <td><span class="badge b-green">تسویه</span></td>
+            <td><div style="display:flex;gap:4px"><button class="btn btn-s btn-sm">👁</button><button class="btn btn-s btn-sm">✏️</button></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-nav">
+      <span style="font-size:12px;color:var(--t3)">نمایش ۱–۴ از ۱,۲۴۷ بیمار</span>
+      <div style="display:flex;gap:5px">
+        <button class="btn btn-s btn-sm">◀</button>
+        <button class="btn btn-p btn-sm">۱</button>
+        <button class="btn btn-s btn-sm">۲</button>
+        <button class="btn btn-s btn-sm">۳</button>
+        <button class="btn btn-s btn-sm">▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== APPOINTMENTS ===== -->
+<div class="panel" id="panel-appointments">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+    <div class="sec-title" style="margin-bottom:0">نوبت‌دهی</div>
+    <button class="btn btn-p" onclick="openModal('addAppt')">➕ ثبت نوبت</button>
+  </div>
+  <div class="sec-sub">تقویم شمسی ۱۰۰٪ ایرانی — نمایش نوبت‌ها به تفکیک پزشک و ساعت</div>
+  <div class="col2">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">📆 بهمن ۱۴۰۴</div>
+        <div style="display:flex;gap:5px"><button class="btn btn-s btn-sm">◀</button><button class="btn btn-s btn-sm">▶</button></div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-dname">ش</div><div class="cal-dname">ی</div><div class="cal-dname">د</div><div class="cal-dname">س</div><div class="cal-dname">چ</div><div class="cal-dname">پ</div><div class="cal-dname fri">ج</div>
+        <div class="cal-day dim">۲۶</div><div class="cal-day dim">۲۷</div>
+        <div class="cal-day has-ev">۱</div><div class="cal-day has-ev">۲</div>
+        <div class="cal-day today has-ev">۳</div>
+        <div class="cal-day">۴</div><div class="cal-day fri">۵</div>
+        <div class="cal-day has-ev">۶</div><div class="cal-day has-ev">۷</div><div class="cal-day has-ev">۸</div><div class="cal-day">۹</div><div class="cal-day has-ev">۱۰</div><div class="cal-day fri">۱۱</div>
+        <div class="cal-day">۱۲</div><div class="cal-day has-ev">۱۳</div><div class="cal-day has-ev">۱۴</div><div class="cal-day has-ev">۱۵</div><div class="cal-day">۱۶</div><div class="cal-day">۱۷</div><div class="cal-day fri">۱۷</div>
+        <div class="cal-day has-ev">۱۸</div><div class="cal-day">۱۹</div><div class="cal-day has-ev">۲۰</div><div class="cal-day">۲۱</div><div class="cal-day">۲۲</div><div class="cal-day">۲۳</div><div class="cal-day fri">۲۴</div>
+        <div class="cal-day has-ev">۲۵</div><div class="cal-day">۲۶</div><div class="cal-day">۲۷</div><div class="cal-day">۲۸</div><div class="cal-day">۲۹</div>
+      </div>
+      <div style="font-size:11px;color:var(--t4);margin-top:12px">● روز دارای نوبت</div>
+      <div style="font-size:12px;font-weight:600;margin:12px 0 8px">اسلات‌های امروز</div>
+      <div class="slots">
+        <div class="slot busy">۰۸:۰۰</div><div class="slot busy">۰۸:۳۰</div>
+        <div class="slot mine">۰۹:۰۰</div><div class="slot busy">۰۹:۳۰</div>
+        <div class="slot free">۱۰:۰۰</div><div class="slot free">۱۰:۳۰</div>
+        <div class="slot busy">۱۱:۰۰</div><div class="slot free">۱۱:۳۰</div>
+        <div class="slot busy">۱۴:۰۰</div><div class="slot free">۱۴:۳۰</div>
+        <div class="slot free">۱۵:۰۰</div><div class="slot free">۱۵:۳۰</div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:9px;font-size:10px;color:var(--t3)">
+        <span>🟢 آزاد</span><span>🔴 اشغال</span><span>🔵 من</span>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">📋 نوبت‌های امروز</div>
+          <select class="form-input" style="width:130px;font-size:11px;padding:4px 8px">
+            <option>همه پزشکان</option><option>دکتر رضایی</option><option>دکتر حسینی</option>
+          </select>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>ساعت</th><th>بیمار / پرونده</th><th>پزشک</th><th>خدمت</th><th>ثبت‌کننده</th><th>وضعیت</th></tr></thead>
+            <tbody>
+              <tr><td style="font-weight:700;color:var(--blue)" dir="ltr">۰۸:۰۰</td><td>علی محمودی <span class="pid">#۱۰۱۲</span></td><td>دکتر رضایی</td><td>ایمپلنت</td><td style="font-size:11px;color:var(--t3)">احمدی</td><td><span class="badge b-green">✓ حاضر</span></td></tr>
+              <tr><td style="font-weight:700;color:var(--blue)" dir="ltr">۰۹:۳۰</td><td>مریم کاظمی <span class="pid">#۱۰۲۳</span></td><td>دکتر حسینی</td><td>کامپوزیت</td><td style="font-size:11px;color:var(--t3)">احمدی</td><td><span class="badge b-blue">▶ در جریان</span></td></tr>
+              <tr><td style="font-weight:700;color:var(--t3)" dir="ltr">۱۱:۰۰</td><td>حسن نوروزی <span class="pid">#۱۰۴۵</span></td><td>دکتر رضایی</td><td>ارتودنسی</td><td style="font-size:11px;color:var(--t3)">رضایی</td><td><span class="badge b-orange">⏳ انتظار</span></td></tr>
+              <tr><td style="font-weight:700;color:var(--t3)" dir="ltr">۱۴:۳۰</td><td>زهرا احمدی <span class="pid">#۱۰۵۸</span></td><td>دکتر محمدی</td><td>روکش</td><td style="font-size:11px;color:var(--t3)">احمدی</td><td><span class="badge b-gray">📅 آینده</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">📊 آمار پزشکان امروز</div></div>
+        <div class="st-row"><div style="display:flex;align-items:center;gap:9px;flex:1"><div class="avatar" style="width:32px;height:32px;font-size:12px">ر</div><div style="flex:1"><div style="font-size:13px;font-weight:600">دکتر رضایی</div><div class="prog" style="margin-top:4px"><div class="prog-bar" style="width:75%;background:var(--blue)"></div></div></div></div><span style="font-size:12px;margin-right:10px">۹ نوبت</span></div>
+        <div class="st-row"><div style="display:flex;align-items:center;gap:9px;flex:1"><div class="avatar" style="width:32px;height:32px;font-size:12px;background:linear-gradient(135deg,#30D158,#0A84FF)">ح</div><div style="flex:1"><div style="font-size:13px;font-weight:600">دکتر حسینی</div><div class="prog" style="margin-top:4px"><div class="prog-bar" style="width:58%;background:var(--green)"></div></div></div></div><span style="font-size:12px;margin-right:10px">۷ نوبت</span></div>
+        <div class="st-row"><div style="display:flex;align-items:center;gap:9px;flex:1"><div class="avatar" style="width:32px;height:32px;font-size:12px;background:linear-gradient(135deg,#FF9F0A,#BF5AF2)">م</div><div style="flex:1"><div style="font-size:13px;font-weight:600">دکتر محمدی</div><div class="prog" style="margin-top:4px"><div class="prog-bar" style="width:40%;background:var(--orange)"></div></div></div></div><span style="font-size:12px;margin-right:10px">۵ نوبت</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FINANCIAL ===== -->
+<div class="panel" id="panel-financial">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+    <div class="sec-title" style="margin-bottom:0">مدیریت مالی</div>
+    <button class="btn btn-p" onclick="showToast('💰','فرم ثبت پرداخت','blue')">➕ ثبت پرداخت</button>
+  </div>
+  <div class="sec-sub">کنترل کامل درآمد، هزینه لابراتوار، سهم‌بری پزشکان</div>
+  <div class="fin-grid">
+    <div class="fin-card">
+      <div class="fin-lbl">💰 جمع کارکرد</div>
+      <div class="fin-amt" style="color:var(--green)">۵۵,۳۰۰,۰۰۰</div>
+      <div class="fin-lbl">تومان — این ماه</div>
+    </div>
+    <div class="fin-card">
+      <div class="fin-lbl">🧪 هزینه لابراتوار</div>
+      <div class="fin-amt" style="color:var(--red)">۶,۸۰۰,۰۰۰</div>
+      <div class="fin-lbl">تومان — این ماه</div>
+    </div>
+    <div class="fin-card">
+      <div class="fin-lbl">📊 خالص قابل تقسیم</div>
+      <div class="fin-amt" style="color:var(--blue)">۴۸,۵۰۰,۰۰۰</div>
+      <div class="fin-lbl">تومان — این ماه</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><div class="card-title">📋 آخرین تراکنش‌ها</div></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>تاریخ</th><th>پرونده / بیمار</th><th>خدمت</th><th>پزشک</th><th>مبلغ</th><th>نوع پرداخت</th><th>ثبت‌کننده</th><th>وضعیت</th></tr></thead>
+        <tbody>
+          <tr><td>۱۴۰۴/۱۲/۰۳</td><td><span class="pid">#۱۰۲۳</span> مریم کاظمی</td><td>کامپوزیت</td><td>دکتر حسینی</td><td style="font-weight:700;color:var(--green)">۲,۵۰۰,۰۰۰</td><td><span class="badge b-blue">کارت</span></td><td>احمدی</td><td><span class="badge b-green">تأیید</span></td></tr>
+          <tr><td>۱۴۰۴/۱۲/۰۳</td><td><span class="pid">#۱۰۱۲</span> علی محمودی</td><td>ایمپلنت مرحله ۲</td><td>دکتر رضایی</td><td style="font-weight:700;color:var(--green)">۸,۰۰۰,۰۰۰</td><td><span class="badge b-green">نقد</span></td><td>رضایی</td><td><span class="badge b-green">تأیید</span></td></tr>
+          <tr><td>۱۴۰۴/۱۲/۰۲</td><td><span class="pid">#۱۰۵۸</span> زهرا احمدی</td><td>روکش سرامیک</td><td>دکتر محمدی</td><td style="font-weight:700;color:var(--yellow)">۳,۲۰۰,۰۰۰</td><td><span class="badge b-orange">اقساط</span></td><td>احمدی</td><td><span class="badge b-orange">معلق</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DOCTORS ===== -->
+<div class="panel" id="panel-doctors">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+    <div class="sec-title" style="margin-bottom:0">پزشکان و سهم‌بری</div>
+    <button class="btn btn-p" onclick="showToast('➕','فرم پزشک جدید','blue')">➕ پزشک جدید</button>
+  </div>
+  <div class="sec-sub">محاسبه خودکار سهم پزشک | هزینه فیکسچر با مدیریت است</div>
+  <div class="formula-box">
+    <div class="formula-title">📐 فرمول سهم‌بری</div>
+    <div class="formula-eq">سهم پزشک = ( جمع کارکرد − هزینه لابراتوار ) ÷ ۲</div>
+    <div class="formula-note">⚠️ هزینه فیکسچر (ایمپلنت) به عهده مدیریت بوده و از محاسبه کسر نمی‌شود</div>
+  </div>
+  <div class="col3">
+    <div class="dr-card">
+      <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px">
+        <div class="dr-avatar" style="background:linear-gradient(135deg,#0A84FF,#BF5AF2)">ر</div>
+        <div><div class="dr-name">دکتر رضایی</div><div class="dr-spec">ایمپلنت و جراحی</div><span class="r-doctor" style="margin-top:4px;display:inline-block">پزشک</span></div>
+      </div>
+      <div style="padding-top:10px;border-top:1px solid var(--border)">
+        <div class="st-row" style="padding:4px 0"><span style="font-size:11px;color:var(--t3)">جمع کارکرد</span><span style="font-size:12px;font-weight:700">۲۴,۵۰۰,۰۰۰</span></div>
+        <div class="st-row" style="padding:4px 0"><span style="font-size:11px;color:var(--t3)">هزینه لابراتوار</span><span style="font-size:12px;color:var(--red)">۳,۲۰۰,۰۰۰</span></div>
+        <div class="st-row" style="padding:4px 0"><span style="font-size:11px;color:var(--t3)">فیکسچر (مدیریت)</span><span style="font-size:12px;color:var(--yellow)">۵,۰۰۰,۰۰۰ ✕</span></div>
+        <div style="background:var(--blue-dim);border:1px solid var(--blue-border);border-radius:10px;padding:10px;text-align:center;margin-top:8px">
+          <div style="font-size:10px;color:var(--t3)">سهم پزشک</div>
+          <div style="font-size:20px;font-weight:800;color:var(--blue)">۱۰,۶۵۰,۰۰۰</div>
+          <div style="font-size:9px;color:var(--t4)">(۲۴.۵ − ۳.۲) ÷ ۲</div>
+        </div>
+      </div>
+      <button class="btn btn-s btn-sm" style="width:100%;margin-top:10px">📄 گزارش کامل</button>
+    </div>
+
+    <div class="dr-card">
+      <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px">
+        <div class="dr-avatar" style="background:linear-gradient(135deg,#30D158,#0A84FF)">ح</div>
+        <div><div class="dr-name">دکتر حسینی</div><div class="dr-spec">ارتودنسی و زیبایی</div><span class="r-doctor" style="margin-top:4px;display:inline-block">پزشک</span></div>
+      </div>
+      <div style="padding-top:10px;border-top:1px solid var(--border)">
+        <div class="st-row" style="padding:4px 0"><span style="font-size:11px;color:var(--t3)">جمع کارکرد</span><span style="font-size:12px;font-weight:700">۱۸,۸۰۰,۰۰۰</span></div>
+        <div class="st-row" style="padding:4px 0"><span style="font-size:11px;color:var(--t3)">هزینه لابراتوار</span><span style="font-size:12px;color:var(--red)">۲,۱۰۰,۰۰۰</span></div>
+        <div class="st-row" style="padding:4px 0"><span style="font-size:11px;color:var(--t3)">فیکسچر</span><span style="font-size:12px;color:var(--t4)">ندارد</span></div>
+        <div style="background:var(--blue-dim);border:1px solid var(--blue-border);border-radius:10px;padding:10px;text-align:center;margin-top:8px">
+          <div style="font-size:10px;color:var(--t3)">سهم پزشک</div>
+          <div style="font-size:20px;font-weight:800;color:var(--blue)">۸,۳۵۰,۰۰۰</div>
+          <div style="font-size:9px;color:var(--t4)">(۱۸.۸ − ۲.۱) ÷ ۲</div>
+        </div>
+      </div>
+      <button class="btn btn-s btn-sm" style="width:100%;margin-top:10px">📄 گزارش کامل</button>
+    </div>
+
+    <div class="dr-card">
+      <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px">
+        <div class="dr-avatar" style="background:linear-gradient(135deg,#FF9F0A,#BF5AF2)">م</div>
+        <div><div class="dr-name">دکتر موسوی</div><div class="dr-spec">روکش، ونیر، لمینت</div><span class="r-doctor" style="margin-top:4px;display:inline-block">پزشک</span></div>
+      </div>
+      <div style="padding-top:10px;border-top:1px solid var(--border)">
+        <div class="st-row" style="padding:4px 0"><span style="font-size:11px;color:var(--t3)">جمع کارکرد</span><span style="font-size:12px;font-weight:700">۱۲,۰۰۰,۰۰۰</span></div>
+        <div class="st-row" style="padding:4px 0"><span style="font-size:11px;color:var(--t3)">هزینه لابراتوار</span><span style="font-size:12px;color:var(--red)">۱,۵۰۰,۰۰۰</span></div>
+        <div class="st-row" style="padding:4px 0"><span style="font-size:11px;color:var(--t3)">فیکسچر</span><span style="font-size:12px;color:var(--t4)">ندارد</span></div>
+        <div style="background:var(--blue-dim);border:1px solid var(--blue-border);border-radius:10px;padding:10px;text-align:center;margin-top:8px">
+          <div style="font-size:10px;color:var(--t3)">سهم پزشک</div>
+          <div style="font-size:20px;font-weight:800;color:var(--blue)">۵,۲۵۰,۰۰۰</div>
+          <div style="font-size:9px;color:var(--t4)">(۱۲ − ۱.۵) ÷ ۲</div>
+        </div>
+      </div>
+      <button class="btn btn-s btn-sm" style="width:100%;margin-top:10px">📄 گزارش کامل</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ACCESS ===== -->
+<div class="panel" id="panel-access">
+  <div class="sec-title">کنترل دسترسی و لاگ</div>
+  <div class="col2">
+    <div class="card">
+      <div class="card-head"><div class="card-title">👥 کاربران</div><button class="btn btn-p btn-sm">➕ کاربر</button></div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>نام</th><th>نقش</th><th>آخرین ورود</th><th>وضعیت</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>دکتر محمدی</td><td><span class="r-admin">مدیر</span></td><td style="font-size:11px">همین الان</td><td><span class="badge b-green">فعال</span></td><td><button class="btn btn-s btn-sm">✏️</button></td></tr>
+            <tr><td>خانم احمدی</td><td><span class="r-sec">منشی</span></td><td style="font-size:11px">۰۹:۱۵</td><td><span class="badge b-green">فعال</span></td><td><button class="btn btn-s btn-sm">✏️</button></td></tr>
+            <tr><td>دکتر رضایی</td><td><span class="r-doctor">پزشک</span></td><td style="font-size:11px">۰۸:۰۰</td><td><span class="badge b-green">فعال</span></td><td><button class="btn btn-s btn-sm">✏️</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-title">🔐 سطح دسترسی — منشی</div></div>
+      <div class="st-row"><span style="font-size:13px">ثبت نوبت</span><label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label></div>
+      <div class="st-row"><span style="font-size:13px">ثبت پرداخت</span><label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label></div>
+      <div class="st-row"><span style="font-size:13px">مشاهده گزارش مالی</span><label class="sw"><input type="checkbox"><span class="sw-track"></span></label></div>
+      <div class="st-row"><span style="font-size:13px">حذف پرونده</span><label class="sw"><input type="checkbox"><span class="sw-track"></span></label></div>
+      <div class="st-row"><span style="font-size:13px">مشاهده سهم پزشکان</span><label class="sw"><input type="checkbox"><span class="sw-track"></span></label></div>
+      <div class="st-row"><span style="font-size:13px">ورود دو مرحله‌ای (2FA)</span><label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label></div>
+      <button class="btn btn-p" style="width:100%;margin-top:12px">💾 ذخیره</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><div class="card-title">📜 لاگ فعالیت‌ها</div><span class="badge b-red">۱ رویداد مشکوک</span></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>تاریخ و ساعت</th><th>کاربر</th><th>عملیات</th><th>جزئیات</th><th>IP</th><th>نتیجه</th></tr></thead>
+        <tbody>
+          <tr><td style="font-size:11px">۱۴۰۴/۱۲/۰۳ — ۱۴:۲۵</td><td>احمدی</td><td>ثبت پرداخت</td><td style="font-size:11px">+۲,۵۰۰,۰۰۰ ت — #۱۰۲۳</td><td style="font-size:10px" dir="ltr">192.168.1.10</td><td><span class="badge b-green">موفق</span></td></tr>
+          <tr><td style="font-size:11px">۱۴۰۴/۱۲/۰۳ — ۱۱:۱۰</td><td style="color:var(--red)">ناشناس</td><td>ورود ناموفق</td><td style="font-size:11px">۳ بار تلاش</td><td style="font-size:10px;color:var(--red)" dir="ltr">5.200.12.44</td><td><span class="badge b-red">مسدود</span></td></tr>
+          <tr><td style="font-size:11px">۱۴۰۴/۱۲/۰۲ — ۱۸:۳۰</td><td>رضایی</td><td>تغییر لابراتوار</td><td style="font-size:11px">800k ← 1,200k — #۱۰۳۳</td><td style="font-size:10px" dir="ltr">192.168.1.15</td><td><span class="badge b-orange">تغییر</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BACKUP ===== -->
+<div class="panel" id="panel-backup">
+  <div class="sec-title">بک‌آپ و بازیابی</div>
+  <div class="col2">
+    <div class="card">
+      <div class="card-head"><div class="card-title">☁️ بک‌آپ ابری</div><div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--green)"><div class="online-dot"></div>آنلاین</div></div>
+      <div class="bk-ok">
+        <div style="font-size:26px;margin-bottom:6px">✅</div>
+        <div style="font-size:14px;font-weight:700;color:var(--green)">آخرین بک‌آپ موفق</div>
+        <div style="font-size:12px;color:var(--t3);margin-top:3px">۱۴۰۴/۱۲/۰۳ — ساعت ۱۱:۰۰</div>
+        <div style="font-size:11px;color:var(--t4);margin-top:2px">حجم: ۲۴۵ MB · رمزگذاری شده</div>
+      </div>
+      <div class="st-row"><span>بک‌آپ خودکار روزانه</span><label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label></div>
+      <div class="st-row"><span>زمان بک‌آپ</span><select class="form-input" style="width:90px;font-size:12px;padding:4px 8px"><option>۱۱:۰۰</option><option>۰۰:۰۰</option><option>۰۶:۰۰</option></select></div>
+      <div class="st-row"><span>رمزگذاری AES-256</span><label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label></div>
+      <button class="btn btn-p" style="width:100%;margin-top:12px" onclick="showToast('☁️','در حال تهیه بک‌آپ ابری...','blue')">☁️ بک‌آپ الان</button>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-title">💾 بک‌آپ محلی</div></div>
+      <div class="st-row"><span>بک‌آپ روی شبکه داخلی</span><label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label></div>
+      <div style="font-size:12px;font-weight:600;margin:12px 0 8px">تاریخچه</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>تاریخ</th><th>نوع</th><th>حجم</th><th>وضعیت</th><th></th></tr></thead>
+          <tbody>
+            <tr><td style="font-size:11px">۱۴۰۴/۱۲/۰۳</td><td>ابری</td><td>۲۴۵ MB</td><td><span class="badge b-green">✓</span></td><td><button class="btn btn-s btn-sm">بازیابی</button></td></tr>
+            <tr><td style="font-size:11px">۱۴۰۴/۱۲/۰۲</td><td>محلی</td><td>۲۴۲ MB</td><td><span class="badge b-green">✓</span></td><td><button class="btn btn-s btn-sm">بازیابی</button></td></tr>
+            <tr><td style="font-size:11px">۱۴۰۴/۱۲/۰۱</td><td>ابری</td><td>۲۴۰ MB</td><td><span class="badge b-green">✓</span></td><td><button class="btn btn-s btn-sm">بازیابی</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LAB ===== -->
+<div class="panel" id="panel-lab">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+    <div class="sec-title" style="margin-bottom:0">لابراتوار</div>
+    <button class="btn btn-p" onclick="showToast('➕','فرم سفارش لابراتوار','blue')">➕ سفارش جدید</button>
+  </div>
+  <div class="sec-sub">سفارشات لابراتوار و هزینه‌های کسرشده از کارکرد پزشک</div>
+  <div class="card">
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>تاریخ</th><th>پرونده</th><th>بیمار</th><th>پزشک</th><th>خدمت</th><th>لابراتوار</th><th>هزینه</th><th>تحویل</th><th>وضعیت</th></tr></thead>
+        <tbody>
+          <tr><td>۱۴۰۴/۱۲/۰۱</td><td><span class="pid">#۱۰۲۳</span></td><td>مریم کاظمی</td><td>دکتر حسینی</td><td>روکش پرسلن</td><td>لابراتوار نوین</td><td style="color:var(--red);font-weight:600">۱,۲۰۰,۰۰۰</td><td>۱۴۰۴/۱۲/۱۰</td><td><span class="badge b-orange">در ساخت</span></td></tr>
+          <tr><td>۱۴۰۴/۱۱/۲۸</td><td><span class="pid">#۱۰۱۲</span></td><td>علی محمودی</td><td>دکتر رضایی</td><td>ایمپلنت کراون</td><td>دنتیکا</td><td style="color:var(--red);font-weight:600">۲,۵۰۰,۰۰۰</td><td>۱۴۰۴/۱۲/۰۵</td><td><span class="badge b-blue">تحویل شد</span></td></tr>
+          <tr><td>۱۴۰۴/۱۱/۲۵</td><td><span class="pid">#۱۰۳۳</span></td><td>فاطمه صادقی</td><td>دکتر موسوی</td><td>ونیر سرامیک</td><td>لابراتوار نوین</td><td style="color:var(--red);font-weight:600">۳,۱۰۰,۰۰۰</td><td>۱۴۰۴/۱۲/۰۸</td><td><span class="badge b-orange">در ساخت</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TREATMENTS ===== -->
+<div class="panel" id="panel-treatments">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+    <div class="sec-title" style="margin-bottom:0">خدمات درمانی</div>
+    <button class="btn btn-p" onclick="showToast('➕','افزودن خدمت جدید','blue')">➕ خدمت جدید</button>
+  </div>
+  <div class="card">
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>کد</th><th>خدمت</th><th>دسته</th><th>تعرفه (تومان)</th><th>لابراتوار</th><th>مدت (دقیقه)</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>D01</td><td>ایمپلنت (مرحله ۱)</td><td><span class="badge b-blue">جراحی</span></td><td style="font-weight:700">۱۵,۰۰۰,۰۰۰</td><td style="color:var(--green)">—</td><td>۹۰</td><td><button class="btn btn-s btn-sm">✏️</button></td></tr>
+          <tr><td>D02</td><td>ارتودنسی ثابت</td><td><span class="badge b-purple">ارتودنسی</span></td><td style="font-weight:700">۲۵,۰۰۰,۰۰۰</td><td style="color:var(--green)">—</td><td>۶۰</td><td><button class="btn btn-s btn-sm">✏️</button></td></tr>
+          <tr><td>D03</td><td>روکش سرامیک</td><td><span class="badge b-orange">پروتز</span></td><td style="font-weight:700">۴,۵۰۰,۰۰۰</td><td style="color:var(--red)">✓</td><td>۴۵</td><td><button class="btn btn-s btn-sm">✏️</button></td></tr>
+          <tr><td>D04</td><td>کامپوزیت</td><td><span class="badge b-green">زیبایی</span></td><td style="font-weight:700">۱,۸۰۰,۰۰۰</td><td style="color:var(--green)">—</td><td>۳۰</td><td><button class="btn btn-s btn-sm">✏️</button></td></tr>
+          <tr><td>D05</td><td>ونیر سرامیک</td><td><span class="badge b-green">زیبایی</span></td><td style="font-weight:700">۶,۰۰۰,۰۰۰</td><td style="color:var(--red)">✓</td><td>۶۰</td><td><button class="btn btn-s btn-sm">✏️</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== INSURANCE ===== -->
+<div class="panel" id="panel-insurance">
+  <div class="sec-title">بیمه</div>
+  <div class="card">
+    <div class="card-head"><div class="card-title">🛡️ بیمه‌های طرف قرارداد</div><button class="btn btn-p btn-sm">➕ افزودن</button></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>نام بیمه</th><th>نوع</th><th>سقف پوشش</th><th>درصد پوشش</th><th>وضعیت</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>تامین اجتماعی</td><td>پایه</td><td>۵,۰۰۰,۰۰۰</td><td>۷۰٪</td><td><span class="badge b-green">فعال</span></td><td><button class="btn btn-s btn-sm">✏️</button></td></tr>
+          <tr><td>بیمه ایران</td><td>تکمیلی</td><td>۱۵,۰۰۰,۰۰۰</td><td>۸۰٪</td><td><span class="badge b-green">فعال</span></td><td><button class="btn btn-s btn-sm">✏️</button></td></tr>
+          <tr><td>بیمه آسیا</td><td>تکمیلی</td><td>۱۰,۰۰۰,۰۰۰</td><td>۷۵٪</td><td><span class="badge b-orange">معلق</span></td><td><button class="btn btn-s btn-sm">✏️</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== REPORTS ===== -->
+<div class="panel" id="panel-reports">
+  <div class="sec-title">گزارش‌ها</div>
+  <div class="col2">
+    <div class="card">
+      <div class="card-head"><div class="card-title">📊 خلاصه این ماه</div></div>
+      <div class="st-row"><span style="font-size:13px">تعداد مراجعین</span><span style="font-weight:700">۲۸۴ نفر</span></div>
+      <div class="st-row"><span style="font-size:13px">تعداد نوبت</span><span style="font-weight:700">۳۱۲ نوبت</span></div>
+      <div class="st-row"><span style="font-size:13px">درآمد ناخالص</span><span style="font-weight:700;color:var(--green)">۵۵,۳۰۰,۰۰۰</span></div>
+      <div class="st-row"><span style="font-size:13px">هزینه لابراتوار</span><span style="font-weight:700;color:var(--red)">۶,۸۰۰,۰۰۰</span></div>
+      <div class="st-row"><span style="font-size:13px">سهم مدیریت</span><span style="font-weight:700;color:var(--blue)">۲۴,۲۵۰,۰۰۰</span></div>
+      <div class="st-row"><span style="font-size:13px">جمع سهم پزشکان</span><span style="font-weight:700">۲۴,۲۵۰,۰۰۰</span></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-title">⬇️ دریافت گزارش</div></div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <button class="btn btn-s" style="justify-content:flex-start" onclick="showToast('📊','در حال آماده‌سازی گزارش...','blue')">📊 گزارش مالی ماهانه (Excel)</button>
+        <button class="btn btn-s" style="justify-content:flex-start" onclick="showToast('👥','لیست بیماران آماده می‌شود...','green')">👥 لیست بیماران (PDF)</button>
+        <button class="btn btn-s" style="justify-content:flex-start">📅 گزارش نوبت‌دهی</button>
+        <button class="btn btn-s" style="justify-content:flex-start">💊 سهم پزشکان</button>
+        <button class="btn btn-s" style="justify-content:flex-start">🧪 گزارش لابراتوار</button>
+        <button class="btn btn-s" style="justify-content:flex-start">📜 لاگ فعالیت‌ها</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SETTINGS ===== -->
+<div class="panel" id="panel-settings">
+  <div class="sec-title">تنظیمات</div>
+  <div class="col2">
+    <div class="card">
+      <div class="card-head"><div class="card-title">🏥 اطلاعات کلینیک</div></div>
+      <div class="form-group"><label class="form-label">نام کلینیک</label><input class="form-input" value="کلینیک دندانپزشکی مینادنت"></div>
+      <div class="form-group"><label class="form-label">آدرس</label><input class="form-input" value="تهران، خیابان ولیعصر، پلاک ۱۲۴"></div>
+      <div class="grid2">
+        <div class="form-group"><label class="form-label">تلفن</label><input class="form-input" dir="ltr" value="021-88776655"></div>
+        <div class="form-group"><label class="form-label">کد پستی</label><input class="form-input" dir="ltr" value="1234567890"></div>
+      </div>
+      <button class="btn btn-p" onclick="showToast('💾','اطلاعات ذخیره شد','green')">💾 ذخیره</button>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-title">🔔 نوتیفیکیشن‌ها</div></div>
+      <div class="st-row"><span style="font-size:13px">SMS بیماران (یادآوری نوبت)</span><label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label></div>
+      <div class="st-row"><span style="font-size:13px">نوتیف تغییر پرداخت (همه)</span><label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label></div>
+      <div class="st-row"><span style="font-size:13px">نوتیف تغییر لابراتوار</span><label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label></div>
+      <div class="st-row"><span style="font-size:13px">نوتیف ثبت نوبت</span><label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label></div>
+      <div class="st-row"><span style="font-size:13px">تقویم شمسی (جلالی)</span><label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label></div>
+      <div class="st-row"><span style="font-size:13px">ورود دو مرحله‌ای</span><label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label></div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- MODAL: ADD PATIENT -->
+<div class="modal-bg" id="modal-addPatient">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">➕ ثبت بیمار جدید</div>
+      <div class="modal-close" onclick="closeModal('addPatient')">✕</div>
+    </div>
+    <div class="grid2">
+      <div class="form-group"><label class="form-label">نام *</label><input class="form-input" placeholder="نام"></div>
+      <div class="form-group"><label class="form-label">نام خانوادگی *</label><input class="form-input" placeholder="نام خانوادگی"></div>
+    </div>
+    <div class="grid2">
+      <div class="form-group"><label class="form-label">موبایل *</label><input class="form-input" placeholder="09..." dir="ltr"></div>
+      <div class="form-group"><label class="form-label">کد ملی</label><input class="form-input" dir="ltr"></div>
+    </div>
+    <div class="grid2">
+      <div class="form-group"><label class="form-label">تاریخ تولد (شمسی)</label><input class="form-input" placeholder="۱۳۷۰/۰۱/۰۱"></div>
+      <div class="form-group"><label class="form-label">جنسیت</label><select class="form-input"><option>مرد</option><option>زن</option></select></div>
+    </div>
+    <div class="form-group"><label class="form-label">پزشک معالج</label><select class="form-input"><option>-- انتخاب --</option><option>دکتر رضایی</option><option>دکتر حسینی</option><option>دکتر محمدی</option></select></div>
+    <div class="form-group"><label class="form-label">سابقه پزشکی / آلرژی</label><textarea class="form-input" rows="2" placeholder="بیماری‌های زمینه‌ای، آلرژی..."></textarea></div>
+    <div style="display:flex;gap:9px;margin-top:4px">
+      <button class="btn btn-p" style="flex:1" onclick="closeModal('addPatient');showToast('✅','بیمار جدید ثبت شد','green')">💾 ثبت بیمار</button>
+      <button class="btn btn-s" onclick="closeModal('addPatient')">انصراف</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: ADD APPOINTMENT -->
+<div class="modal-bg" id="modal-addAppt">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">📅 ثبت نوبت جدید</div>
+      <div class="modal-close" onclick="closeModal('addAppt')">✕</div>
+    </div>
+    <div class="form-group"><label class="form-label">جستجوی بیمار *</label><input class="form-input" placeholder="نام یا شماره پرونده..."></div>
+    <div class="grid2">
+      <div class="form-group"><label class="form-label">پزشک *</label><select class="form-input"><option>-- انتخاب --</option><option>دکتر رضایی</option><option>دکتر حسینی</option><option>دکتر محمدی</option></select></div>
+      <div class="form-group"><label class="form-label">خدمت</label><select class="form-input"><option>-- انتخاب --</option><option>ایمپلنت</option><option>ارتودنسی</option><option>روکش</option><option>کامپوزیت</option><option>ونیر</option></select></div>
+    </div>
+    <div class="grid2">
+      <div class="form-group"><label class="form-label">تاریخ (شمسی) *</label><input class="form-input" value="۱۴۰۴/۱۲/۰۳"></div>
+      <div class="form-group"><label class="form-label">ساعت *</label><select class="form-input"><option>۰۸:۰۰</option><option>۰۸:۳۰</option><option>۱۰:۰۰</option><option>۱۰:۳۰</option><option>۱۱:۳۰</option><option>۱۴:۳۰</option><option>۱۵:۰۰</option></select></div>
+    </div>
+    <div class="form-group"><label class="form-label">یادداشت برای پزشک</label><input class="form-input" placeholder="توضیحات..."></div>
+    <div style="background:var(--blue-dim);border:1px solid var(--blue-border);border-radius:var(--r8);padding:10px 12px;font-size:12px;color:var(--t2);margin-bottom:14px">
+      🔔 پس از ثبت، نوتیفیکیشن فوری برای <strong style="color:#fff">پزشک، مدیر و منشی</strong> ارسال می‌شود
+    </div>
+    <div style="display:flex;gap:9px">
+      <button class="btn btn-p" style="flex:1" onclick="closeModal('addAppt');showToast('📅','نوبت ثبت شد — نوتیف ارسال شد','blue')">📅 ثبت نوبت</button>
+      <button class="btn btn-s" onclick="closeModal('addAppt')">انصراف</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== NAVIGATION =====
+var panels=['dashboard','patients','appointments','financial','doctors','access','backup','lab','treatments','insurance','reports','settings'];
+var titles={dashboard:'داشبورد',patients:'بیماران',appointments:'نوبت‌دهی',financial:'مدیریت مالی',doctors:'پزشکان و سهم‌بری',access:'کنترل دسترسی',backup:'بک‌آپ و بازیابی',lab:'لابراتوار',treatments:'خدمات درمانی',insurance:'بیمه',reports:'گزارش‌ها',settings:'تنظیمات'};
+
+function gotoPanel(name){
+  panels.forEach(function(p){
+    var el=document.getElementById('panel-'+p);
+    if(el) el.classList.remove('active');
+    var nav=document.getElementById('nav-'+p);
+    if(nav) nav.classList.remove('active');
+  });
+  var panel=document.getElementById('panel-'+name);
+  if(panel) panel.classList.add('active');
+  var nav=document.getElementById('nav-'+name);
+  if(nav) nav.classList.add('active');
+  var t=document.getElementById('pageTitle');
+  if(t) t.textContent=titles[name]||name;
+}
+
+// ===== MODALS =====
+function openModal(id){
+  var el=document.getElementById('modal-'+id);
+  if(el) el.classList.add('open');
+}
+function closeModal(id){
+  var el=document.getElementById('modal-'+id);
+  if(el) el.classList.remove('open');
+}
+document.addEventListener('click',function(e){
+  if(e.target.classList.contains('modal-bg')) e.target.classList.remove('open');
+});
+
+// ===== NOTIFICATION =====
+function toggleNotif(){
+  var p=document.getElementById('notifPanel');
+  if(p) p.classList.toggle('open');
+}
+document.addEventListener('click',function(e){
+  var p=document.getElementById('notifPanel');
+  if(p && p.classList.contains('open')){
+    if(!e.target.closest('.notif-panel') && !e.target.closest('.icon-btn')) p.classList.remove('open');
+  }
+});
+
+// ===== CLOCK =====
+var pNums=['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+function toPNum(s){return String(s).replace(/[0-9]/g,function(d){return pNums[d]})}
+function updateClock(){
+  var n=new Date();
+  var h=String(n.getHours()).padStart(2,'0');
+  var m=String(n.getMinutes()).padStart(2,'0');
+  var s=String(n.getSeconds()).padStart(2,'0');
+  var el=document.getElementById('clock');
+  if(el) el.textContent=toPNum(h)+':'+toPNum(m)+':'+toPNum(s);
+}
+setInterval(updateClock,1000);
+updateClock();
+
+// ===== TOAST =====
+function showToast(icon,text,color){
+  var c=document.getElementById('toastWrap');
+  if(!c) return;
+  var colors={blue:'#0A84FF',green:'#30D158',red:'#FF453A'};
+  var t=document.createElement('div');
+  t.className='toast';
+  t.innerHTML='<span class="toast-icon">'+icon+'</span><span class="toast-text">'+text+'</span><span style="font-size:10px;color:'+(colors[color]||colors.blue)+'">همین الان</span>';
+  c.appendChild(t);
+  setTimeout(function(){
+    t.style.transition='opacity .25s,transform .25s';
+    t.style.opacity='0';
+    t.style.transform='translateX(-14px)';
+    setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},280);
+  },3500);
+}
+
+// ===== AUTO DEMO NOTIFICATIONS =====
+setTimeout(function(){showToast('📅','نوبت جدید برای دکتر رضایی — فردا ۱۱:۳۰','blue')},7000);
+setTimeout(function(){showToast('💰','پرداخت ۸,۰۰۰,۰۰۰ تومان ثبت شد توسط منشی','green')},14000);
+setTimeout(function(){showToast('⚠️','هزینه لابراتوار پرونده #۱۰۳۳ تغییر کرد','red')},22000);
+setTimeout(function(){showToast('☁️','بک‌آپ خودکار ابری انجام شد','green')},30000);
+</script>
+</body>
+</html>
