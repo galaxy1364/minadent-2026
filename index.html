@@ -254,8 +254,7 @@ border: 1.5px solid var(--border);
 border-radius: 10px;
 }
 
-/* mobile sidebar toggle button */
-.hamburger { display:none; }
+/* hamburger is defined in the responsive block */
 
 /* ── Content ── */
 .content { flex: 1; padding: 28px; }
@@ -774,26 +773,43 @@ border-bottom: 1px solid var(--border);
 .fin-stats { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 768px) {
+/*
+  Responsive strategy (standard + robust):
+  - iOS Safari can "Request Desktop Website" which makes the CSS viewport wider and breaks classic max-width:768 rules.
+  - We therefore support BOTH:
+    1) classic width breakpoint, and
+    2) a JS-applied .is-mobile class based on matchMedia.
+*/
+.hamburger { display: none; }
+
+.is-mobile .hamburger { display: inline-flex; }
+.is-mobile .sidebar {
+  transform: translateX(100%);
+  transition: transform 0.3s;
+  width: 260px;
+}
+.is-mobile .sidebar.mobile-open { transform: translateX(0); }
+.is-mobile .main { margin-right: 0 !important; }
+.is-mobile .content { padding: 18px; }
+.is-mobile .search-box { width: 100%; max-width: 260px; }
+.is-mobile .kpi-grid { grid-template-columns: 1fr; }
+.is-mobile .inv-grid { grid-template-columns: 1fr; }
+.is-mobile .header { padding: 0 14px; }
+
+@media (max-width: 1024px) {
   :root { --sidebar-w: 0px; }
-
   .hamburger { display:inline-flex; }
-
   .sidebar {
     transform: translateX(100%);
     transition: transform 0.3s;
     width: 260px;
   }
   .sidebar.mobile-open { transform: translateX(0); }
-
   .main { margin-right: 0 !important; }
-
   .content { padding: 18px; }
   .search-box { width: 100%; max-width: 260px; }
-
   .kpi-grid { grid-template-columns: 1fr; }
   .inv-grid { grid-template-columns: 1fr; }
-
   .header { padding: 0 14px; }
 }
 </style>
@@ -1681,9 +1697,8 @@ function showPage(id, el) {
   document.getElementById('pageTitle').innerHTML = t[0] + ' <span id="pageSubtitle">' + t[1] + '</span>';
 
   // auto-close sidebar on mobile after navigation
-  if (window.matchMedia('(max-width: 768px)').matches) {
-    document.getElementById('sidebar').classList.remove('mobile-open');
-  }
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar && sidebar.classList.contains('mobile-open')) sidebar.classList.remove('mobile-open');
 }
 
 // ── Sidebar (mobile) ──
@@ -1694,7 +1709,7 @@ function toggleSidebar() {
 // close sidebar if tap outside on mobile
 document.addEventListener('click', (e) => {
   const sb = document.getElementById('sidebar');
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const isMobile = document.documentElement.classList.contains('is-mobile') || window.matchMedia('(max-width: 1024px)').matches;
   if (!isMobile) return;
   if (!sb.classList.contains('mobile-open')) return;
   const hamburger = document.querySelector('.hamburger');
@@ -1721,6 +1736,13 @@ document.querySelectorAll('.modal-overlay').forEach(o => {
 function switchTab(el, id) {
   el.closest('.tabs').querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
+
+  // Standard tab behavior: show selected section, hide others
+  const root = document.getElementById('page-financial');
+  if (!root) return;
+  root.querySelectorAll('[id^="fin-"]').forEach(sec => {
+    sec.style.display = (sec.id === id) ? 'block' : 'none';
+  });
 }
 
 // ── Persian Date ──
@@ -1800,6 +1822,26 @@ function toggleNotif() {
 
 // ── Init ──
 document.addEventListener('DOMContentLoaded', () => {
+  // Robust mobile detection (supports iOS "Request Desktop Website")
+  const applyResponsiveClass = () => {
+    const mm = window.matchMedia('(max-width: 1024px), (hover: none) and (pointer: coarse)');
+    document.documentElement.classList.toggle('is-mobile', !!mm.matches);
+  };
+  applyResponsiveClass();
+  window.addEventListener('resize', applyResponsiveClass);
+
+  // Ensure header title/subtitle are synced with active page
+  const activeNav = document.querySelector('.nav-item.active');
+  showPage('dashboard', activeNav);
+
+  // Financial tabs: show first section by default
+  const finRoot = document.getElementById('page-financial');
+  if (finRoot) {
+    finRoot.querySelectorAll('[id^="fin-"]').forEach(sec => {
+      sec.style.display = (sec.id === 'fin-invoices') ? 'block' : 'none';
+    });
+  }
+
   buildCalendar();
   buildDentalChart();
 });
