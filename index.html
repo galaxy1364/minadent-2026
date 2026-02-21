@@ -7,1227 +7,1365 @@
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --primary: #0ea5e9;
-      --primary-dark: #0284c7;
-      --primary-light: #e0f2fe;
-      --accent: #10b981;
-      --accent-dark: #059669;
-      --danger: #ef4444;
-      --warning: #f59e0b;
-      --purple: #8b5cf6;
-      --bg: #f0f9ff;
-      --surface: #ffffff;
-      --surface2: #f8fafc;
-      --border: #e2e8f0;
-      --text: #0f172a;
-      --text2: #475569;
-      --text3: #94a3b8;
-      --sidebar-w: 260px;
-      --header-h: 64px;
-      --radius: 16px;
-      --shadow: 0 4px 24px rgba(14,165,233,0.08);
-      --shadow-lg: 0 8px 40px rgba(14,165,233,0.15);
+    :root{
+      --primary:#0ea5e9;
+      --primary-dark:#0284c7;
+      --primary-light:#e0f2fe;
+      --accent:#10b981;
+      --accent-dark:#059669;
+      --danger:#ef4444;
+      --warning:#f59e0b;
+      --purple:#8b5cf6;
+      --bg:#f0f9ff;
+      --surface:#ffffff;
+      --surface2:#f8fafc;
+      --border:#e2e8f0;
+      --text:#0f172a;
+      --text2:#475569;
+      --text3:#94a3b8;
+      --sidebar-w:260px;
+      --header-h:64px;
+      --radius:16px;
+      --shadow:0 4px 24px rgba(14,165,233,0.08);
+      --shadow-lg:0 8px 40px rgba(14,165,233,0.15);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *{margin:0;padding:0;box-sizing:border-box;}
 
-    body {
-      font-family: "Vazirmatn", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
+    body{
+      font-family:"Vazirmatn", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
     }
 
     /* ── Sidebar ── */
-    .sidebar {
-      position: fixed;
-      top: 0; right: 0;
-      width: var(--sidebar-w);
-      height: 100vh;
-      background: var(--surface);
-      border-left: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      z-index: 100;
-      box-shadow: -4px 0 24px rgba(14,165,233,0.06);
+    .sidebar{
+      position:fixed;
+      top:0; right:0;
+      width:var(--sidebar-w);
+      height:100vh;
+      background:var(--surface);
+      border-left:1px solid var(--border);
+      display:flex;
+      flex-direction:column;
+      z-index:100;
+      box-shadow:-4px 0 24px rgba(14,165,233,0.06);
     }
 
-    .sidebar-logo {
-      padding: 20px 20px 16px;
-      border-bottom: 1px solid var(--border);
+    .sidebar-logo{
+      padding:20px 20px 16px;
+      border-bottom:1px solid var(--border);
     }
 
-    .logo-box { display: flex; align-items: center; gap: 12px; }
-
-    .logo-icon {
-      width: 44px; height: 44px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 4px 12px rgba(14,165,233,0.35);
+    .logo-box{display:flex;align-items:center;gap:12px;}
+    .logo-icon{
+      width:44px;height:44px;
+      background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+      border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;
+      box-shadow:0 4px 12px rgba(14,165,233,0.35);
     }
 
-    .logo-text h1 { font-size: 18px; font-weight: 800; color: var(--primary); }
-    .logo-text p { font-size: 11px; color: var(--text3); font-weight: 400; }
+    .logo-text h1{font-size:18px;font-weight:800;color:var(--primary);}
+    .logo-text p{font-size:11px;color:var(--text3);font-weight:400;}
 
-    .clinic-badge {
-      margin: 12px 16px;
-      background: linear-gradient(135deg, #dbeafe, var(--primary-light));
-      border-radius: 10px;
-      padding: 10px 14px;
-      display: flex; align-items: center; gap: 10px;
-      border: 1px solid #bfdbfe;
+    .clinic-badge{
+      margin:12px 16px;
+      background:linear-gradient(135deg,#dbeafe,var(--primary-light));
+      border-radius:10px;
+      padding:10px 14px;
+      display:flex;align-items:center;gap:10px;
+      border:1px solid #bfdbfe;
     }
-    .clinic-badge .icon { font-size: 20px; }
-    .clinic-badge .info { flex: 1; }
-    .clinic-badge .name { font-size: 13px; font-weight: 700; color: var(--primary-dark); }
-    .clinic-badge .type { font-size: 11px; color: var(--text3); }
+    .clinic-badge .icon{font-size:20px;}
+    .clinic-badge .info{flex:1;}
+    .clinic-badge .name{font-size:13px;font-weight:700;color:var(--primary-dark);}
+    .clinic-badge .type{font-size:11px;color:var(--text3);}
 
-    .sidebar-nav { flex: 1; overflow-y: auto; padding: 8px 12px; }
-    .nav-section { margin-bottom: 16px; }
-    .nav-section-title {
-      font-size: 10px; font-weight: 700;
-      color: var(--text3); letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 4px 8px 8px;
+    .sidebar-nav{flex:1;overflow-y:auto;padding:8px 12px;}
+    .nav-section{margin-bottom:16px;}
+    .nav-section-title{
+      font-size:10px;font-weight:700;
+      color:var(--text3);letter-spacing:0.08em;
+      text-transform:uppercase;
+      padding:4px 8px 8px;
     }
 
-    .nav-item {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: var(--text2);
-      font-size: 14px;
-      font-weight: 500;
-      position: relative;
-      margin-bottom: 2px;
-      user-select: none;
+    .nav-item{
+      display:flex;align-items:center;gap:10px;
+      padding:10px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      transition:all 0.2s;
+      color:var(--text2);
+      font-size:14px;
+      font-weight:500;
+      position:relative;
+      margin-bottom:2px;
+      user-select:none;
     }
-    .nav-item:hover { background: var(--bg); color: var(--primary); }
-    .nav-item.active {
-      background: var(--primary-light);
-      color: var(--primary-dark);
-      font-weight: 700;
+    .nav-item:hover{background:var(--bg);color:var(--primary);}
+    .nav-item.active{
+      background:var(--primary-light);
+      color:var(--primary-dark);
+      font-weight:700;
     }
-    .nav-item.active::before {
-      content: "";
-      position: absolute;
-      left: 0; top: 50%;
-      transform: translateY(-50%);
-      width: 3px; height: 60%;
-      background: var(--primary);
-      border-radius: 0 3px 3px 0;
+    .nav-item.active::before{
+      content:'';
+      position:absolute;
+      left:0; top:50%;
+      transform:translateY(-50%);
+      width:3px; height:60%;
+      background:var(--primary);
+      border-radius:0 3px 3px 0;
     }
-    .nav-icon { font-size: 18px; width: 24px; text-align: center; }
-    .nav-badge {
-      margin-right: auto;
-      background: var(--danger);
-      color: white;
-      font-size: 10px; font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 20px;
-    }
-    .nav-badge.green { background: var(--accent); }
-    .nav-badge.orange { background: var(--warning); }
 
-    .sidebar-footer {
-      padding: 12px;
-      border-top: 1px solid var(--border);
+    .nav-icon{font-size:18px;width:24px;text-align:center;}
+    .nav-badge{
+      margin-right:auto;
+      background:var(--danger);
+      color:white;
+      font-size:10px;font-weight:700;
+      padding:2px 7px;
+      border-radius:20px;
     }
-    .user-card {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px;
-      border-radius: 10px;
-      background: var(--surface2);
-      cursor: pointer;
-      transition: background 0.2s;
+    .nav-badge.green{background:var(--accent);}
+    .nav-badge.orange{background:var(--warning);}
+
+    .sidebar-footer{padding:12px;border-top:1px solid var(--border);}
+    .user-card{
+      display:flex;align-items:center;gap:10px;
+      padding:10px;
+      border-radius:10px;
+      background:var(--surface2);
+      cursor:pointer;
+      transition:background 0.2s;
     }
-    .user-card:hover { background: var(--primary-light); }
-    .avatar {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary), var(--purple));
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-weight: 800; font-size: 14px;
+    .user-card:hover{background:var(--primary-light);}
+    .avatar{
+      width:36px;height:36px;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--primary),var(--purple));
+      display:flex;align-items:center;justify-content:center;
+      color:white;font-weight:800;font-size:14px;
     }
-    .user-info .name { font-size: 13px; font-weight: 700; }
-    .user-info .role { font-size: 11px; color: var(--text3); }
+    .user-info .name{font-size:13px;font-weight:700;}
+    .user-info .role{font-size:11px;color:var(--text3);}
 
     /* ── Main ── */
-    .main {
-      margin-right: var(--sidebar-w);
-      min-height: 100vh;
-      display: flex; flex-direction: column;
+    .main{
+      margin-right:var(--sidebar-w);
+      min-height:100vh;
+      display:flex;flex-direction:column;
     }
 
     /* ── Header ── */
-    .header {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      height: var(--header-h);
-      padding: 0 28px;
-      display: flex; align-items: center; gap: 16px;
+    .header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,0.9);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+      height:var(--header-h);
+      padding:0 28px;
+      display:flex;align-items:center;gap:16px;
     }
 
-    .page-title { font-size: 20px; font-weight: 800; flex: 1; }
-    .page-title span { color: var(--text3); font-weight: 400; font-size: 14px; margin-right: 8px; }
+    .page-title{font-size:20px;font-weight:800;flex:1;}
+    .page-title span{color:var(--text3);font-weight:400;font-size:14px;margin-right:8px;}
+    .header-actions{display:flex;align-items:center;gap:10px;}
 
-    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .search-box{
+      display:flex;align-items:center;gap:8px;
+      background:var(--surface2);
+      border:1.5px solid var(--border);
+      border-radius:10px;
+      padding:8px 14px;
+      width:260px;
+      transition:all 0.2s;
+    }
+    .search-box:focus-within{
+      border-color:var(--primary);
+      background:white;
+      box-shadow:0 0 0 3px rgba(14,165,233,0.12);
+    }
+    .search-box input{
+      border:none;outline:none;
+      background:transparent;
+      font-family:inherit;font-size:13px;
+      width:100%;color:var(--text);
+    }
+    .search-box .icon{color:var(--text3);font-size:16px;}
 
-    .search-box {
-      display: flex; align-items: center; gap: 8px;
-      background: var(--surface2);
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      padding: 8px 14px;
-      width: 260px;
-      transition: all 0.2s;
+    .btn{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:9px 18px;
+      border-radius:10px;
+      border:none;cursor:pointer;
+      font-family:inherit;font-size:13px;font-weight:600;
+      transition:all 0.2s;
     }
-    .search-box:focus-within {
-      border-color: var(--primary);
-      background: white;
-      box-shadow: 0 0 0 3px rgba(14,165,233,0.12);
+    .btn-primary{
+      background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+      color:white;
+      box-shadow:0 4px 12px rgba(14,165,233,0.35);
     }
-    .search-box input {
-      border: none; outline: none;
-      background: transparent;
-      font-family: inherit; font-size: 13px;
-      width: 100%; color: var(--text);
-    }
-    .search-box .icon { color: var(--text3); font-size: 16px; }
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(14,165,233,0.45);}
 
-    .btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 9px 18px;
-      border-radius: 10px;
-      border: none; cursor: pointer;
-      font-family: inherit; font-size: 13px; font-weight: 600;
-      transition: all 0.2s;
+    .btn-icon{
+      width:38px;height:38px;padding:0;
+      justify-content:center;
+      background:var(--surface2);
+      border:1.5px solid var(--border);
+      color:var(--text2);
+      border-radius:10px;
+      position:relative;
     }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      box-shadow: 0 4px 12px rgba(14,165,233,0.35);
-    }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(14,165,233,0.45); }
+    .btn-icon:hover{background:var(--primary-light);border-color:var(--primary);color:var(--primary);}
 
-    .btn-icon {
-      width: 38px; height: 38px; padding: 0;
-      justify-content: center;
-      background: var(--surface2);
-      border: 1.5px solid var(--border);
-      color: var(--text2);
-      border-radius: 10px;
-      position: relative;
-    }
-    .btn-icon:hover { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
-    .notif-dot {
-      position: absolute; top: 6px; left: 6px;
-      width: 8px; height: 8px;
-      background: var(--danger);
-      border-radius: 50%;
-      border: 2px solid white;
+    .notif-dot{
+      position:absolute;top:6px;left:6px;
+      width:8px;height:8px;
+      background:var(--danger);
+      border-radius:50%;
+      border:2px solid white;
     }
 
-    .persian-date {
-      font-size: 13px; color: var(--text2); font-weight: 600;
-      padding: 8px 14px;
-      background: var(--surface2);
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      white-space: nowrap;
+    .persian-date{
+      font-size:13px;color:var(--text2);font-weight:600;
+      padding:8px 14px;
+      background:var(--surface2);
+      border:1.5px solid var(--border);
+      border-radius:10px;
+      white-space:nowrap;
     }
 
     /* ── Content ── */
-    .content { flex: 1; padding: 28px; }
+    .content{flex:1;padding:28px;}
 
     /* ── Pages ── */
-    .page { display: none; }
-    .page.active { display: block; animation: fadeIn 0.3s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .page{display:none;}
+    .page.active{display:block;animation:fadeIn 0.3s ease;}
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(8px);}
+      to{opacity:1;transform:translateY(0);}
+    }
 
     /* ── KPI Cards ── */
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-bottom: 24px;
+    .kpi-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-bottom:24px;
     }
-    .kpi-card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding: 22px;
-      border: 1.5px solid var(--border);
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.25s;
-      cursor: default;
+    .kpi-card{
+      background:var(--surface);
+      border-radius:var(--radius);
+      padding:22px;
+      border:1.5px solid var(--border);
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+      transition:all 0.25s;
+      cursor:default;
     }
-    .kpi-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-    .kpi-card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--card-color, var(--primary));
+    .kpi-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+    .kpi-card::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;
+      height:3px;
+      background:var(--card-color,var(--primary));
     }
-    .kpi-card .kpi-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px;
-      margin-bottom: 14px;
-      background: var(--icon-bg, var(--primary-light));
+    .kpi-card .kpi-icon{
+      width:48px;height:48px;
+      border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:24px;
+      margin-bottom:14px;
+      background:var(--icon-bg,var(--primary-light));
     }
-    .kpi-card .kpi-value {
-      font-size: 32px; font-weight: 900;
-      color: var(--text); line-height: 1;
-      margin-bottom: 4px;
+    .kpi-card .kpi-value{
+      font-size:32px;font-weight:900;
+      color:var(--text);line-height:1;
+      margin-bottom:4px;
     }
-    .kpi-card .kpi-label { font-size: 13px; color: var(--text2); font-weight: 500; }
-    .kpi-card .kpi-change {
-      margin-top: 10px;
-      font-size: 12px; font-weight: 600;
-      display: flex; align-items: center; gap: 4px;
+    .kpi-card .kpi-label{font-size:13px;color:var(--text2);font-weight:500;}
+    .kpi-card .kpi-change{
+      margin-top:10px;
+      font-size:12px;font-weight:600;
+      display:flex;align-items:center;gap:4px;
     }
-    .kpi-card .kpi-change.up { color: var(--accent); }
-    .kpi-card .kpi-change.down { color: var(--danger); }
+    .kpi-card .kpi-change.up{color:var(--accent);}
+    .kpi-card .kpi-change.down{color:var(--danger);}
 
     /* ── Grid ── */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
-    .grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; margin-bottom: 18px; }
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+    .grid-3{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-bottom:18px;}
 
     /* ── Card ── */
-    .card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      border: 1.5px solid var(--border);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+    .card{
+      background:var(--surface);
+      border-radius:var(--radius);
+      border:1.5px solid var(--border);
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
-    .card-header {
-      padding: 18px 22px;
-      display: flex; align-items: center; gap: 10px;
-      border-bottom: 1px solid var(--border);
+    .card-header{
+      padding:18px 22px;
+      display:flex;align-items:center;gap:10px;
+      border-bottom:1px solid var(--border);
     }
-    .card-title { font-size: 15px; font-weight: 800; flex: 1; }
-    .card-body { padding: 22px; }
+    .card-title{font-size:15px;font-weight:800;flex:1;}
+    .card-body{padding:22px;}
 
     /* ── Appointment List ── */
-    .appt-list { display: flex; flex-direction: column; gap: 10px; }
-    .appt-item {
-      display: flex; align-items: center; gap: 14px;
-      padding: 12px 14px;
-      border-radius: 10px;
-      background: var(--surface2);
-      border: 1.5px solid var(--border);
-      transition: all 0.2s;
-      cursor: pointer;
+    .appt-list{display:flex;flex-direction:column;gap:10px;}
+    .appt-item{
+      display:flex;align-items:center;gap:14px;
+      padding:12px 14px;
+      border-radius:10px;
+      background:var(--surface2);
+      border:1.5px solid var(--border);
+      transition:all 0.2s;
+      cursor:pointer;
     }
-    .appt-item:hover { border-color: var(--primary); background: var(--primary-light); }
-    .appt-time {
-      min-width: 52px; text-align: center;
-      font-size: 13px; font-weight: 800;
-      color: var(--primary-dark);
-      background: white;
-      padding: 6px;
-      border-radius: 8px;
-      border: 1px solid #bfdbfe;
+    .appt-item:hover{border-color:var(--primary);background:var(--primary-light);}
+    .appt-time{
+      min-width:52px;text-align:center;
+      font-size:13px;font-weight:800;
+      color:var(--primary-dark);
+      background:white;
+      padding:6px;
+      border-radius:8px;
+      border:1px solid #bfdbfe;
     }
-    .appt-info { flex: 1; }
-    .appt-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
-    .appt-type { font-size: 11px; color: var(--text3); }
-    .appt-doctor {
-      font-size: 11px; color: var(--text2);
-      background: white;
-      padding: 4px 10px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      font-weight: 600;
-      white-space: nowrap;
+    .appt-info{flex:1;}
+    .appt-name{font-size:13px;font-weight:700;margin-bottom:2px;}
+    .appt-type{font-size:11px;color:var(--text3);}
+    .appt-doctor{
+      font-size:11px;color:var(--text2);
+      background:white;
+      padding:4px 10px;
+      border-radius:20px;
+      border:1px solid var(--border);
+      font-weight:600;
+      white-space:nowrap;
     }
-    .status-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .status-dot.present { background: var(--accent); box-shadow: 0 0 0 3px rgba(16,185,129,0.2); }
-    .status-dot.waiting { background: var(--warning); box-shadow: 0 0 0 3px rgba(245,158,11,0.2); }
-    .status-dot.done { background: var(--text3); }
-    .status-dot.cancel { background: var(--danger); }
+    .status-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+    .status-dot.present{background:var(--accent);box-shadow:0 0 0 3px rgba(16,185,129,0.2);}
+    .status-dot.waiting{background:var(--warning);box-shadow:0 0 0 3px rgba(245,158,11,0.2);}
+    .status-dot.done{background:var(--text3);}
+    .status-dot.cancel{background:var(--danger);}
 
     /* ── Doctor Cards ── */
-    .doctor-list { display: flex; flex-direction: column; gap: 10px; }
-    .doctor-item {
-      display: flex; align-items: center; gap: 12px;
-      padding: 12px;
-      border-radius: 10px;
-      background: var(--surface2);
-      border: 1.5px solid var(--border);
+    .doctor-list{display:flex;flex-direction:column;gap:10px;}
+    .doctor-item{
+      display:flex;align-items:center;gap:12px;
+      padding:12px;
+      border-radius:10px;
+      background:var(--surface2);
+      border:1.5px solid var(--border);
     }
-    .doc-avatar {
-      width: 42px; height: 42px;
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 900; color: white;
+    .doc-avatar{
+      width:42px;height:42px;
+      border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:18px;font-weight:900;color:white;
     }
-    .doc-info { flex: 1; }
-    .doc-name { font-size: 13px; font-weight: 700; }
-    .doc-spec { font-size: 11px; color: var(--text3); }
-    .doc-stats { text-align: left; }
-    .doc-count { font-size: 16px; font-weight: 800; color: var(--primary); }
-    .doc-count-label { font-size: 10px; color: var(--text3); }
+    .doc-info{flex:1;}
+    .doc-name{font-size:13px;font-weight:700;}
+    .doc-spec{font-size:11px;color:var(--text3);}
+    .doc-stats{text-align:left;}
+    .doc-count{font-size:16px;font-weight:800;color:var(--primary);}
+    .doc-count-label{font-size:10px;color:var(--text3);}
 
-    /* ── Patients Table ── */
-    .table-wrapper { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    thead tr { background: var(--surface2); border-bottom: 2px solid var(--border); }
-    th {
-      padding: 12px 16px;
-      text-align: right;
-      font-weight: 700; font-size: 12px;
-      color: var(--text2);
-      white-space: nowrap;
+    /* ── Table ── */
+    .table-wrapper{overflow-x:auto;}
+    table{width:100%;border-collapse:collapse;font-size:13px;}
+    thead tr{background:var(--surface2);border-bottom:2px solid var(--border);}
+    th{
+      padding:12px 16px;
+      text-align:right;
+      font-weight:700;font-size:12px;
+      color:var(--text2);
+      white-space:nowrap;
     }
-    td { padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-    tr:hover td { background: var(--bg); }
-    .patient-cell { display: flex; align-items: center; gap: 10px; }
-    .patient-avatar {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 14px; color: white;
-      flex-shrink: 0;
+    td{
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+      vertical-align:middle;
     }
-    .patient-name { font-weight: 700; font-size: 13px; }
-    .patient-code { font-size: 11px; color: var(--text3); }
+    tr:hover td{background:var(--bg);}
+    .patient-cell{display:flex;align-items:center;gap:10px;}
+    .patient-avatar{
+      width:36px;height:36px;
+      border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;font-size:14px;color:white;
+      flex-shrink:0;
+    }
+    .patient-name{font-weight:700;font-size:13px;}
+    .patient-code{font-size:11px;color:var(--text3);}
 
-    .badge {
-      display: inline-flex; align-items: center;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 11px; font-weight: 700;
-      white-space: nowrap;
+    .badge{
+      display:inline-flex;align-items:center;
+      padding:3px 10px;
+      border-radius:20px;
+      font-size:11px;font-weight:700;
+      white-space:nowrap;
     }
-    .badge-blue { background: #dbeafe; color: #1d4ed8; }
-    .badge-green { background: #dcfce7; color: #166534; }
-    .badge-yellow { background: #fef9c3; color: #854d0e; }
-    .badge-red { background: #fee2e2; color: #991b1b; }
-    .badge-purple { background: #ede9fe; color: #6d28d9; }
-    .badge-gray { background: #f1f5f9; color: #475569; }
+    .badge-blue{background:#dbeafe;color:#1d4ed8;}
+    .badge-green{background:#dcfce7;color:#166534;}
+    .badge-yellow{background:#fef9c3;color:#854d0e;}
+    .badge-red{background:#fee2e2;color:#991b1b;}
+    .badge-purple{background:#ede9fe;color:#6d28d9;}
+    .badge-gray{background:#f1f5f9;color:#475569;}
 
-    .action-btns { display: flex; gap: 6px; }
-    .action-btn {
-      width: 30px; height: 30px;
-      border-radius: 8px; border: 1.5px solid var(--border);
-      background: white; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; transition: all 0.2s;
-      color: var(--text2);
+    .action-btns{display:flex;gap:6px;}
+    .action-btn{
+      width:30px;height:30px;
+      border-radius:8px;border:1.5px solid var(--border);
+      background:white;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      font-size:14px;transition:all 0.2s;
+      color:var(--text2);
     }
-    .action-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+    .action-btn:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light);}
 
     /* ── Calendar ── */
-    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 6px; }
-    .cal-day-label { text-align: center; font-size: 12px; font-weight: 700; color: var(--text3); padding: 6px 0; }
-    .cal-day {
-      aspect-ratio: 1;
-      border-radius: 10px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.2s;
-      border: 1.5px solid transparent;
-      font-size: 13px; font-weight: 600;
-      position: relative;
-      background: white;
-      gap: 2px;
-      user-select: none;
+    .calendar-grid{
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:6px;
+      margin-bottom:6px;
     }
-    .cal-day:hover { border-color: var(--primary); background: var(--primary-light); }
-    .cal-day.today {
-      background: var(--primary);
-      color: white;
-      font-weight: 800;
+    .cal-day-label{
+      text-align:center;
+      font-size:12px;font-weight:700;
+      color:var(--text3);padding:6px 0;
     }
-    .cal-day.has-appt::after {
-      content: "";
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      position: absolute; bottom: 4px;
+    .cal-day{
+      aspect-ratio:1;
+      border-radius:10px;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      cursor:pointer;transition:all 0.2s;
+      border:1.5px solid transparent;
+      font-size:13px;font-weight:600;
+      position:relative;
+      background:white;
+      gap:2px;
+      user-select:none;
     }
-    .cal-day.today.has-appt::after { background: white; }
-    .cal-day.other-month { opacity: 0.3; }
-    .cal-day.selected { border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark); }
+    .cal-day:hover{border-color:var(--primary);background:var(--primary-light);}
+    .cal-day.today{background:var(--primary);color:white;font-weight:800;}
+    .cal-day.has-appt::after{
+      content:'';
+      width:5px;height:5px;border-radius:50%;
+      background:var(--accent);
+      position:absolute;bottom:4px;
+    }
+    .cal-day.today.has-appt::after{background:white;}
+    .cal-day.other-month{opacity:0.3;}
+    .cal-day.selected{border-color:var(--primary);background:var(--primary-light);color:var(--primary-dark);}
 
     /* ── Dental Chart ── */
-    .dental-chart { display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; padding: 12px; }
-    .tooth-cell { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; }
-    .tooth-num { font-size: 10px; font-weight: 700; color: var(--text3); }
-    .tooth-icon { font-size: 22px; transition: transform 0.2s; filter: grayscale(0); }
-    .tooth-cell:hover .tooth-icon { transform: scale(1.2); }
-    .tooth-cell.healthy .tooth-icon { filter: none; }
-    .tooth-cell.treated .tooth-icon { filter: sepia(1) hue-rotate(100deg) saturate(2); }
-    .tooth-cell.problem .tooth-icon { filter: sepia(1) hue-rotate(-10deg) saturate(3); }
-    .tooth-cell.missing .tooth-icon { opacity: 0.2; }
-    .chart-divider {
-      display: flex; align-items: center; justify-content: center;
-      grid-column: 1 / -1;
-      padding: 8px 0;
-      color: var(--text3); font-size: 12px; font-weight: 600;
-      border-top: 1px dashed var(--border);
-      border-bottom: 1px dashed var(--border);
-      gap: 10px;
+    .dental-chart{
+      display:grid;
+      grid-template-columns:repeat(16,1fr);
+      gap:4px;
+      padding:12px;
+    }
+    .tooth-cell{
+      display:flex;flex-direction:column;
+      align-items:center;gap:4px;
+      cursor:pointer;
+    }
+    .tooth-num{font-size:10px;font-weight:700;color:var(--text3);}
+    .tooth-icon{font-size:22px;transition:transform 0.2s;filter:grayscale(0);}
+    .tooth-cell:hover .tooth-icon{transform:scale(1.2);}
+    .tooth-cell.healthy .tooth-icon{filter:none;}
+    .tooth-cell.treated .tooth-icon{filter:sepia(1) hue-rotate(100deg) saturate(2);}
+    .tooth-cell.problem .tooth-icon{filter:sepia(1) hue-rotate(-10deg) saturate(3);}
+    .tooth-cell.missing .tooth-icon{opacity:0.2;}
+    .chart-divider{
+      display:flex;align-items:center;justify-content:center;
+      grid-column:1 / -1;
+      padding:8px 0;
+      color:var(--text3);font-size:12px;font-weight:600;
+      border-top:1px dashed var(--border);
+      border-bottom:1px dashed var(--border);
+      gap:10px;
     }
 
     /* ── Financial ── */
-    .fin-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
-    .fin-card {
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 18px;
-      text-align: center;
-      box-shadow: var(--shadow);
+    .fin-stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-bottom:20px;
     }
-    .fin-icon { font-size: 28px; margin-bottom: 8px; }
-    .fin-val { font-size: 22px; font-weight: 900; color: var(--text); margin-bottom: 4px; }
-    .fin-label { font-size: 12px; color: var(--text3); }
-    .fin-sub { font-size: 12px; font-weight: 600; margin-top: 6px; }
-    .fin-sub.green { color: var(--accent); }
-    .fin-sub.red { color: var(--danger); }
+    .fin-card{
+      background:var(--surface);
+      border:1.5px solid var(--border);
+      border-radius:12px;
+      padding:18px;
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+    .fin-icon{font-size:28px;margin-bottom:8px;}
+    .fin-val{font-size:22px;font-weight:900;color:var(--text);margin-bottom:4px;}
+    .fin-label{font-size:12px;color:var(--text3);}
+    .fin-sub{font-size:12px;font-weight:600;margin-top:6px;}
+    .fin-sub.green{color:var(--accent);}
+    .fin-sub.red{color:var(--danger);}
 
-    .invoice-list { display: flex; flex-direction: column; gap: 8px; }
-    .invoice-item {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 16px;
-      background: var(--surface2);
-      border-radius: 10px;
-      border: 1.5px solid var(--border);
-      cursor: pointer;
-      transition: all 0.2s;
+    .invoice-list{display:flex;flex-direction:column;gap:8px;}
+    .invoice-item{
+      display:flex;align-items:center;gap:14px;
+      padding:14px 16px;
+      background:var(--surface2);
+      border-radius:10px;
+      border:1.5px solid var(--border);
+      cursor:pointer;
+      transition:all 0.2s;
     }
-    .invoice-item:hover { border-color: var(--primary); }
-    .invoice-num { font-size: 12px; font-weight: 800; color: var(--primary); min-width: 60px; }
-    .invoice-info { flex: 1; }
-    .invoice-patient { font-size: 13px; font-weight: 700; }
-    .invoice-services { font-size: 11px; color: var(--text3); }
-    .invoice-amount { font-size: 15px; font-weight: 900; color: var(--text); text-align: left; white-space: nowrap; }
-    .invoice-unit { font-size: 10px; font-weight: 500; color: var(--text3); }
+    .invoice-item:hover{border-color:var(--primary);}
+    .invoice-num{font-size:12px;font-weight:800;color:var(--primary);min-width:60px;}
+    .invoice-info{flex:1;}
+    .invoice-patient{font-size:13px;font-weight:700;}
+    .invoice-services{font-size:11px;color:var(--text3);}
+    .invoice-amount{font-size:15px;font-weight:900;color:var(--text);text-align:left;white-space:nowrap;}
+    .invoice-unit{font-size:10px;font-weight:500;color:var(--text3);}
 
     /* ── Tabs ── */
-    .tabs {
-      display: flex; gap: 6px;
-      background: var(--surface2);
-      padding: 4px; border-radius: 10px;
-      margin-bottom: 20px;
-      border: 1.5px solid var(--border);
-      width: fit-content;
+    .tabs{
+      display:flex;gap:6px;
+      background:var(--surface2);
+      padding:4px;border-radius:10px;
+      margin-bottom:20px;
+      border:1.5px solid var(--border);
+      width:fit-content;
     }
-    .tab {
-      padding: 8px 18px;
-      border-radius: 8px;
-      font-size: 13px; font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: var(--text2);
-      border: none; background: transparent;
-      font-family: inherit;
+    .tab{
+      padding:8px 18px;
+      border-radius:8px;
+      font-size:13px;font-weight:600;
+      cursor:pointer;
+      transition:all 0.2s;
+      color:var(--text2);
+      border:none;background:transparent;
+      font-family:inherit;
     }
-    .tab.active {
-      background: white;
-      color: var(--primary);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    .tab.active{
+      background:white;
+      color:var(--primary);
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
     }
 
     /* ── Filter Bar ── */
-    .filter-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
-    .filter-select {
-      padding: 8px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      background: var(--surface);
-      font-family: inherit;
-      font-size: 13px; color: var(--text);
-      outline: none; cursor: pointer;
-      transition: all 0.2s;
+    .filter-bar{
+      display:flex;align-items:center;gap:10px;
+      margin-bottom:16px;
+      flex-wrap:wrap;
     }
-    .filter-select:focus { border-color: var(--primary); }
+    .filter-select{
+      padding:8px 14px;
+      border:1.5px solid var(--border);
+      border-radius:10px;
+      background:var(--surface);
+      font-family:inherit;
+      font-size:13px;color:var(--text);
+      outline:none;cursor:pointer;
+      transition:all 0.2s;
+    }
+    .filter-select:focus{border-color:var(--primary);}
 
     /* ── Progress bars ── */
-    .progress-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin-top: 6px; }
-    .progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.5s ease; }
+    .progress-bar{
+      height:6px;background:var(--border);
+      border-radius:3px;overflow:hidden;
+      margin-top:6px;
+    }
+    .progress-fill{
+      height:100%;border-radius:3px;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      transition:width 0.5s ease;
+    }
 
     /* ── Notification panel ── */
-    .notif-list { display: flex; flex-direction: column; gap: 8px; }
-    .notif-item {
-      display: flex; align-items: flex-start; gap: 12px;
-      padding: 12px;
-      border-radius: 10px;
-      background: var(--surface2);
-      border-right: 3px solid transparent;
-      transition: all 0.2s;
+    .notif-list{display:flex;flex-direction:column;gap:8px;}
+    .notif-item{
+      display:flex;align-items:flex-start;gap:12px;
+      padding:12px;
+      border-radius:10px;
+      background:var(--surface2);
+      border-right:3px solid transparent;
+      transition:all 0.2s;
     }
-    .notif-item.unread { background: #f0f9ff; border-right-color: var(--primary); }
-    .notif-icon { font-size: 20px; flex-shrink: 0; }
-    .notif-content { flex: 1; }
-    .notif-text { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
-    .notif-time { font-size: 11px; color: var(--text3); }
+    .notif-item.unread{background:#f0f9ff;border-right-color:var(--primary);}
+    .notif-icon{font-size:20px;flex-shrink:0;}
+    .notif-content{flex:1;}
+    .notif-text{font-size:13px;font-weight:600;margin-bottom:2px;}
+    .notif-time{font-size:11px;color:var(--text3);}
 
     /* ── Inventory ── */
-    .inv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
-    .inv-card {
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
-      transition: all 0.2s;
-      cursor: pointer;
-      box-shadow: var(--shadow);
+    .inv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+    .inv-card{
+      background:var(--surface);
+      border:1.5px solid var(--border);
+      border-radius:12px;
+      padding:16px;
+      transition:all 0.2s;
+      cursor:pointer;
+      box-shadow:var(--shadow);
     }
-    .inv-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-    .inv-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-    .inv-icon { font-size: 24px; }
-    .inv-name { font-size: 14px; font-weight: 700; }
-    .inv-cat { font-size: 11px; color: var(--text3); }
-    .inv-stock { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-    .inv-qty { font-size: 22px; font-weight: 900; }
-    .inv-unit { font-size: 12px; color: var(--text3); }
-    .inv-alert { font-size: 11px; font-weight: 700; }
-    .inv-alert.ok { color: var(--accent); }
-    .inv-alert.warn { color: var(--warning); }
-    .inv-alert.danger { color: var(--danger); }
+    .inv-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
+    .inv-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+    .inv-icon{font-size:24px;}
+    .inv-name{font-size:14px;font-weight:700;}
+    .inv-cat{font-size:11px;color:var(--text3);}
+    .inv-stock{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+    .inv-qty{font-size:22px;font-weight:900;}
+    .inv-unit{font-size:12px;color:var(--text3);}
+    .inv-alert{font-size:11px;font-weight:700;}
+    .inv-alert.ok{color:var(--accent);}
+    .inv-alert.warn{color:var(--warning);}
+    .inv-alert.danger{color:var(--danger);}
 
     /* ── Modal ── */
-    .modal-overlay {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.4);
-      z-index: 200;
-      backdrop-filter: blur(4px);
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
+    .modal-overlay{
+      display:none;
+      position:fixed;inset:0;
+      background:rgba(0,0,0,0.4);
+      z-index:200;
+      backdrop-filter:blur(4px);
+      align-items:center;
+      justify-content:center;
+      padding:18px;
     }
-    .modal-overlay.open { display: flex; }
-    .modal {
-      background: var(--surface);
-      border-radius: 20px;
-      width: 560px; max-width: 95vw;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-      animation: modalIn 0.3s ease;
+    .modal-overlay.open{display:flex;}
+    .modal{
+      background:var(--surface);
+      border-radius:20px;
+      width:560px;max-width:95vw;
+      max-height:90vh;
+      overflow-y:auto;
+      box-shadow:0 20px 60px rgba(0,0,0,0.2);
+      animation:modalIn 0.3s ease;
     }
-    @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-    .modal-header {
-      padding: 22px 24px 18px;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 12px;
+    @keyframes modalIn{
+      from{opacity:0;transform:scale(0.95) translateY(10px);}
+      to{opacity:1;transform:scale(1) translateY(0);}
     }
-    .modal-title { font-size: 17px; font-weight: 800; flex: 1; }
-    .modal-close {
-      width: 32px; height: 32px;
-      border-radius: 8px; border: 1.5px solid var(--border);
-      background: var(--surface2); cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; transition: all 0.2s;
+    .modal-header{
+      padding:22px 24px 18px;
+      border-bottom:1px solid var(--border);
+      display:flex;align-items:center;gap:12px;
     }
-    .modal-close:hover { background: var(--danger); color: white; border-color: var(--danger); }
-    .modal-body { padding: 24px; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group.full { grid-column: 1 / -1; }
-    .form-label { font-size: 12px; font-weight: 700; color: var(--text2); }
-    .form-input {
-      padding: 10px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-family: inherit; font-size: 13px;
-      color: var(--text); background: var(--surface2);
-      outline: none; transition: all 0.2s;
+    .modal-title{font-size:17px;font-weight:800;flex:1;}
+    .modal-close{
+      width:32px;height:32px;
+      border-radius:8px;border:1.5px solid var(--border);
+      background:var(--surface2);cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      font-size:16px;transition:all 0.2s;
     }
-    .form-input:focus { border-color: var(--primary); background: white; box-shadow: 0 0 0 3px rgba(14,165,233,0.1); }
-    .modal-footer {
-      padding: 16px 24px;
-      border-top: 1px solid var(--border);
-      display: flex; gap: 10px; justify-content: flex-end;
+    .modal-close:hover{background:var(--danger);color:white;border-color:var(--danger);}
+    .modal-body{padding:24px;}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .form-group{display:flex;flex-direction:column;gap:6px;}
+    .form-group.full{grid-column:1 / -1;}
+    .form-label{font-size:12px;font-weight:700;color:var(--text2);}
+    .form-input{
+      padding:10px 14px;
+      border:1.5px solid var(--border);
+      border-radius:10px;
+      font-family:inherit;font-size:13px;
+      color:var(--text);background:var(--surface2);
+      outline:none;transition:all 0.2s;
     }
-    .btn-ghost { background: var(--surface2); border: 1.5px solid var(--border); color: var(--text2); }
-    .btn-ghost:hover { background: var(--border); }
+    .form-input:focus{
+      border-color:var(--primary);
+      background:white;
+      box-shadow:0 0 0 3px rgba(14,165,233,0.1);
+    }
+    .modal-footer{
+      padding:16px 24px;
+      border-top:1px solid var(--border);
+      display:flex;gap:10px;justify-content:flex-end;
+    }
+    .btn-ghost{
+      background:var(--surface2);
+      border:1.5px solid var(--border);
+      color:var(--text2);
+    }
+    .btn-ghost:hover{background:var(--border);}
 
     /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+    ::-webkit-scrollbar{width:5px;height:5px;}
+    ::-webkit-scrollbar-track{background:transparent;}
+    ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+    ::-webkit-scrollbar-thumb:hover{background:var(--text3);}
 
     /* ── Responsive ── */
-    @media (max-width: 1100px) {
-      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
-      .fin-stats { grid-template-columns: 1fr; }
-      .inv-grid { grid-template-columns: 1fr 1fr; }
+    @media (max-width:1100px){
+      .kpi-grid{grid-template-columns:repeat(2,1fr);}
+      .grid-2,.grid-3{grid-template-columns:1fr;}
+      .fin-stats{grid-template-columns:1fr;}
     }
-    @media (max-width: 768px) {
-      :root { --sidebar-w: 0px; }
-      .sidebar { transform: translateX(100%); transition: transform 0.3s; }
-      .sidebar.mobile-open { transform: translateX(0); width: 260px; }
-      .main { margin-right: 0; }
-      .kpi-grid { grid-template-columns: 1fr 1fr; }
-      .inv-grid { grid-template-columns: 1fr; }
-      .header { padding: 0 14px; }
-      .search-box { width: 180px; }
+    @media (max-width:768px){
+      :root{--sidebar-w:0px;}
+      .sidebar{transform:translateX(100%);transition:transform 0.3s;}
+      .sidebar.mobile-open{transform:translateX(0);width:260px;}
+      .main{margin-right:0;}
+      .kpi-grid{grid-template-columns:1fr 1fr;}
+      .inv-grid{grid-template-columns:1fr;}
+      .search-box{width:200px;}
     }
 
-    .chip {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 12px; font-weight: 600;
-      background: var(--primary-light);
-      color: var(--primary-dark);
-      border: 1px solid #bfdbfe;
-      cursor: pointer; transition: all 0.2s;
-      user-select: none;
+    .chip{
+      display:inline-flex;align-items:center;gap:5px;
+      padding:5px 12px;
+      border-radius:20px;
+      font-size:12px;font-weight:600;
+      background:var(--primary-light);
+      color:var(--primary-dark);
+      border:1px solid #bfdbfe;
+      cursor:pointer;transition:all 0.2s;
+      user-select:none;
     }
-    .chip:hover, .chip.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .chip:hover,.chip.active{background:var(--primary);color:white;border-color:var(--primary);}
 
-    .empty-state { text-align: center; padding: 40px; color: var(--text3); }
-    .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
-    .empty-state p { font-size: 14px; }
+    .empty-state{text-align:center;padding:40px;color:var(--text3);}
+    .empty-state .icon{font-size:48px;margin-bottom:12px;}
+    .empty-state p{font-size:14px;}
 
-    .stat-row {
-      display: flex; align-items: center; gap: 14px;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
+    .stat-row{
+      display:flex;align-items:center;gap:14px;
+      padding:10px 0;
+      border-bottom:1px solid var(--border);
     }
-    .stat-row:last-child { border-bottom: none; }
-    .stat-label { font-size: 13px; color: var(--text2); flex: 1; }
-    .stat-value { font-size: 14px; font-weight: 800; }
-    .stat-bar { width: 80px; }
+    .stat-row:last-child{border-bottom:none;}
+    .stat-label{font-size:13px;color:var(--text2);flex:1;}
+    .stat-value{font-size:14px;font-weight:800;}
+    .stat-bar{width:80px;}
   </style>
 </head>
 
 <body>
-  <!-- ══════════════ SIDEBAR ══════════════ -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-      <div class="logo-box">
-        <div class="logo-icon">🦷</div>
-        <div class="logo-text">
-          <h1>دنتال پلاس</h1>
-          <p>سیستم جامع مدیریت کلینیک</p>
-        </div>
+
+<!-- ══════════════ SIDEBAR ══════════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-box">
+      <div class="logo-icon">🦷</div>
+      <div class="logo-text">
+        <h1>دنتال پلاس</h1>
+        <p>سیستم جامع مدیریت کلینیک</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="clinic-badge">
+    <div class="icon">🏥</div>
+    <div class="info">
+      <div class="name">کلینیک دندانپزشکی مهر</div>
+      <div class="type">کلینیک تخصصی | ۴ دندانپزشک</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-section-title">اصلی</div>
+      <div class="nav-item active" onclick="showPage('dashboard', this)">
+        <span class="nav-icon">📊</span> داشبورد
+      </div>
+      <div class="nav-item" onclick="showPage('appointments', this)">
+        <span class="nav-icon">📅</span> نوبت‌دهی
+        <span class="nav-badge">۸</span>
+      </div>
+      <div class="nav-item" onclick="showPage('patients', this)">
+        <span class="nav-icon">👥</span> بیماران
+      </div>
+      <div class="nav-item" onclick="showPage('dental-chart', this)">
+        <span class="nav-icon">🦷</span> چارت دندانپزشکی
       </div>
     </div>
 
-    <div class="clinic-badge">
-      <div class="icon">🏥</div>
-      <div class="info">
-        <div class="name">کلینیک دندانپزشکی مهر</div>
-        <div class="type">کلینیک تخصصی | ۴ دندانپزشک</div>
+    <div class="nav-section">
+      <div class="nav-section-title">مالی و اداری</div>
+      <div class="nav-item" onclick="showPage('financial', this)">
+        <span class="nav-icon">💰</span> مالی و حسابداری
+        <span class="nav-badge orange">۳</span>
+      </div>
+      <div class="nav-item" onclick="showPage('inventory', this)">
+        <span class="nav-icon">📦</span> انبار و مواد
+        <span class="nav-badge">!</span>
+      </div>
+      <div class="nav-item" onclick="showPage('reports', this)">
+        <span class="nav-icon">📈</span> گزارش‌ها
+      </div>
+      <div class="nav-item" onclick="showPage('staff', this)">
+        <span class="nav-icon">👨‍⚕️</span> پرسنل
       </div>
     </div>
 
-    <nav class="sidebar-nav">
-      <div class="nav-section">
-        <div class="nav-section-title">اصلی</div>
-        <div class="nav-item active" onclick="showPage('dashboard', this)">
-          <span class="nav-icon">📊</span> داشبورد
-        </div>
-        <div class="nav-item" onclick="showPage('appointments', this)">
-          <span class="nav-icon">📅</span> نوبت‌دهی
-          <span class="nav-badge">۸</span>
-        </div>
-        <div class="nav-item" onclick="showPage('patients', this)">
-          <span class="nav-icon">👥</span> بیماران
-        </div>
-        <div class="nav-item" onclick="showPage('dental-chart', this)">
-          <span class="nav-icon">🦷</span> چارت دندانپزشکی
-        </div>
+    <div class="nav-section">
+      <div class="nav-section-title">سیستم</div>
+      <div class="nav-item" onclick="showPage('insurance', this)">
+        <span class="nav-icon">🛡️</span> بیمه‌ها
       </div>
-
-      <div class="nav-section">
-        <div class="nav-section-title">مالی و اداری</div>
-        <div class="nav-item" onclick="showPage('financial', this)">
-          <span class="nav-icon">💰</span> مالی و حسابداری
-          <span class="nav-badge orange">۳</span>
-        </div>
-        <div class="nav-item" onclick="showPage('inventory', this)">
-          <span class="nav-icon">📦</span> انبار و مواد
-          <span class="nav-badge">!</span>
-        </div>
-        <div class="nav-item" onclick="showPage('reports', this)">
-          <span class="nav-icon">📈</span> گزارش‌ها
-        </div>
-        <div class="nav-item" onclick="showPage('staff', this)">
-          <span class="nav-icon">👨‍⚕️</span> پرسنل
-        </div>
-      </div>
-
-      <div class="nav-section">
-        <div class="nav-section-title">سیستم</div>
-        <div class="nav-item" onclick="showPage('insurance', this)">
-          <span class="nav-icon">🛡️</span> بیمه‌ها
-        </div>
-        <div class="nav-item" onclick="showPage('settings', this)">
-          <span class="nav-icon">⚙️</span> تنظیمات
-        </div>
-      </div>
-    </nav>
-
-    <div class="sidebar-footer">
-      <div class="user-card">
-        <div class="avatar">د</div>
-        <div class="user-info">
-          <div class="name">دکتر علی رضایی</div>
-          <div class="role">مدیر کلینیک</div>
-        </div>
-        <span>⋯</span>
+      <div class="nav-item" onclick="showPage('settings', this)">
+        <span class="nav-icon">⚙️</span> تنظیمات
       </div>
     </div>
-  </aside>
+  </nav>
 
-  <!-- ══════════════ MAIN ══════════════ -->
-  <main class="main">
-    <header class="header">
-      <h2 class="page-title" id="pageTitle">داشبورد <span id="pageSubtitle">خلاصه وضعیت کلینیک</span></h2>
-      <div class="header-actions">
-        <div class="search-box">
-          <span class="icon">🔍</span>
-          <input type="text" placeholder="جستجوی بیمار، نوبت، فاکتور..." />
-        </div>
-        <div class="persian-date" id="persianDate">—</div>
-        <button class="btn-icon btn" onclick="toggleNotif()">
-          🔔 <span class="notif-dot"></span>
-        </button>
-        <button class="btn btn-primary" onclick="openModal('newPatient')">➕ بیمار جدید</button>
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="avatar">د</div>
+      <div class="user-info">
+        <div class="name">دکتر علی رضایی</div>
+        <div class="role">مدیر کلینیک</div>
       </div>
-    </header>
+      <span>⋯</span>
+    </div>
+  </div>
+</aside>
 
-    <div class="content">
+<!-- ══════════════ MAIN ══════════════ -->
+<main class="main">
+  <header class="header">
+    <h2 class="page-title" id="pageTitle">
+      داشبورد <span id="pageSubtitle">خلاصه وضعیت کلینیک</span>
+    </h2>
 
-      <!-- ══ DASHBOARD ══ -->
-      <div class="page active" id="page-dashboard">
-        <div class="kpi-grid">
-          <div class="kpi-card" style="--card-color:#0ea5e9; --icon-bg:#e0f2fe;">
-            <div class="kpi-icon">👥</div>
-            <div class="kpi-value">۱,۲۴۷</div>
-            <div class="kpi-label">کل بیماران</div>
-            <div class="kpi-change up">▲ ۱۲ نفر این ماه</div>
+    <div class="header-actions">
+      <div class="search-box">
+        <span class="icon">🔍</span>
+        <input type="text" placeholder="جستجوی بیمار، نوبت، فاکتور..." />
+      </div>
+
+      <div class="persian-date" id="persianDate">—</div>
+
+      <button class="btn-icon btn" onclick="toggleNotif()">
+        🔔<span class="notif-dot"></span>
+      </button>
+
+      <button class="btn btn-primary" onclick="openModal('newPatient')">
+        ➕ بیمار جدید
+      </button>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ══ DASHBOARD ══ -->
+    <div class="page active" id="page-dashboard">
+      <div class="kpi-grid">
+        <div class="kpi-card" style="--card-color:#0ea5e9; --icon-bg:#e0f2fe;">
+          <div class="kpi-icon">👥</div>
+          <div class="kpi-value">۱,۲۴۷</div>
+          <div class="kpi-label">کل بیماران</div>
+          <div class="kpi-change up">▲ ۱۲ نفر این ماه</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#10b981; --icon-bg:#dcfce7;">
+          <div class="kpi-icon">📅</div>
+          <div class="kpi-value">۳۸</div>
+          <div class="kpi-label">نوبت امروز</div>
+          <div class="kpi-change up">▲ ۵ بیشتر از دیروز</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#f59e0b; --icon-bg:#fef9c3;">
+          <div class="kpi-icon">💰</div>
+          <div class="kpi-value">۴۸M</div>
+          <div class="kpi-label">درآمد این ماه (تومان)</div>
+          <div class="kpi-change up">▲ ۸٪ نسبت به ماه قبل</div>
+        </div>
+        <div class="kpi-card" style="--card-color:#8b5cf6; --icon-bg:#ede9fe;">
+          <div class="kpi-icon">⏳</div>
+          <div class="kpi-value">۶</div>
+          <div class="kpi-label">در انتظار ویزیت</div>
+          <div class="kpi-change down">▼ ۲ نسبت به دیروز</div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-header">
+            <span>📅</span>
+            <span class="card-title">نوبت‌های امروز</span>
+            <div style="display:flex;gap:6px;">
+              <span class="chip active">همه</span>
+              <span class="chip">آماده</span>
+              <span class="chip">انتظار</span>
+            </div>
           </div>
-          <div class="kpi-card" style="--card-color:#10b981; --icon-bg:#dcfce7;">
-            <div class="kpi-icon">📅</div>
-            <div class="kpi-value">۳۸</div>
-            <div class="kpi-label">نوبت امروز</div>
-            <div class="kpi-change up">▲ ۵ بیشتر از دیروز</div>
-          </div>
-          <div class="kpi-card" style="--card-color:#f59e0b; --icon-bg:#fef9c3;">
-            <div class="kpi-icon">💰</div>
-            <div class="kpi-value">۴۸M</div>
-            <div class="kpi-label">درآمد این ماه (تومان)</div>
-            <div class="kpi-change up">▲ ۸٪ نسبت به ماه قبل</div>
-          </div>
-          <div class="kpi-card" style="--card-color:#8b5cf6; --icon-bg:#ede9fe;">
-            <div class="kpi-icon">⏳</div>
-            <div class="kpi-value">۶</div>
-            <div class="kpi-label">در انتظار ویزیت</div>
-            <div class="kpi-change down">▼ ۲ نسبت به دیروز</div>
+          <div class="card-body">
+            <div class="appt-list">
+              <div class="appt-item">
+                <div class="appt-time">۸:۳۰</div>
+                <div class="appt-info">
+                  <div class="appt-name">فاطمه احمدی</div>
+                  <div class="appt-type">جرم‌گیری و بهداشت</div>
+                </div>
+                <span class="appt-doctor">دکتر رضایی</span>
+                <span class="status-dot present"></span>
+              </div>
+
+              <div class="appt-item">
+                <div class="appt-time">۹:۰۰</div>
+                <div class="appt-info">
+                  <div class="appt-name">علیرضا محمدی</div>
+                  <div class="appt-type">روت کانال دندان ۳۶</div>
+                </div>
+                <span class="appt-doctor">دکتر کریمی</span>
+                <span class="status-dot waiting"></span>
+              </div>
+
+              <div class="appt-item">
+                <div class="appt-time">۱۰:۰۰</div>
+                <div class="appt-info">
+                  <div class="appt-name">مریم حسینی</div>
+                  <div class="appt-type">ونیر سرامیکی</div>
+                </div>
+                <span class="appt-doctor">دکتر نجفی</span>
+                <span class="status-dot present"></span>
+              </div>
+
+              <div class="appt-item">
+                <div class="appt-time">۱۱:۳۰</div>
+                <div class="appt-info">
+                  <div class="appt-name">حسن کاظمی</div>
+                  <div class="appt-type">کشیدن دندان عقل</div>
+                </div>
+                <span class="appt-doctor">دکتر رضایی</span>
+                <span class="status-dot done"></span>
+              </div>
+
+              <div class="appt-item">
+                <div class="appt-time">۱۴:۰۰</div>
+                <div class="appt-info">
+                  <div class="appt-name">زهرا صادقی</div>
+                  <div class="appt-type">ارتودنسی - جلسه ۵</div>
+                </div>
+                <span class="appt-doctor">دکتر کریمی</span>
+                <span class="status-dot waiting"></span>
+              </div>
+
+              <div class="appt-item">
+                <div class="appt-time">۱۵:۳۰</div>
+                <div class="appt-info">
+                  <div class="appt-name">رضا اکبری</div>
+                  <div class="appt-type">پر کردن دندان (کامپوزیت)</div>
+                </div>
+                <span class="appt-doctor">دکتر نجفی</span>
+                <span class="status-dot cancel"></span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="grid-3">
+        <div style="display:flex;flex-direction:column;gap:18px;">
           <div class="card">
             <div class="card-header">
-              <span>📅</span>
-              <span class="card-title">نوبت‌های امروز</span>
-              <div style="display:flex;gap:6px;">
-                <span class="chip active">همه</span>
-                <span class="chip">آماده</span>
-                <span class="chip">انتظار</span>
-              </div>
+              <span>👨‍⚕️</span>
+              <span class="card-title">دندانپزشکان امروز</span>
             </div>
             <div class="card-body">
-              <div class="appt-list">
-                <div class="appt-item">
-                  <div class="appt-time">۸:۳۰</div>
-                  <div class="appt-info">
-                    <div class="appt-name">فاطمه احمدی</div>
-                    <div class="appt-type">جرم‌گیری و بهداشت</div>
+              <div class="doctor-list">
+                <div class="doctor-item">
+                  <div class="doc-avatar" style="background:linear-gradient(135deg,#0ea5e9,#0284c7)">ر</div>
+                  <div class="doc-info">
+                    <div class="doc-name">دکتر رضایی</div>
+                    <div class="doc-spec">عمومی | ایمپلنت</div>
                   </div>
-                  <span class="appt-doctor">دکتر رضایی</span>
-                  <span class="status-dot present"></span>
+                  <div class="doc-stats">
+                    <div class="doc-count">۱۲</div>
+                    <div class="doc-count-label">نوبت</div>
+                  </div>
                 </div>
 
-                <div class="appt-item">
-                  <div class="appt-time">۹:۰۰</div>
-                  <div class="appt-info">
-                    <div class="appt-name">علیرضا محمدی</div>
-                    <div class="appt-type">روت کانال دندان ۳۶</div>
+                <div class="doctor-item">
+                  <div class="doc-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">ک</div>
+                  <div class="doc-info">
+                    <div class="doc-name">دکتر کریمی</div>
+                    <div class="doc-spec">ارتودنسی | کودکان</div>
                   </div>
-                  <span class="appt-doctor">دکتر کریمی</span>
-                  <span class="status-dot waiting"></span>
+                  <div class="doc-stats">
+                    <div class="doc-count">۱۰</div>
+                    <div class="doc-count-label">نوبت</div>
+                  </div>
                 </div>
 
-                <div class="appt-item">
-                  <div class="appt-time">۱۰:۰۰</div>
-                  <div class="appt-info">
-                    <div class="appt-name">مریم حسینی</div>
-                    <div class="appt-type">ونیر سرامیکی</div>
+                <div class="doctor-item">
+                  <div class="doc-avatar" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">ن</div>
+                  <div class="doc-info">
+                    <div class="doc-name">دکتر نجفی</div>
+                    <div class="doc-spec">زیبایی | ونیر</div>
                   </div>
-                  <span class="appt-doctor">دکتر نجفی</span>
-                  <span class="status-dot present"></span>
+                  <div class="doc-stats">
+                    <div class="doc-count">۹</div>
+                    <div class="doc-count-label">نوبت</div>
+                  </div>
                 </div>
 
-                <div class="appt-item">
-                  <div class="appt-time">۱۱:۳۰</div>
-                  <div class="appt-info">
-                    <div class="appt-name">حسن کاظمی</div>
-                    <div class="appt-type">کشیدن دندان عقل</div>
+                <div class="doctor-item">
+                  <div class="doc-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">م</div>
+                  <div class="doc-info">
+                    <div class="doc-name">دکتر موسوی</div>
+                    <div class="doc-spec">اندودانتیکس</div>
                   </div>
-                  <span class="appt-doctor">دکتر رضایی</span>
-                  <span class="status-dot done"></span>
-                </div>
-
-                <div class="appt-item">
-                  <div class="appt-time">۱۴:۰۰</div>
-                  <div class="appt-info">
-                    <div class="appt-name">زهرا صادقی</div>
-                    <div class="appt-type">ارتودنسی - جلسه ۵</div>
+                  <div class="doc-stats">
+                    <div class="doc-count">۷</div>
+                    <div class="doc-count-label">نوبت</div>
                   </div>
-                  <span class="appt-doctor">دکتر کریمی</span>
-                  <span class="status-dot waiting"></span>
-                </div>
-
-                <div class="appt-item">
-                  <div class="appt-time">۱۵:۳۰</div>
-                  <div class="appt-info">
-                    <div class="appt-name">رضا اکبری</div>
-                    <div class="appt-type">پر کردن دندان (کامپوزیت)</div>
-                  </div>
-                  <span class="appt-doctor">دکتر نجفی</span>
-                  <span class="status-dot cancel"></span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div style="display:flex;flex-direction:column;gap:18px;">
-            <div class="card">
-              <div class="card-header">
-                <span>👨‍⚕️</span>
-                <span class="card-title">دندانپزشکان امروز</span>
-              </div>
-              <div class="card-body">
-                <div class="doctor-list">
-                  <div class="doctor-item">
-                    <div class="doc-avatar" style="background:linear-gradient(135deg,#0ea5e9,#0284c7)">ر</div>
-                    <div class="doc-info">
-                      <div class="doc-name">دکتر رضایی</div>
-                      <div class="doc-spec">عمومی | ایمپلنت</div>
-                    </div>
-                    <div class="doc-stats">
-                      <div class="doc-count">۱۲</div>
-                      <div class="doc-count-label">نوبت</div>
-                    </div>
+          <div class="card">
+            <div class="card-header">
+              <span>🔔</span>
+              <span class="card-title">هشدارها</span>
+              <span class="nav-badge">۴</span>
+            </div>
+            <div class="card-body" style="padding:14px;">
+              <div class="notif-list">
+                <div class="notif-item unread">
+                  <span class="notif-icon">📦</span>
+                  <div class="notif-content">
+                    <div class="notif-text">کمبود آمالگام دنتال</div>
+                    <div class="notif-time">۸ عدد باقی‌مانده</div>
                   </div>
-
-                  <div class="doctor-item">
-                    <div class="doc-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">ک</div>
-                    <div class="doc-info">
-                      <div class="doc-name">دکتر کریمی</div>
-                      <div class="doc-spec">ارتودنسی | کودکان</div>
-                    </div>
-                    <div class="doc-stats">
-                      <div class="doc-count">۱۰</div>
-                      <div class="doc-count-label">نوبت</div>
-                    </div>
+                </div>
+                <div class="notif-item unread">
+                  <span class="notif-icon">🛡️</span>
+                  <div class="notif-content">
+                    <div class="notif-text">۳ فاکتور بیمه در انتظار</div>
+                    <div class="notif-time">تأمین اجتماعی</div>
                   </div>
-
-                  <div class="doctor-item">
-                    <div class="doc-avatar" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">ن</div>
-                    <div class="doc-info">
-                      <div class="doc-name">دکتر نجفی</div>
-                      <div class="doc-spec">زیبایی | ونیر</div>
-                    </div>
-                    <div class="doc-stats">
-                      <div class="doc-count">۹</div>
-                      <div class="doc-count-label">نوبت</div>
-                    </div>
+                </div>
+                <div class="notif-item unread">
+                  <span class="notif-icon">💰</span>
+                  <div class="notif-content">
+                    <div class="notif-text">بدهی بیمار: احمد نوری</div>
+                    <div class="notif-time">۲,۵۰۰,۰۰۰ تومان</div>
                   </div>
-
-                  <div class="doctor-item">
-                    <div class="doc-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">م</div>
-                    <div class="doc-info">
-                      <div class="doc-name">دکتر موسوی</div>
-                      <div class="doc-spec">اندودانتیکس</div>
-                    </div>
-                    <div class="doc-stats">
-                      <div class="doc-count">۷</div>
-                      <div class="doc-count-label">نوبت</div>
-                    </div>
+                </div>
+                <div class="notif-item">
+                  <span class="notif-icon">📅</span>
+                  <div class="notif-content">
+                    <div class="notif-text">یادآوری: رضا اکبری لغو کرد</div>
+                    <div class="notif-time">ساعت ۱۵:۳۰</div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div class="card">
-              <div class="card-header">
-                <span>🔔</span>
-                <span class="card-title">هشدارها</span>
-                <span class="nav-badge">۴</span>
-              </div>
-              <div class="card-body" style="padding:14px;">
-                <div class="notif-list">
-                  <div class="notif-item unread">
-                    <span class="notif-icon">📦</span>
-                    <div class="notif-content">
-                      <div class="notif-text">کمبود آمالگام دنتال</div>
-                      <div class="notif-time">۸ عدد باقی‌مانده</div>
-                    </div>
-                  </div>
-                  <div class="notif-item unread">
-                    <span class="notif-icon">🛡️</span>
-                    <div class="notif-content">
-                      <div class="notif-text">۳ فاکتور بیمه در انتظار</div>
-                      <div class="notif-time">تأمین اجتماعی</div>
-                    </div>
-                  </div>
-                  <div class="notif-item unread">
-                    <span class="notif-icon">💰</span>
-                    <div class="notif-content">
-                      <div class="notif-text">بدهی بیمار: احمد نوری</div>
-                      <div class="notif-time">۲,۵۰۰,۰۰۰ تومان</div>
-                    </div>
-                  </div>
-                  <div class="notif-item">
-                    <span class="notif-icon">📅</span>
-                    <div class="notif-content">
-                      <div class="notif-text">یادآوری: رضا اکبری لغو کرد</div>
-                      <div class="notif-time">ساعت ۱۵:۳۰</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
 
-      <!-- ══ PATIENTS PAGE ══ -->
-      <div class="page" id="page-patients">
-        <div class="filter-bar">
-          <div class="search-box" style="width:300px;">
-            <span class="icon">🔍</span>
-            <input type="text" placeholder="نام، کدملی، شماره تماس..." />
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <span>📈</span>
+            <span class="card-title">درآمد هفت روز اخیر (میلیون تومان)</span>
           </div>
-          <select class="filter-select">
-            <option>همه بیماران</option>
-            <option>فعال</option>
-            <option>غیرفعال</option>
-          </select>
-          <select class="filter-select">
-            <option>همه دندانپزشکان</option>
-            <option>دکتر رضایی</option>
-            <option>دکتر کریمی</option>
-            <option>دکتر نجفی</option>
-            <option>دکتر موسوی</option>
-          </select>
-          <select class="filter-select">
-            <option>همه بیمه‌ها</option>
-            <option>تأمین اجتماعی</option>
-            <option>خدمات درمانی</option>
-            <option>نیروهای مسلح</option>
-            <option>آزاد</option>
-          </select>
-          <button class="btn btn-primary" onclick="openModal('newPatient')">➕ ثبت بیمار جدید</button>
+          <div class="card-body">
+            <!-- همون بلوک قبلی، دست نزدم -->
+            <div style="display:flex;align-items:flex-end;gap:8px;height:100px;margin-bottom:8px;">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <span style="font-size:11px;color:var(--text3)">۷.۲</span>
+                <div style="flex:1;width:100%;background:var(--primary-light);border-radius:6px 6px 0 0;height:70%;min-height:8px;"></div>
+                <span style="font-size:10px;color:var(--text3)">ش</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <span style="font-size:11px;color:var(--text3)">9.5</span>
+                <div style="flex:1;width:100%;background:var(--primary-light);border-radius:6px 6px 0 0;height:90%;min-height:8px;"></div>
+                <span style="font-size:10px;color:var(--text3)">ی</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <span style="font-size:11px;color:var(--text3)">6.8</span>
+                <div style="flex:1;width:100%;background:var(--primary-light);border-radius:6px 6px 0 0;height:65%;min-height:8px;"></div>
+                <span style="font-size:10px;color:var(--text3)">د</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <span style="font-size:11px;color:var(--text3)">11.2</span>
+                <div style="flex:1;width:100%;background:var(--primary-light);border-radius:6px 6px 0 0;height:100%;min-height:8px;"></div>
+                <span style="font-size:10px;color:var(--text3)">س</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <span style="font-size:11px;color:var(--text3)">8.4</span>
+                <div style="flex:1;width:100%;background:var(--primary-light);border-radius:6px 6px 0 0;height:80%;min-height:8px;"></div>
+                <span style="font-size:10px;color:var(--text3)">چ</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <span style="font-size:11px;color:var(--text3)">10.1</span>
+                <div style="flex:1;width:100%;background:var(--primary);border-radius:6px 6px 0 0;height:95%;min-height:8px;box-shadow:0 4px 12px rgba(14,165,233,0.3);"></div>
+                <span style="font-size:10px;font-weight:700;color:var(--primary)">پ</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <span style="font-size:11px;font-weight:700;color:var(--accent)">12.3</span>
+                <div style="flex:1;width:100%;background:linear-gradient(180deg,var(--accent),#059669);border-radius:6px 6px 0 0;height:100%;min-height:8px;box-shadow:0 4px 12px rgba(16,185,129,0.3);"></div>
+                <span style="font-size:10px;font-weight:700;color:var(--accent)">ج</span>
+              </div>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border);">
+              <div>
+                <div style="font-size:11px;color:var(--text3)">مجموع هفته</div>
+                <div style="font-size:18px;font-weight:900;">۶۵.۵ M</div>
+              </div>
+              <div style="text-align:left;">
+                <div style="font-size:11px;color:var(--text3)">رشد نسبت به هفته قبل</div>
+                <div style="font-size:18px;font-weight:900;color:var(--accent)">▲ ۱۴٪</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="card">
           <div class="card-header">
-            <span>👥</span>
-            <span class="card-title">لیست بیماران</span>
-            <span style="margin-right:auto;font-size:13px;color:var(--text3);">۱٬۲۴۷ بیمار</span>
+            <span>🦷</span>
+            <span class="card-title">آمار خدمات این ماه</span>
           </div>
-          <div class="table-wrapper">
-            <!-- جدول همان نسخه شماست؛ کوتاه کردم برای خوانایی -->
-            <table>
-              <thead>
-                <tr>
-                  <th>بیمار</th><th>کد ملی</th><th>تماس</th><th>بیمه</th><th>دندانپزشک</th><th>آخرین ویزیت</th><th>وضعیت مالی</th><th>عملیات</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="patient-cell">
-                      <div class="patient-avatar" style="background:linear-gradient(135deg,#0ea5e9,#0284c7)">ف</div>
-                      <div>
-                        <div class="patient-name">فاطمه احمدی</div>
-                        <div class="patient-code">#P-0001</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span style="font-size:12px;color:var(--text2);">۰۰۱۲۳۴۵۶۷۸</span></td>
-                  <td><span style="font-size:12px;">۰۹۱۲۳۴۵۶۷۸۹</span></td>
-                  <td><span class="badge badge-blue">تأمین اجتماعی</span></td>
-                  <td><span style="font-size:13px;font-weight:600;">دکتر رضایی</span></td>
-                  <td><span style="font-size:12px;color:var(--text2);">۱۴۰۳/۱۱/۲۸</span></td>
-                  <td><span class="badge badge-green">تسویه</span></td>
-                  <td>
-                    <div class="action-btns">
-                      <button class="action-btn" title="مشاهده پرونده">📋</button>
-                      <button class="action-btn" title="نوبت جدید">📅</button>
-                      <button class="action-btn" title="فاکتور">🧾</button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div style="padding:16px 22px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;">
-            <span style="font-size:13px;color:var(--text3);">نمایش ۱-۵ از ۱٬۲۴۷ بیمار</span>
-            <div style="display:flex;gap:6px;margin-right:auto;">
-              <button class="action-btn">◀</button>
-              <button class="action-btn" style="background:var(--primary);color:white;border-color:var(--primary);">۱</button>
-              <button class="action-btn">۲</button>
-              <button class="action-btn">۳</button>
-              <span style="padding:0 4px;color:var(--text3);">...</span>
-              <button class="action-btn">۱۲۵</button>
-              <button class="action-btn">▶</button>
+          <div class="card-body">
+            <div class="stat-row">
+              <span class="stat-label">🪥 جرم‌گیری و بهداشت</span>
+              <span class="stat-value">۸۴</span>
+              <div class="stat-bar"><div class="progress-bar"><div class="progress-fill" style="width:84%;background:linear-gradient(90deg,#0ea5e9,#0284c7)"></div></div></div>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">🦷 پر کردن (کامپوزیت)</span>
+              <span class="stat-value">۶۳</span>
+              <div class="stat-bar"><div class="progress-bar"><div class="progress-fill" style="width:63%;background:linear-gradient(90deg,#10b981,#059669)"></div></div></div>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">🔧 روت کانال</span>
+              <span class="stat-value">۴۲</span>
+              <div class="stat-bar"><div class="progress-bar"><div class="progress-fill" style="width:42%;background:linear-gradient(90deg,#f59e0b,#d97706)"></div></div></div>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">💎 ونیر سرامیکی</span>
+              <span class="stat-value">۲۸</span>
+              <div class="stat-bar"><div class="progress-bar"><div class="progress-fill" style="width:28%;background:linear-gradient(90deg,#8b5cf6,#7c3aed)"></div></div></div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- ══ APPOINTMENTS PAGE ══ -->
-      <div class="page" id="page-appointments">
-        <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;">
-          <div class="card">
-            <div class="card-header">
-              <span>📅</span>
-              <span class="card-title">تقویم نوبت‌دهی — اسفند ۱۴۰۳</span>
-              <button class="action-btn">◀</button>
-              <button class="action-btn">▶</button>
-              <button class="btn btn-primary" style="margin-right:auto;" onclick="openModal('newAppt')">➕ نوبت جدید</button>
-            </div>
-            <div class="card-body">
-              <div class="calendar-grid" style="margin-bottom:8px;">
-                <div class="cal-day-label">ش</div><div class="cal-day-label">ی</div><div class="cal-day-label">د</div>
-                <div class="cal-day-label">س</div><div class="cal-day-label">چ</div><div class="cal-day-label">پ</div><div class="cal-day-label">ج</div>
-              </div>
-              <div class="calendar-grid" id="calendarGrid"></div>
-            </div>
-          </div>
+    <!-- ══ PATIENTS PAGE ══ -->
+    <div class="page" id="page-patients">
+      <!-- (همون محتوا، بدون تغییر منطقی) -->
+      <div class="filter-bar">
+        <div class="search-box" style="width:300px;">
+          <span class="icon">🔍</span>
+          <input type="text" placeholder="نام، کدملی، شماره تماس..." />
+        </div>
+        <select class="filter-select">
+          <option>همه بیماران</option>
+          <option>فعال</option>
+          <option>غیرفعال</option>
+        </select>
+        <select class="filter-select">
+          <option>همه دندانپزشکان</option>
+          <option>دکتر رضایی</option>
+          <option>دکتر کریمی</option>
+          <option>دکتر نجفی</option>
+          <option>دکتر موسوی</option>
+        </select>
+        <select class="filter-select">
+          <option>همه بیمه‌ها</option>
+          <option>تأمین اجتماعی</option>
+          <option>خدمات درمانی</option>
+          <option>نیروهای مسلح</option>
+          <option>آزاد</option>
+        </select>
+        <button class="btn btn-primary" onclick="openModal('newPatient')">➕ ثبت بیمار جدید</button>
+      </div>
 
-          <div class="card">
-            <div class="card-header">
-              <span>🕐</span>
-              <span class="card-title">نوبت‌های امروز</span>
-              <span class="nav-badge green">۸</span>
-            </div>
-            <div class="card-body" style="padding:14px;">
-              <div class="appt-list">
-                <div class="appt-item">
-                  <div class="appt-time">۸:۰۰</div>
-                  <div class="appt-info"><div class="appt-name">سارا میری</div><div class="appt-type">معاینه</div></div>
-                  <span class="status-dot done"></span>
-                </div>
-              </div>
+      <div class="card">
+        <div class="card-header">
+          <span>👥</span>
+          <span class="card-title">لیست بیماران</span>
+          <span style="margin-right:auto;font-size:13px;color:var(--text3);">۱٬۲۴۷ بیمار</span>
+        </div>
 
-              <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;">
-                <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);"><span class="status-dot present"></span>حاضر</div>
-                <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);"><span class="status-dot waiting"></span>انتظار</div>
-                <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);"><span class="status-dot done"></span>انجام شد</div>
-                <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);"><span class="status-dot cancel"></span>لغو</div>
-              </div>
-            </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>بیمار</th><th>کد ملی</th><th>تماس</th><th>بیمه</th>
+                <th>دندانپزشک</th><th>آخرین ویزیت</th><th>وضعیت مالی</th><th>عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="patient-cell">
+                    <div class="patient-avatar" style="background:linear-gradient(135deg,#0ea5e9,#0284c7)">ف</div>
+                    <div>
+                      <div class="patient-name">فاطمه احمدی</div>
+                      <div class="patient-code">#P-0001</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-size:12px;color:var(--text2);">۰۰۱۲۳۴۵۶۷۸</span></td>
+                <td><span style="font-size:12px;">۰۹۱۲۳۴۵۶۷۸۹</span></td>
+                <td><span class="badge badge-blue">تأمین اجتماعی</span></td>
+                <td><span style="font-size:13px;font-weight:600;">دکتر رضایی</span></td>
+                <td><span style="font-size:12px;color:var(--text2);">۱۴۰۳/۱۱/۲۸</span></td>
+                <td><span class="badge badge-green">تسویه</span></td>
+                <td>
+                  <div class="action-btns">
+                    <button class="action-btn" title="مشاهده پرونده">📋</button>
+                    <button class="action-btn" title="نوبت جدید">📅</button>
+                    <button class="action-btn" title="فاکتور">🧾</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="padding:16px 22px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+          <span style="font-size:13px;color:var(--text3);">نمایش ۱-۵ از ۱٬۲۴۷ بیمار</span>
+          <div style="display:flex;gap:6px;margin-right:auto;">
+            <button class="action-btn">◀</button>
+            <button class="action-btn" style="background:var(--primary);color:white;border-color:var(--primary);">۱</button>
+            <button class="action-btn">۲</button>
+            <button class="action-btn">۳</button>
+            <span style="padding:0 4px;color:var(--text3);">...</span>
+            <button class="action-btn">۱۲۵</button>
+            <button class="action-btn">▶</button>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- ══ DENTAL CHART PAGE ══ -->
-      <div class="page" id="page-dental-chart">
-        <div style="display:flex;gap:14px;margin-bottom:18px;flex-wrap:wrap;">
-          <div class="search-box" style="width:250px;">
-            <span class="icon">🔍</span>
-            <input type="text" placeholder="جستجو بیمار..." />
-          </div>
-          <select class="filter-select">
-            <option>بزرگسال (FDI)</option>
-            <option>کودک (FDI)</option>
-          </select>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <span class="chip active">سالم</span>
-            <span class="chip">پرشده</span>
-            <span class="chip">مشکل‌دار</span>
-            <span class="chip">کشیده شده</span>
-            <span class="chip">روت کانال</span>
-            <span class="chip">کرون</span>
-            <span class="chip">ایمپلنت</span>
-          </div>
-        </div>
-
-        <div class="card" style="margin-bottom:18px;">
+    <!-- ══ APPOINTMENTS PAGE ══ -->
+    <div class="page" id="page-appointments">
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;">
+        <div class="card">
           <div class="card-header">
-            <span>📋</span>
-            <span class="card-title">بیمار: فاطمه احمدی — #P-0001</span>
-            <button class="btn btn-primary" style="margin-right:auto;">💾 ذخیره طرح درمان</button>
+            <span>📅</span>
+            <span class="card-title">تقویم نوبت‌دهی — اسفند ۱۴۰۳</span>
+            <button class="action-btn">◀</button>
+            <button class="action-btn">▶</button>
+            <button class="btn btn-primary" onclick="openModal('newAppt')">➕ نوبت جدید</button>
           </div>
-          <div class="card-body" style="padding:16px 8px;">
-            <div style="text-align:center;font-size:12px;font-weight:700;color:var(--text3);margin-bottom:8px;">فک بالا</div>
-            <div class="dental-chart" id="upperJaw"></div>
-            <div class="chart-divider">
-              <span>━━━━━━━━━━━━</span><span>راست | چپ</span><span>━━━━━━━━━━━━</span>
+          <div class="card-body">
+            <div class="calendar-grid" style="margin-bottom:8px;">
+              <div class="cal-day-label">ش</div>
+              <div class="cal-day-label">ی</div>
+              <div class="cal-day-label">د</div>
+              <div class="cal-day-label">س</div>
+              <div class="cal-day-label">چ</div>
+              <div class="cal-day-label">پ</div>
+              <div class="cal-day-label">ج</div>
             </div>
-            <div class="dental-chart" id="lowerJaw"></div>
-            <div style="text-align:center;font-size:12px;font-weight:700;color:var(--text3);margin-top:8px;">فک پایین</div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span>🕐</span>
+            <span class="card-title">نوبت‌های امروز</span>
+            <span class="nav-badge green">۸</span>
+          </div>
+          <div class="card-body" style="padding:14px;">
+            <div class="appt-list">
+              <div class="appt-item"><div class="appt-time">۸:۰۰</div><div class="appt-info"><div class="appt-name">سارا میری</div><div class="appt-type">معاینه</div></div><span class="status-dot done"></span></div>
+              <div class="appt-item"><div class="appt-time">۸:۳۰</div><div class="appt-info"><div class="appt-name">فاطمه احمدی</div><div class="appt-type">جرم‌گیری</div></div><span class="status-dot present"></span></div>
+              <div class="appt-item"><div class="appt-time">۹:۰۰</div><div class="appt-info"><div class="appt-name">علیرضا محمدی</div><div class="appt-type">روت کانال</div></div><span class="status-dot waiting"></span></div>
+              <div class="appt-item"><div class="appt-time">۱۵:۳۰</div><div class="appt-info"><div class="appt-name">رضا اکبری</div><div class="appt-type">کامپوزیت</div></div><span class="status-dot cancel"></span></div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- ══ FINANCIAL PAGE ══ -->
-      <div class="page" id="page-financial">
-        <div class="tabs" data-tabs="financial">
-          <button class="tab active" onclick="switchTab(this,'fin-invoices')">فاکتورها</button>
-          <button class="tab" onclick="switchTab(this,'fin-insurance')">بیمه‌ها</button>
-          <button class="tab" onclick="switchTab(this,'fin-debts')">بدهکاران</button>
-          <button class="tab" onclick="switchTab(this,'fin-reports')">گزارش‌ها</button>
+    <!-- ══ DENTAL CHART PAGE ══ -->
+    <div class="page" id="page-dental-chart">
+      <div style="display:flex;gap:14px;margin-bottom:18px;flex-wrap:wrap;">
+        <div class="search-box" style="width:250px;">
+          <span class="icon">🔍</span>
+          <input type="text" placeholder="جستجو بیمار..." />
         </div>
-
-        <div class="fin-stats">
-          <div class="fin-card">
-            <div class="fin-icon">💰</div>
-            <div class="fin-val">۴۸٬۲۰۰٬۰۰۰</div>
-            <div class="fin-label">درآمد این ماه (تومان)</div>
-            <div class="fin-sub green">▲ ۸٪ نسبت به ماه قبل</div>
-          </div>
-          <div class="fin-card">
-            <div class="fin-icon">🛡️</div>
-            <div class="fin-val">۱۲٬۸۰۰٬۰۰۰</div>
-            <div class="fin-label">مطالبات بیمه</div>
-            <div class="fin-sub red">۳ فاکتور در انتظار</div>
-          </div>
-          <div class="fin-card">
-            <div class="fin-icon">⚠️</div>
-            <div class="fin-val">۷٬۵۰۰٬۰۰۰</div>
-            <div class="fin-label">بدهکاران</div>
-            <div class="fin-sub red">۱۲ بیمار بدهکار</div>
-          </div>
+        <select class="filter-select">
+          <option>بزرگسال (FDI)</option>
+          <option>کودک (FDI)</option>
+        </select>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="chip active">سالم</span>
+          <span class="chip">پرشده</span>
+          <span class="chip">مشکل‌دار</span>
+          <span class="chip">کشیده شده</span>
+          <span class="chip">روت کانال</span>
+          <span class="chip">کرون</span>
+          <span class="chip">ایمپلنت</span>
         </div>
+      </div>
 
-        <div class="card fin-panel" id="fin-invoices">
+      <div class="card" style="margin-bottom:18px;">
+        <div class="card-header">
+          <span>📋</span>
+          <span class="card-title">بیمار: فاطمه احمدی — #P-0001</span>
+          <button class="btn btn-primary" style="margin-right:auto;">💾 ذخیره طرح درمان</button>
+        </div>
+        <div class="card-body" style="padding:16px 8px;">
+          <div style="text-align:center;font-size:12px;font-weight:700;color:var(--text3);margin-bottom:8px;">فک بالا</div>
+          <div class="dental-chart" id="upperJaw"></div>
+          <div class="chart-divider">
+            <span>━━━━━━━━━━━━</span>
+            <span>راست | چپ</span>
+            <span>━━━━━━━━━━━━</span>
+          </div>
+          <div class="dental-chart" id="lowerJaw"></div>
+          <div style="text-align:center;font-size:12px;font-weight:700;color:var(--text3);margin-top:8px;">فک پایین</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ FINANCIAL PAGE ══ -->
+    <div class="page" id="page-financial">
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this,'fin-invoices')">فاکتورها</button>
+        <button class="tab" onclick="switchTab(this,'fin-insurance')">بیمه‌ها</button>
+        <button class="tab" onclick="switchTab(this,'fin-debts')">بدهکاران</button>
+        <button class="tab" onclick="switchTab(this,'fin-reports')">گزارش‌ها</button>
+      </div>
+
+      <div class="fin-stats">
+        <div class="fin-card">
+          <div class="fin-icon">💰</div>
+          <div class="fin-val">۴۸٬۲۰۰٬۰۰۰</div>
+          <div class="fin-label">درآمد این ماه (تومان)</div>
+          <div class="fin-sub green">▲ ۸٪ نسبت به ماه قبل</div>
+        </div>
+        <div class="fin-card">
+          <div class="fin-icon">🛡️</div>
+          <div class="fin-val">۱۲٬۸۰۰٬۰۰۰</div>
+          <div class="fin-label">مطالبات بیمه</div>
+          <div class="fin-sub red">۳ فاکتور در انتظار</div>
+        </div>
+        <div class="fin-card">
+          <div class="fin-icon">⚠️</div>
+          <div class="fin-val">۷٬۵۰۰٬۰۰۰</div>
+          <div class="fin-label">بدهکاران</div>
+          <div class="fin-sub red">۱۲ بیمار بدهکار</div>
+        </div>
+      </div>
+
+      <div id="fin-invoices">
+        <div class="card">
           <div class="card-header">
             <span>🧾</span>
             <span class="card-title">فاکتورها</span>
@@ -1246,411 +1384,431 @@
                   <div class="invoice-unit">تومان</div>
                 </div>
                 <span class="badge badge-green">پرداخت شد</span>
-                <div class="action-btns">
-                  <button class="action-btn">🖨️</button>
-                  <button class="action-btn">📤</button>
-                </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="card fin-panel" id="fin-insurance" style="display:none;">
-          <div class="card-body"><div class="empty-state"><div class="icon">🛡️</div><p>بخش بیمه‌ها…</p></div></div>
-        </div>
-        <div class="card fin-panel" id="fin-debts" style="display:none;">
-          <div class="card-body"><div class="empty-state"><div class="icon">⚠️</div><p>بخش بدهکاران…</p></div></div>
-        </div>
-        <div class="card fin-panel" id="fin-reports" style="display:none;">
-          <div class="card-body"><div class="empty-state"><div class="icon">📈</div><p>گزارش‌های مالی…</p></div></div>
-        </div>
       </div>
 
-      <!-- ══ INVENTORY PAGE ══ -->
-      <div class="page" id="page-inventory">
-        <div class="filter-bar">
-          <select class="filter-select">
-            <option>همه دسته‌ها</option>
-            <option>مواد ترمیمی</option>
-            <option>بیهوشی</option>
-            <option>ابزار</option>
-            <option>مصرفی</option>
+      <div id="fin-insurance" style="display:none;">
+        <div class="card"><div class="card-body"><div class="empty-state"><div class="icon">🛡️</div><p>بخش بیمه‌ها در حال توسعه...</p></div></div></div>
+      </div>
+      <div id="fin-debts" style="display:none;">
+        <div class="card"><div class="card-body"><div class="empty-state"><div class="icon">⚠️</div><p>بخش بدهکاران در حال توسعه...</p></div></div></div>
+      </div>
+      <div id="fin-reports" style="display:none;">
+        <div class="card"><div class="card-body"><div class="empty-state"><div class="icon">📊</div><p>گزارشات مالی در حال توسعه...</p></div></div></div>
+      </div>
+    </div>
+
+    <!-- ══ INVENTORY PAGE ══ -->
+    <div class="page" id="page-inventory">
+      <div class="filter-bar">
+        <select class="filter-select">
+          <option>همه دسته‌ها</option>
+          <option>مواد ترمیمی</option>
+          <option>بیهوشی</option>
+          <option>ابزار</option>
+          <option>مصرفی</option>
+        </select>
+        <div style="display:flex;gap:6px;">
+          <span class="chip active">همه</span>
+          <span class="chip" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5;">کمبود</span>
+          <span class="chip" style="background:#fef9c3;color:#854d0e;border-color:#fde047;">هشدار</span>
+        </div>
+        <button class="btn btn-primary" style="margin-right:auto;">➕ افزودن ماده</button>
+      </div>
+
+      <div class="inv-grid">
+        <div class="inv-card">
+          <div class="inv-header">
+            <span class="inv-icon">🔵</span>
+            <div><div class="inv-name">آمالگام دنتال</div><div class="inv-cat">مواد ترمیمی</div></div>
+          </div>
+          <div class="inv-stock">
+            <div><div class="inv-qty">۸</div><div class="inv-unit">عدد</div></div>
+            <span class="inv-alert danger">⚠️ کمبود</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:16%;background:var(--danger)"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ REPORTS PAGE ══ -->
+    <div class="page" id="page-reports">
+      <div class="card"><div class="card-body"><div class="empty-state"><div class="icon">📈</div><p>گزارش‌ها (نمونه) آماده است، می‌خوای کاملش کنم؟</p></div></div></div>
+    </div>
+
+    <!-- ══ STAFF PAGE ══ -->
+    <div class="page" id="page-staff">
+      <div class="card"><div class="card-body"><div class="empty-state"><div class="icon">👨‍⚕️</div><p>ماژول پرسنل (نمونه) آماده است، می‌خوای جدول کاملش کنم؟</p></div></div></div>
+    </div>
+
+    <!-- ══ OTHER PAGES ══ -->
+    <div class="page" id="page-insurance">
+      <div class="card"><div class="card-body"><div class="empty-state"><div class="icon">🛡️</div><p>ماژول بیمه در حال توسعه...</p></div></div></div>
+    </div>
+
+    <div class="page" id="page-settings">
+      <div class="card"><div class="card-body"><div class="empty-state"><div class="icon">⚙️</div><p>تنظیمات سیستم در حال توسعه...</p></div></div></div>
+    </div>
+
+  </div><!-- /content -->
+</main>
+
+<!-- ══════════════ MODALS (همون مودال‌های خودت) ══════════════ -->
+<!-- New Patient -->
+<div class="modal-overlay" id="modal-newPatient">
+  <div class="modal">
+    <div class="modal-header">
+      <span style="font-size:22px;">👤</span>
+      <span class="modal-title">ثبت بیمار جدید</span>
+      <button class="modal-close" onclick="closeModal('newPatient')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">نام</label>
+          <input class="form-input" type="text" placeholder="نام بیمار" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">نام خانوادگی</label>
+          <input class="form-input" type="text" placeholder="نام خانوادگی" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">کد ملی</label>
+          <input class="form-input" type="text" placeholder="۱۰ رقم" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">تاریخ تولد</label>
+          <input class="form-input" type="text" placeholder="۱۳۶۵/۰۵/۱۲" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">شماره تماس</label>
+          <input class="form-input" type="text" placeholder="۰۹۱۲..." />
+        </div>
+        <div class="form-group">
+          <label class="form-label">جنسیت</label>
+          <select class="form-input">
+            <option>زن</option>
+            <option>مرد</option>
           </select>
-          <div style="display:flex;gap:6px;">
-            <span class="chip active">همه</span>
-            <span class="chip" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5;">کمبود</span>
-            <span class="chip" style="background:#fef9c3;color:#854d0e;border-color:#fde047;">هشدار</span>
-          </div>
-          <button class="btn btn-primary" style="margin-right:auto;">➕ افزودن ماده</button>
         </div>
-        <div class="inv-grid">
-          <div class="inv-card">
-            <div class="inv-header">
-              <span class="inv-icon">🔵</span>
-              <div><div class="inv-name">آمالگام دنتال</div><div class="inv-cat">مواد ترمیمی</div></div>
-            </div>
-            <div class="inv-stock">
-              <div><div class="inv-qty">۸</div><div class="inv-unit">عدد</div></div>
-              <span class="inv-alert danger">⚠️ کمبود</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width:16%;background:var(--danger)"></div></div>
-          </div>
+        <div class="form-group">
+          <label class="form-label">نوع بیمه</label>
+          <select class="form-input">
+            <option>آزاد</option>
+            <option>تأمین اجتماعی</option>
+            <option>خدمات درمانی</option>
+            <option>نیروهای مسلح</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">شماره بیمه</label>
+          <input class="form-input" type="text" placeholder="شماره دفترچه" />
+        </div>
+        <div class="form-group full">
+          <label class="form-label">آدرس</label>
+          <input class="form-input" type="text" placeholder="آدرس کامل" />
+        </div>
+        <div class="form-group full">
+          <label class="form-label">سابقه بیماری / توضیحات</label>
+          <textarea class="form-input" rows="3" placeholder="دیابت، فشار خون، داروهای مصرفی..."></textarea>
         </div>
       </div>
-
-      <!-- ══ REPORTS / STAFF / INSURANCE / SETTINGS (همان شما یا placeholder) ══ -->
-      <div class="page" id="page-reports"><div class="card"><div class="card-body"><div class="empty-state"><div class="icon">📈</div><p>گزارش‌ها…</p></div></div></div></div>
-      <div class="page" id="page-staff"><div class="card"><div class="card-body"><div class="empty-state"><div class="icon">👥</div><p>پرسنل…</p></div></div></div></div>
-      <div class="page" id="page-insurance"><div class="card"><div class="card-body"><div class="empty-state"><div class="icon">🛡️</div><p>ماژول بیمه در حال توسعه...</p></div></div></div></div>
-      <div class="page" id="page-settings"><div class="card"><div class="card-body"><div class="empty-state"><div class="icon">⚙️</div><p>تنظیمات سیستم در حال توسعه...</p></div></div></div></div>
-
     </div>
-  </main>
-
-  <!-- ══════════════ MODAL: New Patient ══════════════ -->
-  <div class="modal-overlay" id="modal-newPatient">
-    <div class="modal" role="dialog" aria-modal="true" aria-label="ثبت بیمار جدید">
-      <div class="modal-header">
-        <span style="font-size:22px;">👤</span>
-        <span class="modal-title">ثبت بیمار جدید</span>
-        <button class="modal-close" onclick="closeModal('newPatient')">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label">نام</label>
-            <input class="form-input" type="text" placeholder="نام بیمار" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">نام خانوادگی</label>
-            <input class="form-input" type="text" placeholder="نام خانوادگی" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">کد ملی</label>
-            <input class="form-input" type="text" placeholder="۱۰ رقم" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">تاریخ تولد</label>
-            <input class="form-input" type="text" placeholder="۱۳۶۵/۰۵/۱۲" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">شماره تماس</label>
-            <input class="form-input" type="text" placeholder="۰۹۱۲..." />
-          </div>
-          <div class="form-group">
-            <label class="form-label">جنسیت</label>
-            <select class="form-input">
-              <option>زن</option>
-              <option>مرد</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">نوع بیمه</label>
-            <select class="form-input">
-              <option>آزاد</option>
-              <option>تأمین اجتماعی</option>
-              <option>خدمات درمانی</option>
-              <option>نیروهای مسلح</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">شماره بیمه</label>
-            <input class="form-input" type="text" placeholder="شماره دفترچه" />
-          </div>
-          <div class="form-group full">
-            <label class="form-label">آدرس</label>
-            <input class="form-input" type="text" placeholder="آدرس کامل" />
-          </div>
-          <div class="form-group full">
-            <label class="form-label">سابقه بیماری / توضیحات</label>
-            <textarea class="form-input" rows="3" placeholder="دیابت، فشار خون، داروهای مصرفی..."></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-ghost" onclick="closeModal('newPatient')">انصراف</button>
-        <button class="btn btn-primary">💾 ذخیره بیمار</button>
-      </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('newPatient')">انصراف</button>
+      <button class="btn btn-primary">💾 ذخیره بیمار</button>
     </div>
   </div>
+</div>
 
-  <!-- ══════════════ MODAL: New Appointment ══════════════ -->
-  <div class="modal-overlay" id="modal-newAppt">
-    <div class="modal" role="dialog" aria-modal="true" aria-label="ثبت نوبت جدید">
-      <div class="modal-header">
-        <span style="font-size:22px;">📅</span>
-        <span class="modal-title">ثبت نوبت جدید</span>
-        <button class="modal-close" onclick="closeModal('newAppt')">✕</button>
+<!-- New Appointment -->
+<div class="modal-overlay" id="modal-newAppt">
+  <div class="modal">
+    <div class="modal-header">
+      <span style="font-size:22px;">📅</span>
+      <span class="modal-title">ثبت نوبت جدید</span>
+      <button class="modal-close" onclick="closeModal('newAppt')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label class="form-label">بیمار</label>
+          <input class="form-input" type="text" placeholder="جستجوی نام بیمار..." />
+        </div>
+        <div class="form-group">
+          <label class="form-label">دندانپزشک</label>
+          <select class="form-input">
+            <option>دکتر رضایی</option>
+            <option>دکتر کریمی</option>
+            <option>دکتر نجفی</option>
+            <option>دکتر موسوی</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">نوع خدمت</label>
+          <select class="form-input">
+            <option>معاینه</option>
+            <option>جرم‌گیری</option>
+            <option>پر کردن</option>
+            <option>روت کانال</option>
+            <option>کشیدن دندان</option>
+            <option>ارتودنسی</option>
+            <option>ایمپلنت</option>
+            <option>ونیر</option>
+            <option>بلیچینگ</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">تاریخ (شمسی)</label>
+          <input class="form-input" type="text" placeholder="۱۴۰۳/۱۲/۰۵" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">ساعت</label>
+          <select class="form-input">
+            <option>۸:۰۰</option><option>۸:۳۰</option><option>۹:۰۰</option>
+            <option>۹:۳۰</option><option>۱۰:۰۰</option><option>۱۰:۳۰</option>
+            <option>۱۱:۰۰</option><option>۱۳:۰۰</option><option>۱۳:۳۰</option>
+            <option>۱۴:۰۰</option><option>۱۵:۰۰</option><option>۱۶:۰۰</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">یادداشت</label>
+          <textarea class="form-input" rows="2" placeholder="توضیحات اضافی..."></textarea>
+        </div>
       </div>
-      <div class="modal-body">
-        <div class="form-grid">
-          <div class="form-group full">
-            <label class="form-label">بیمار</label>
-            <input class="form-input" type="text" placeholder="جستجوی نام بیمار..." />
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('newAppt')">انصراف</button>
+      <button class="btn btn-primary">✅ ثبت نوبت</button>
+    </div>
+  </div>
+</div>
+
+<!-- Invoice -->
+<div class="modal-overlay" id="modal-newInvoice">
+  <div class="modal">
+    <div class="modal-header">
+      <span style="font-size:22px;">🧾</span>
+      <span class="modal-title">فاکتور جدید</span>
+      <button class="modal-close" onclick="closeModal('newInvoice')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label class="form-label">بیمار</label>
+          <input class="form-input" type="text" placeholder="نام بیمار..." />
+        </div>
+        <div class="form-group full">
+          <label class="form-label">خدمات ارائه شده</label>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;gap:8px;">
+              <input class="form-input" style="flex:2" placeholder="نام خدمت" value="جرم‌گیری و پالیش" />
+              <input class="form-input" style="flex:1" placeholder="مبلغ" value="۴۵۰٬۰۰۰" />
+            </div>
+            <div style="display:flex;gap:8px;">
+              <input class="form-input" style="flex:2" placeholder="نام خدمت" value="معاینه" />
+              <input class="form-input" style="flex:1" placeholder="مبلغ" value="۱۵۰٬۰۰۰" />
+            </div>
+            <button class="btn btn-ghost" style="width:fit-content;font-size:12px;">➕ افزودن خدمت</button>
           </div>
-          <div class="form-group">
-            <label class="form-label">دندانپزشک</label>
-            <select class="form-input">
-              <option>دکتر رضایی</option>
-              <option>دکتر کریمی</option>
-              <option>دکتر نجفی</option>
-              <option>دکتر موسوی</option>
-            </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">نوع بیمه</label>
+          <select class="form-input">
+            <option>آزاد</option>
+            <option>تأمین اجتماعی</option>
+            <option>خدمات درمانی</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">روش پرداخت</label>
+          <select class="form-input">
+            <option>نقدی</option>
+            <option>کارت</option>
+            <option>اقساط</option>
+            <option>بیمه</option>
+          </select>
+        </div>
+
+        <div class="form-group full" style="background:var(--surface2);border-radius:10px;padding:14px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="font-size:13px;color:var(--text2);">جمع کل</span>
+            <span style="font-size:16px;font-weight:900;">۶۰۰٬۰۰۰ تومان</span>
           </div>
-          <div class="form-group">
-            <label class="form-label">نوع خدمت</label>
-            <select class="form-input">
-              <option>معاینه</option>
-              <option>جرم‌گیری</option>
-              <option>پر کردن</option>
-              <option>روت کانال</option>
-              <option>کشیدن دندان</option>
-              <option>ارتودنسی</option>
-              <option>ایمپلنت</option>
-              <option>ونیر</option>
-              <option>بلیچینگ</option>
-            </select>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="font-size:13px;color:var(--text2);">سهم بیمه</span>
+            <span style="font-size:14px;font-weight:700;color:var(--accent)">۰ تومان</span>
           </div>
-          <div class="form-group">
-            <label class="form-label">تاریخ (شمسی)</label>
-            <input class="form-input" type="text" placeholder="۱۴۰۳/۱۲/۰۵" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">ساعت</label>
-            <select class="form-input">
-              <option>۸:۰۰</option><option>۸:۳۰</option><option>۹:۰۰</option>
-              <option>۹:۳۰</option><option>۱۰:۰۰</option><option>۱۰:۳۰</option>
-              <option>۱۱:۰۰</option><option>۱۳:۰۰</option><option>۱۳:۳۰</option>
-              <option>۱۴:۰۰</option><option>۱۵:۰۰</option><option>۱۶:۰۰</option>
-            </select>
-          </div>
-          <div class="form-group full">
-            <label class="form-label">یادداشت</label>
-            <textarea class="form-input" rows="2" placeholder="توضیحات اضافی..."></textarea>
+          <div style="display:flex;justify-content:space-between;padding-top:8px;border-top:1px solid var(--border);">
+            <span style="font-size:14px;font-weight:700;">مبلغ قابل دریافت</span>
+            <span style="font-size:18px;font-weight:900;color:var(--primary)">۶۰۰٬۰۰۰ تومان</span>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-ghost" onclick="closeModal('newAppt')">انصراف</button>
-        <button class="btn btn-primary">✅ ثبت نوبت</button>
-      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('newInvoice')">انصراف</button>
+      <button class="btn btn-primary">🖨️ صدور فاکتور</button>
     </div>
   </div>
+</div>
 
-  <!-- ══════════════ MODAL: Invoice ══════════════ -->
-  <div class="modal-overlay" id="modal-newInvoice">
-    <div class="modal" role="dialog" aria-modal="true" aria-label="فاکتور جدید">
-      <div class="modal-header">
-        <span style="font-size:22px;">🧾</span>
-        <span class="modal-title">فاکتور جدید</span>
-        <button class="modal-close" onclick="closeModal('newInvoice')">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="form-grid">
-          <div class="form-group full">
-            <label class="form-label">بیمار</label>
-            <input class="form-input" type="text" placeholder="نام بیمار..." />
-          </div>
-          <div class="form-group full">
-            <label class="form-label">خدمات ارائه شده</label>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="display:flex;gap:8px;">
-                <input class="form-input" style="flex:2" placeholder="نام خدمت" value="جرم‌گیری و پالیش" />
-                <input class="form-input" style="flex:1" placeholder="مبلغ" value="۴۵۰٬۰۰۰" />
-              </div>
-              <div style="display:flex;gap:8px;">
-                <input class="form-input" style="flex:2" placeholder="نام خدمت" value="معاینه" />
-                <input class="form-input" style="flex:1" placeholder="مبلغ" value="۱۵۰٬۰۰۰" />
-              </div>
-              <button class="btn btn-ghost" style="width:fit-content;font-size:12px;">➕ افزودن خدمت</button>
-            </div>
-          </div>
+<script>
+  // ── Page navigation ──
+  function showPage(id, el) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
 
-          <div class="form-group">
-            <label class="form-label">نوع بیمه</label>
-            <select class="form-input">
-              <option>آزاد</option>
-              <option>تأمین اجتماعی</option>
-              <option>خدمات درمانی</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">روش پرداخت</label>
-            <select class="form-input">
-              <option>نقدی</option>
-              <option>کارت</option>
-              <option>اقساط</option>
-              <option>بیمه</option>
-            </select>
-          </div>
+    const pg = document.getElementById('page-' + id);
+    if (pg) pg.classList.add('active');
 
-          <div class="form-group full" style="background:var(--surface2);border-radius:10px;padding:14px;">
-            <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
-              <span style="font-size:13px;color:var(--text2);">جمع کل</span>
-              <span style="font-size:16px;font-weight:900;">۶۰۰٬۰۰۰ تومان</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
-              <span style="font-size:13px;color:var(--text2);">سهم بیمه</span>
-              <span style="font-size:14px;font-weight:700;color:var(--accent)">۰ تومان</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;padding-top:8px;border-top:1px solid var(--border);">
-              <span style="font-size:14px;font-weight:700;">مبلغ قابل دریافت</span>
-              <span style="font-size:18px;font-weight:900;color:var(--primary)">۶۰۰٬۰۰۰ تومان</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    if (el) el.classList.add('active');
 
-      <div class="modal-footer">
-        <button class="btn btn-ghost" onclick="closeModal('newInvoice')">انصراف</button>
-        <button class="btn btn-primary">🖨️ صدور فاکتور</button>
-      </div>
-    </div>
-  </div>
+    const titles = {
+      dashboard: ['داشبورد','خلاصه وضعیت کلینیک'],
+      patients: ['بیماران','مدیریت پرونده‌های بیماران'],
+      appointments: ['نوبت‌دهی','تقویم و مدیریت نوبت‌ها'],
+      'dental-chart': ['چارت دندانپزشکی','نقشه دهان و طرح درمان'],
+      financial: ['مالی و حسابداری','فاکتورها، بیمه و گزارشات مالی'],
+      inventory: ['انبار و مواد','مدیریت موجودی مواد مصرفی'],
+      reports: ['گزارش‌ها','آمار و تحلیل عملکرد'],
+      staff: ['پرسنل','مدیریت دندانپزشکان و کارکنان'],
+      insurance: ['بیمه‌ها','مدیریت قراردادهای بیمه'],
+      settings: ['تنظیمات','پیکربندی سیستم'],
+    };
 
-  <script>
-    // ── Page navigation ──
-    function showPage(id, el) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const t = titles[id] || ['داشبورد',''];
+    const titleEl = document.getElementById('pageTitle');
+    if (titleEl) titleEl.innerHTML = t[0] + ' <span id="pageSubtitle">' + (t[1] || '') + '</span>';
 
-      const pg = document.getElementById('page-' + id);
-      if (pg) pg.classList.add('active');
-      if (el) el.classList.add('active');
+    // اگر رفتی مالی، مطمئن شو تب اول نمایش داده میشه
+    if (id === 'financial') {
+      const firstTab = document.querySelector('#page-financial .tab');
+      if (firstTab) switchTab(firstTab, 'fin-invoices');
+    }
+  }
 
-      const titles = {
-        dashboard: ['داشبورد', 'خلاصه وضعیت کلینیک'],
-        patients: ['بیماران', 'مدیریت پرونده‌های بیماران'],
-        appointments: ['نوبت‌دهی', 'تقویم و مدیریت نوبت‌ها'],
-        'dental-chart': ['چارت دندانپزشکی', 'نقشه دهان و طرح درمان'],
-        financial: ['مالی و حسابداری', 'فاکتورها، بیمه و گزارشات مالی'],
-        inventory: ['انبار و مواد', 'مدیریت موجودی مواد مصرفی'],
-        reports: ['گزارش‌ها', 'آمار و تحلیل عملکرد'],
-        staff: ['پرسنل', 'مدیریت دندانپزشکان و کارکنان'],
-        insurance: ['بیمه‌ها', 'مدیریت قراردادهای بیمه'],
-        settings: ['تنظیمات', 'پیکربندی سیستم'],
+  // ── Modal ──
+  function openModal(id) {
+    const el = document.getElementById('modal-' + id);
+    if (el) el.classList.add('open');
+  }
+  function closeModal(id) {
+    const el = document.getElementById('modal-' + id);
+    if (el) el.classList.remove('open');
+  }
+
+  document.querySelectorAll('.modal-overlay').forEach(o => {
+    o.addEventListener('click', e => {
+      if (e.target === o) o.classList.remove('open');
+    });
+  });
+
+  // ── Tabs (واقعی: hide/show) ──
+  function switchTab(el, id) {
+    const tabsWrap = el && el.closest ? el.closest('.tabs') : null;
+    if (tabsWrap) tabsWrap.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    if (el) el.classList.add('active');
+
+    // hide all finance sections
+    ['fin-invoices','fin-insurance','fin-debts','fin-reports'].forEach(secId => {
+      const sec = document.getElementById(secId);
+      if (sec) sec.style.display = (secId === id) ? '' : 'none';
+    });
+  }
+
+  // ── Persian Date ──
+  function getPersianDate() {
+    const d = new Date();
+    try {
+      return d.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
+    } catch {
+      return '—';
+    }
+  }
+  const pd = document.getElementById('persianDate');
+  if (pd) pd.textContent = getPersianDate();
+
+  function toPersian(n) {
+    return n.toString().replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+  }
+
+  // ── Calendar ──
+  function buildCalendar() {
+    const grid = document.getElementById('calendarGrid');
+    if (!grid) return;
+
+    grid.innerHTML = ''; // جلوگیری از دوباره‌سازی
+    const hasAppt = [1,3,4,7,8,10,12,14,15,16,17,19,21,22,24,25,27,28,29];
+    const today = 1;
+
+    for (let i = 1; i <= 30; i++) {
+      const d = document.createElement('div');
+      d.className = 'cal-day' + (i === today ? ' today' : '') + (hasAppt.includes(i) ? ' has-appt' : '');
+      d.textContent = toPersian(i);
+      d.onclick = () => {
+        document.querySelectorAll('.cal-day').forEach(x => x.classList.remove('selected'));
+        if (i !== today) d.classList.add('selected');
       };
-
-      const t = titles[id] || ['داشبورد', ''];
-      document.getElementById('pageTitle').innerHTML =
-        t[0] + ' <span id="pageSubtitle">' + t[1] + '</span>';
+      grid.appendChild(d);
     }
 
-    // ── Modal ──
-    function openModal(id) {
-      const el = document.getElementById('modal-' + id);
-      if (el) el.classList.add('open');
+    const blanks = (30 % 7 === 0) ? 0 : 7 - (30 % 7);
+    for (let i = 0; i < blanks; i++) {
+      const d = document.createElement('div');
+      d.className = 'cal-day other-month';
+      d.textContent = '';
+      grid.appendChild(d);
     }
-    function closeModal(id) {
-      const el = document.getElementById('modal-' + id);
-      if (el) el.classList.remove('open');
-    }
-    document.querySelectorAll('.modal-overlay').forEach(o => {
-      o.addEventListener('click', e => {
-        if (e.target === o) o.classList.remove('open');
-      });
+  }
+
+  // ── Dental Chart ──
+  function buildDentalChart() {
+    const upper = document.getElementById('upperJaw');
+    const lower = document.getElementById('lowerJaw');
+    if (!upper || !lower) return;
+
+    upper.innerHTML = '';
+    lower.innerHTML = '';
+
+    const upperNums = [18,17,16,15,14,13,12,11,21,22,23,24,25,26,27,28];
+    const lowerNums = [48,47,46,45,44,43,42,41,31,32,33,34,35,36,37,38];
+    const states = ['healthy','healthy','treated','healthy','healthy','healthy','healthy','healthy',
+                    'healthy','healthy','missing','healthy','healthy','problem','healthy','healthy'];
+
+    upperNums.forEach((n,i) => {
+      upper.insertAdjacentHTML('beforeend', `
+        <div class="tooth-cell ${states[i]}" title="دندان ${toPersian(n)}">
+          <span class="tooth-num">${toPersian(n)}</span>
+          <span class="tooth-icon">🦷</span>
+        </div>
+      `);
     });
 
-    // ── Tabs ── (نمایش/پنهان کردن پنل‌ها)
-    function switchTab(el, panelId) {
-      const tabsRoot = el.closest('.tabs');
-      tabsRoot.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      el.classList.add('active');
+    lowerNums.forEach((n) => {
+      const st = (Math.random() < 0.2) ? 'treated' : 'healthy';
+      lower.insertAdjacentHTML('beforeend', `
+        <div class="tooth-cell ${st}" title="دندان ${toPersian(n)}">
+          <span class="tooth-icon">🦷</span>
+          <span class="tooth-num">${toPersian(n)}</span>
+        </div>
+      `);
+    });
+  }
 
-      // فقط داخل همان صفحه financial پنل‌ها را مدیریت کن
-      const pageFinancial = document.getElementById('page-financial');
-      if (!pageFinancial) return;
+  function toggleNotif() {
+    alert('۴ اعلان جدید:\n• کمبود آمالگام دنتال\n• ۳ فاکتور بیمه در انتظار\n• بدهی بیمار احمد نوری\n• لغو نوبت رضا اکبری');
+  }
 
-      pageFinancial.querySelectorAll('.fin-panel').forEach(p => p.style.display = 'none');
-      const panel = document.getElementById(panelId);
-      if (panel) panel.style.display = '';
-    }
+  // ── Init ──
+  buildCalendar();
+  buildDentalChart();
+</script>
 
-    // ── Persian Date ──
-    function getPersianDate() {
-      const d = new Date();
-      try {
-        return d.toLocaleDateString('fa-IR-u-ca-persian', { year: 'numeric', month: 'long', day: 'numeric' });
-      } catch {
-        return '—';
-      }
-    }
-    document.getElementById('persianDate').textContent = getPersianDate();
-
-    function toPersian(n) {
-      return n.toString().replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
-    }
-
-    // ── Calendar ──
-    function buildCalendar() {
-      const grid = document.getElementById('calendarGrid');
-      if (!grid) return;
-
-      grid.innerHTML = "";
-      const hasAppt = [1,3,4,7,8,10,12,14,15,16,17,19,21,22,24,25,27,28,29];
-      const today = 1;
-
-      for (let i = 1; i <= 30; i++) {
-        const d = document.createElement('div');
-        d.className = 'cal-day' + (i === today ? ' today' : '') + (hasAppt.includes(i) ? ' has-appt' : '');
-        d.textContent = toPersian(i);
-        d.onclick = () => {
-          document.querySelectorAll('.cal-day').forEach(x => x.classList.remove('selected'));
-          if (i !== today) d.classList.add('selected');
-        };
-        grid.appendChild(d);
-      }
-
-      const blanks = 30 % 7 === 0 ? 0 : 7 - (30 % 7);
-      for (let i = 0; i < blanks; i++) {
-        const d = document.createElement('div');
-        d.className = 'cal-day other-month';
-        d.textContent = toPersian(i + 1);
-        grid.appendChild(d);
-      }
-    }
-
-    // ── Dental Chart ──
-    function buildDentalChart() {
-      const upper = document.getElementById('upperJaw');
-      const lower = document.getElementById('lowerJaw');
-      if (!upper || !lower) return;
-
-      upper.innerHTML = "";
-      lower.innerHTML = "";
-
-      const upperNums = [18,17,16,15,14,13,12,11,21,22,23,24,25,26,27,28];
-      const lowerNums = [48,47,46,45,44,43,42,41,31,32,33,34,35,36,37,38];
-      const states = ['healthy','healthy','treated','healthy','healthy','healthy','healthy','healthy',
-                      'healthy','healthy','missing','healthy','healthy','problem','healthy','healthy'];
-
-      upperNums.forEach((n,i) => {
-        upper.insertAdjacentHTML('beforeend', `
-          <div class="tooth-cell ${states[i]}" title="دندان ${toPersian(n)}">
-            <span class="tooth-num">${toPersian(n)}</span>
-            <span class="tooth-icon">🦷</span>
-          </div>
-        `);
-      });
-
-      lowerNums.forEach((n) => {
-        const st = Math.random() < 0.25 ? 'treated' : 'healthy';
-        lower.insertAdjacentHTML('beforeend', `
-          <div class="tooth-cell ${st}" title="دندان ${toPersian(n)}">
-            <span class="tooth-icon">🦷</span>
-            <span class="tooth-num">${toPersian(n)}</span>
-          </div>
-        `);
-      });
-    }
-
-    function toggleNotif() {
-      alert('۴ اعلان جدید:\n• کمبود آمالگام دنتال\n• ۳ فاکتور بیمه در انتظار\n• بدهی بیمار احمد نوری\n• لغو نوبت رضا اکبری');
-    }
-
-    // Init
-    buildCalendar();
-    buildDentalChart();
-  </script>
 </body>
 </html>
